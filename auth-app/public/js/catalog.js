@@ -1,4 +1,4 @@
-// Danh sách sản phẩm (lọc theo danh mục + giá, sắp xếp, phân trang) và trang chi tiết.
+// Danh sách sản phẩm (tìm kiếm; lọc theo danh mục, giá, hãng, thông số; sắp xếp; phân trang) và chi tiết.
 //
 // Cửa hàng nhỏ (vài trăm sản phẩm) nên tải toàn bộ sản phẩm đang bán MỘT lần rồi lọc/sắp xếp
 // ở trình duyệt: nhanh, không cần composite index, đổi bộ lọc không tốn lượt đọc Firestore.
@@ -7,7 +7,7 @@ import {
   collection, query, where, getDocs, doc, getDoc
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
 import { db } from './firebase.js';
-import { CATEGORIES, PRICE_RANGES, catName } from './categories.js';
+import { CATEGORIES, PRICE_RANGES, SPEC_FILTERS, catName } from './categories.js';
 import { $, esc, money } from './ui.js';
 
 const PAGE_SIZE = 12;
@@ -65,12 +65,50 @@ function priceBounds(params) {
 
 const discount = (p) => (p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0);
 
-function applyFilters(list, params) {
+// ---------- Tìm kiếm: không phân biệt dấu, hoa/thường; tìm cả mã model ("14400f", "4060") ----------
+export const fold = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '')
+  .replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+const haystack = new WeakMap();
+function matchesQuery(p, words) {
+  let h = haystack.get(p);
+  if (h === undefined) {
+    h = fold([p.name, p.brand, p.id, p.summary, catName(p.category)].join(' '));
+    haystack.set(p, h);
+  }
+  return words.every((w) => h.includes(w));
+}
+const queryWords = (q) => fold(q).split(/\s+/).filter(Boolean);
+
+// ---------- Bộ lọc chọn nhiều: hãng + thông số riêng của danh mục ----------
+// Trong cùng một nhóm là HOẶC, giữa các nhóm là VÀ. Giá trị trên URL cách nhau bằng dấu phẩy.
+const BRAND = { key: 'hang', label: 'Hãng' };
+const groupsFor = (cat) => [BRAND, ...(SPEC_FILTERS[cat] || [])];
+const selected = (params, key) => (params[key] ? params[key].split(',').filter(Boolean) : []);
+function valuesOf(p, g) {
+  if (g === BRAND) return p.brand ? [p.brand] : [];
+  const v = p.specs?.[g.spec];
+  if (v == null || v === '') return [];
+  return g.split ? String(v).split(/\s*,\s*/) : [String(v)];
+}
+
+/** Lọc theo tham số URL. `skip`: bỏ qua 1 nhóm (dùng để đếm số sản phẩm của từng lựa chọn). */
+function applyFilters(list, params, skip = null) {
   let out = list;
   if (params.cat) out = out.filter((p) => p.category === params.cat);
+  const words = queryWords(params.q);
+  if (words.length) out = out.filter((p) => matchesQuery(p, words));
   const b = priceBounds(params);
   if (b) out = out.filter((p) => p.price >= b.min && p.price <= b.max);
   if (params.con === '1') out = out.filter((p) => p.stock > 0);
+  for (const g of groupsFor(params.cat)) {
+    if (g.key === skip) continue;
+    const want = selected(params, g.key);
+    if (want.length) out = out.filter((p) => valuesOf(p, g).some((v) => want.includes(v)));
+  }
+  return out;
+}
+
+function sortList(out, params) {
   const sorters = {
     pop: (a, b) => (b.sold || 0) - (a.sold || 0),
     price_asc: (a, b) => a.price - b.price,
@@ -112,49 +150,92 @@ export function card(p) {
 }
 
 // ---------- Trang danh sách ----------
+// Đổi danh mục thì bỏ các bộ lọc riêng của danh mục cũ (hãng, thông số), giữ tìm kiếm/giá/sắp xếp.
+function catHref(params, cat) {
+  const keep = {};
+  for (const k of ['q', 'gia', 'min', 'max', 'con', 'sx']) if (params[k]) keep[k] = params[k];
+  return listHref(keep, { cat });
+}
+
+function toggleHref(params, key, value) {
+  const cur = selected(params, key);
+  const next = cur.includes(value) ? cur.filter((v) => v !== value) : [...cur, value];
+  return listHref(params, { [key]: next.join(',') });
+}
+
+const SR_ON = '<span class="sr-only"> (đang chọn)</span>';
+const byNatural = (a, b) => a.localeCompare(b, 'vi', { numeric: true });
+
+/** Các nhóm lọc chọn nhiều. Mỗi lựa chọn hiện số sản phẩm nếu chọn thêm nó. */
+function facetHtml(all, params) {
+  // Ở "Tất cả sản phẩm" có quá nhiều hãng; chỉ hiện khi đã chọn danh mục hoặc đang tìm kiếm.
+  if (!params.cat && !params.q) return '';
+  return groupsFor(params.cat).map((g) => {
+    const want = selected(params, g.key);
+    const base = applyFilters(all, params, g.key);
+    const counts = new Map();
+    for (const p of base) for (const v of valuesOf(p, g)) counts.set(v, (counts.get(v) || 0) + 1);
+    for (const v of want) if (!counts.has(v)) counts.set(v, 0);
+    if (counts.size < 2 && !want.length) return '';          // chỉ 1 lựa chọn thì không cần lọc
+    const opts = [...counts.keys()].sort(byNatural).map((v) => {
+      const on = want.includes(v);
+      return `<a class="opt ${on ? 'on' : ''}" href="${toggleHref(params, g.key, v)}">${esc(v)}${on ? SR_ON : ''} <small>${counts.get(v)}</small></a>`;
+    }).join('');
+    return `<div class="filter-group"><h3>${esc(g.label)}</h3>${opts}</div>`;
+  }).join('');
+}
+
 export async function renderList(params) {
   const all = await loadProducts();
   const cat = params.cat && CATEGORIES.some((c) => c.key === params.cat) ? params.cat : '';
   params = { ...params, cat };
+  const q = (params.q || '').trim();
 
-  $('#list-crumbs').innerHTML = cat
-    ? `<a href="#/">Trang chủ</a> › <span>${esc(catName(cat))}</span>`
-    : '<span>Trang chủ</span>';
-  $('#list-title').textContent = cat ? catName(cat) : 'Tất cả sản phẩm';
+  const title = q ? `Kết quả cho “${q}”` : cat ? catName(cat) : 'Tất cả sản phẩm';
+  $('#list-crumbs').innerHTML = cat || q
+    ? `<a href="#/">Trang chủ</a> › <span aria-current="page">${esc(cat ? catName(cat) : 'Tìm kiếm')}</span>`
+    : '<span aria-current="page">Trang chủ</span>';
+  $('#list-title').textContent = title;
+  document.title = `${title} – Linh Kiện PC`;
+  $('#search-q').value = q;
 
-  // Chip danh mục (lối vào nhanh)
-  const count = (key) => all.filter((p) => p.category === key).length;
-  $('#cat-chips').innerHTML = [
-    `<a class="chip ${cat ? '' : 'on'}" href="${listHref(params, { cat: '' })}">Tất cả</a>`,
-    ...CATEGORIES.map((c) => `<a class="chip ${cat === c.key ? 'on' : ''}" href="${listHref(params, { cat: c.key })}">${esc(c.name)} <small>${count(c.key)}</small></a>`)
-  ].join('');
+  // Chip danh mục (lối vào nhanh). Số đếm theo tìm kiếm hiện tại.
+  const words = queryWords(q);
+  const pool = words.length ? all.filter((p) => matchesQuery(p, words)) : all;
+  const count = (key) => pool.filter((p) => p.category === key).length;
+  const chip = (key, label, n) => `<a class="chip ${cat === key ? 'on' : ''}" href="${catHref(params, key)}"${cat === key ? ' aria-current="true"' : ''}>${esc(label)}${n == null ? '' : ` <small>${n}</small>`}</a>`;
+  $('#cat-chips').innerHTML = [chip('', 'Tất cả'), ...CATEGORIES.map((c) => chip(c.key, c.name, count(c.key)))].join('');
 
   // Bộ lọc bên trái
   $('#f-cats').innerHTML = [
-    `<a class="opt ${cat ? '' : 'on'}" href="${listHref(params, { cat: '' })}">Tất cả</a>`,
-    ...CATEGORIES.map((c) => `<a class="opt ${cat === c.key ? 'on' : ''}" href="${listHref(params, { cat: c.key })}">${esc(c.name)}</a>`)
+    `<a class="opt ${cat ? '' : 'on'}" href="${catHref(params, '')}">Tất cả${cat ? '' : SR_ON}</a>`,
+    ...CATEGORIES.map((c) => `<a class="opt ${cat === c.key ? 'on' : ''}" href="${catHref(params, c.key)}">${esc(c.name)}${cat === c.key ? SR_ON : ''}</a>`)
   ].join('');
   $('#f-prices').innerHTML = PRICE_RANGES.map((r) => {
     const on = params.gia === r.key;
-    return `<a class="opt ${on ? 'on' : ''}" href="${listHref(params, { gia: on ? '' : r.key, min: '', max: '' })}">${esc(r.label)}</a>`;
+    return `<a class="opt ${on ? 'on' : ''}" href="${listHref(params, { gia: on ? '' : r.key, min: '', max: '' })}">${esc(r.label)}${on ? SR_ON : ''}</a>`;
   }).join('');
+  $('#f-facets').innerHTML = facetHtml(all, params);
   const fc = $('#f-custom');
   fc.min.value = params.min || '';
   fc.max.value = params.max || '';
   $('#f-stock').checked = params.con === '1';
   $('#sort').value = params.sx || 'pop';
 
-  // Chip bộ lọc đang áp dụng
+  // Chip bộ lọc đang áp dụng (bấm để bỏ)
   const active = [];
-  if (cat) active.push(`<a class="chip on" href="${listHref(params, { cat: '' })}">${esc(catName(cat))} ✕</a>`);
+  const rm = (href, label) => active.push(`<a class="chip on" href="${href}" aria-label="Bỏ lọc ${esc(label)}">${esc(label)} <span aria-hidden="true">✕</span></a>`);
+  if (q) rm(listHref(params, { q: '' }), `“${q}”`);
+  if (cat) rm(catHref(params, ''), catName(cat));
   const b = priceBounds(params);
-  if (b) active.push(`<a class="chip on" href="${listHref(params, { gia: '', min: '', max: '' })}">${esc(b.label)} ✕</a>`);
-  if (params.con === '1') active.push(`<a class="chip on" href="${listHref(params, { con: '' })}">Còn hàng ✕</a>`);
+  if (b) rm(listHref(params, { gia: '', min: '', max: '' }), b.label);
+  if (params.con === '1') rm(listHref(params, { con: '' }), 'Còn hàng');
+  for (const g of groupsFor(cat)) for (const v of selected(params, g.key)) rm(toggleHref(params, g.key, v), `${g.label}: ${v}`);
   if (active.length > 1) active.push(`<a class="link" href="${listHref({}, {})}">Xóa tất cả</a>`);
   $('#active-filters').innerHTML = active.join('');
 
   // Kết quả + phân trang
-  const list = applyFilters(all, params);
+  const list = sortList(applyFilters(all, params), params);
   const pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
   const page = Math.min(Math.max(1, Number(params.trang) || 1), pages);
   const slice = list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -162,14 +243,15 @@ export async function renderList(params) {
   $('#result-count').textContent = `${list.length} sản phẩm`;
   $('#grid').innerHTML = slice.length
     ? slice.map(card).join('')
-    : `<div class="empty">Không có sản phẩm phù hợp. <a href="${listHref({}, {})}">Bỏ bộ lọc</a></div>`;
+    : `<div class="empty">Không có sản phẩm phù hợp${q ? ` với “${esc(q)}”` : ''}.
+        ${active.length ? `<a href="${listHref({}, {})}">Bỏ tất cả bộ lọc</a>` : ''}</div>`;
 
   $('#pager').innerHTML = pages > 1
     ? [
-        page > 1 ? `<a href="${listHref(params, { trang: page - 1 })}">‹</a>` : '',
+        page > 1 ? `<a href="${listHref(params, { trang: page - 1 })}" aria-label="Trang trước">‹</a>` : '',
         ...Array.from({ length: pages }, (_, i) => i + 1)
-          .map((n) => `<a class="${n === page ? 'on' : ''}" href="${listHref(params, { trang: n })}">${n}</a>`),
-        page < pages ? `<a href="${listHref(params, { trang: page + 1 })}">›</a>` : ''
+          .map((n) => `<a class="${n === page ? 'on' : ''}" href="${listHref(params, { trang: n })}" aria-label="Trang ${n}"${n === page ? ' aria-current="page"' : ''}>${n}</a>`),
+        page < pages ? `<a href="${listHref(params, { trang: page + 1 })}" aria-label="Trang sau">›</a>` : ''
       ].join('')
     : '';
 }

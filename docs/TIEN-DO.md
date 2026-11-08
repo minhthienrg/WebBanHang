@@ -20,8 +20,8 @@
 - [x] Chi tiết sản phẩm, sản phẩm tương tự, thanh mua dính đáy trên mobile
 - [x] Giỏ hàng (Firestore), thanh toán 1 trang, đặt hàng, hủy đơn
 - [x] Security Rules chặn sửa giá/tổng tiền/vượt tồn kho
-- [ ] Lọc theo hãng và thông số riêng từng danh mục (yêu cầu mục 3.2)
-- [ ] Tìm kiếm không dấu, theo mã model
+- [x] Lọc theo hãng và thông số riêng từng danh mục (cấu hình `SPEC_FILTERS` trong `js/categories.js`); chọn nhiều, có số đếm
+- [x] Tìm kiếm trên header: không dấu, theo mã model, theo tên danh mục
 - [x] Test Playwright (lọc, chi tiết, thêm giỏ, giỏ, thanh toán, hủy đơn) + 43 test rules — tất cả đạt
 
 ### Bước 5: Tối ưu
@@ -45,6 +45,8 @@ npx playwright install chromium   # lần đầu (hoặc đặt PLAYWRIGHT_BROWS
 
 ## Vấn đề gặp phải
 - Thư mục chưa phải git repo khi bắt đầu phiên 09/11/2026 → đã `git init` (nhánh `main`), commit phần đã có.
+- Test mobile: ngăn bộ lọc `<details>` giữ trạng thái mở giữa các lần đổi hash, nên test phải kiểm tra
+  `open` trước khi bấm (nếu không sẽ tự đóng lại).
 - Máy không cài Java; Firebase Emulator (Firestore) cần Java. Dùng JRE 21 tải về thư mục tạm của phiên trước.
 
 ## Cần tôi xác nhận

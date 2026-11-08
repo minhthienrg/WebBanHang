@@ -62,6 +62,12 @@ async function newPage(viewport, tag, extra = {}) {
 async function flow(tag, viewport, mobile) {
   console.log(`\n== ${tag} (${viewport.width}px) ==`);
   const page = await newPage(viewport, tag, mobile ? { isMobile: true, hasTouch: true } : {});
+  // Mở ngăn bộ lọc (trên điện thoại nó thu gọn sẵn); không đóng lại nếu đang mở.
+  const openFilters = async () => {
+    if (!(await page.$eval('#filters', (d) => d.open))) await page.click('#filters summary');
+  };
+  // Lựa chọn lọc có nhãn đúng bằng `label` (bỏ qua số đếm phía sau).
+  const facet = (label) => page.locator('#f-facets a.opt').filter({ hasText: new RegExp(`^${label}\\s+\\d+$`) });
   const shot = (name, full = false) => page.screenshot({ path: `${SHOTS}${tag}-${name}.png`, fullPage: full });
 
   // ---------- Danh sách ----------
@@ -80,7 +86,7 @@ async function flow(tag, viewport, mobile) {
   await page.click('#cat-chips >> text=VGA');
   const nVga = count((p) => p.category === 'vga');
   await step(`lọc VGA còn ${nVga}`, () => waitCount(page, nVga));
-  if (mobile) await page.click('#filters summary');
+  await openFilters();
   await page.click('#f-prices >> text=5 – 10 triệu');
   const nVga510 = count((p) => p.category === 'vga' && p.price >= 5e6 && p.price <= 1e7);
   await step(`VGA 5–10 triệu còn ${nVga510}`, () => waitCount(page, nVga510));
@@ -91,6 +97,38 @@ async function flow(tag, viewport, mobile) {
     const ps = await page.$$eval('#grid .pprice strong', (els) => els.map((e) => Number(e.textContent.replace(/\D/g, ''))));
     return ps.every((p, i) => i === 0 || ps[i - 1] >= p);
   });
+
+  // ---------- Tìm kiếm (header) ----------
+  await page.fill('#search-q', '14400f');
+  await page.press('#search-q', 'Enter');
+  await step('tìm theo mã model "14400f" ra đúng 1 sản phẩm', () => waitCount(page, 1));
+  await step('tiêu đề trang kết quả tìm kiếm', async () => (await page.textContent('#list-title')).includes('14400f'));
+  await page.fill('#search-q', 'o cung');
+  await page.press('#search-q', 'Enter');
+  await step('tìm không dấu "o cung" ra danh mục Ổ cứng', () => waitCount(page, count((p) => p.category === 'o-cung')));
+  await page.fill('#search-q', 'khongcosanphamnay');
+  await page.press('#search-q', 'Enter');
+  await step('không có kết quả → hiện thông báo', () => page.waitForSelector('#grid .empty'));
+
+  // ---------- Lọc theo hãng (chọn nhiều = HOẶC) và thông số (giữa các nhóm = VÀ) ----------
+  await page.goto(`${BASE}/#/?cat=cpu`);
+  await page.waitForSelector('#f-facets .filter-group');
+  await openFilters();
+  await facet('Intel').click();
+  await step('lọc hãng Intel', () => waitCount(page, count((p) => p.category === 'cpu' && p.brand === 'Intel')));
+  await facet('AMD').click();
+  await step('chọn thêm AMD → hiện cả hai hãng', () => waitCount(page, count((p) => p.category === 'cpu')));
+  await page.goto(`${BASE}/#/?cat=mainboard&socket=AM5`);
+  await step('lọc mainboard socket AM5 qua URL', () => waitCount(page, count((p) => p.category === 'mainboard' && p.specs.Socket === 'AM5')));
+  await page.goto(`${BASE}/#/?cat=mainboard&socket=LGA1700&ddr=DDR5`);
+  await step('socket LGA1700 VÀ DDR5', () => waitCount(page,
+    count((p) => p.category === 'mainboard' && p.specs.Socket === 'LGA1700' && p.specs['Chuẩn RAM'] === 'DDR5')));
+  await page.goto(`${BASE}/#/?cat=case&main=Mini-ITX`);
+  await step('thông số nhiều giá trị (case hỗ trợ Mini-ITX)', () => waitCount(page,
+    count((p) => p.category === 'case' && p.specs['Mainboard hỗ trợ'].includes('Mini-ITX'))));
+  await page.click('#cat-chips >> text=CPU');
+  await step('đổi danh mục thì bỏ bộ lọc thông số cũ', () => page.waitForFunction(() => location.hash === '#/?cat=cpu'));
+  await step('không cuộn ngang (có bộ lọc)', () => noHScroll(page));
 
   // ---------- Chi tiết ----------
   await page.goto(`${BASE}/#/sp/cpu-intel-i5-14400f`);

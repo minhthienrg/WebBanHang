@@ -4,7 +4,7 @@
 
 | Trang | Đường dẫn | Ghi chú |
 |---|---|---|
-| Danh sách sản phẩm | `#/` | Chip danh mục, lọc theo danh mục và giá (khoảng có sẵn hoặc tự nhập), còn hàng, 5 kiểu sắp xếp, 12 sản phẩm/trang. Bộ lọc nằm trên URL nên chia sẻ link được |
+| Danh sách sản phẩm | `#/` | Ô tìm kiếm trên header (không dấu, theo mã model). Chip danh mục, lọc theo danh mục, giá (khoảng có sẵn hoặc tự nhập), **hãng và thông số riêng từng danh mục** (sửa trong `js/categories.js` → `SPEC_FILTERS`), còn hàng, 5 kiểu sắp xếp, 12 sản phẩm/trang. Bộ lọc nằm trên URL nên chia sẻ link được |
 | Chi tiết | `#/sp/{id}` | Giá, thông số chính, tồn kho, ô chính sách, bảng thông số, sản phẩm tương tự; thanh mua dính đáy trên điện thoại |
 | Giỏ hàng | `#/gio-hang` | Lưu ở Firestore theo tài khoản, đồng bộ giữa các thiết bị; tăng/giảm/xóa; báo khi vượt tồn kho |
 | Thanh toán | `#/thanh-toan` | 1 trang; tự điền từ hồ sơ; COD hoặc chuyển khoản; miễn phí giao từ 5.000.000₫ (dưới mức đó 30.000₫) |

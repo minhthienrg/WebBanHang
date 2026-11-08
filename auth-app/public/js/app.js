@@ -1,5 +1,5 @@
 // Điều hướng bằng hash (#/...) — hợp với Firebase Hosting và iframe Google Sites.
-//   #/?cat=&gia=&min=&max=&con=&sx=&trang=   danh sách sản phẩm
+//   #/?q=&cat=&gia=&min=&max=&con=&sx=&trang=&hang=&{thông số}=   danh sách / tìm kiếm
 //   #/sp/{id}                                chi tiết
 //   #/gio-hang · #/thanh-toan · #/dat-hang-thanh-cong/{id}
 //   #/dang-nhap · #/quen-mat-khau · #/tai-khoan
@@ -44,7 +44,6 @@ async function route() {
     switch (page) {
       case undefined:
         show('list', 'list');
-        document.title = 'Linh Kiện PC';
         await renderList(params);
         break;
       case 'sp':
@@ -152,6 +151,14 @@ document.addEventListener('click', async (ev) => {
   } finally {
     btn.disabled = false;
   }
+});
+
+// ---------- Tìm kiếm (header): kết quả dùng lại trang danh sách, bỏ các bộ lọc cũ ----------
+$('#search').addEventListener('submit', (ev) => {
+  ev.preventDefault();
+  const q = $('#search-q').value.trim();
+  location.hash = listHref({}, { q });
+  $('#search-q').blur();   // đóng bàn phím trên điện thoại
 });
 
 // ---------- Bộ lọc: sắp xếp, khoảng giá tự nhập, còn hàng ----------
