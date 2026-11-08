@@ -59,7 +59,12 @@ export async function saveProfile(user, { name, phone, address }) {
 
 // ---------- Màn đăng nhập ----------
 export function showTab(tab) {
-  $$('.tab').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
+  $$('.tab').forEach((b) => {
+    const on = b.dataset.tab === tab;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', String(on));
+    b.tabIndex = on ? 0 : -1;
+  });
   $('#form-login').hidden = tab !== 'login';
   $('#form-register').hidden = tab !== 'register';
 }
@@ -131,6 +136,16 @@ async function renderOrders(user) {
 // ---------- Gắn sự kiện (gọi 1 lần) ----------
 export function initAccount() {
   $$('.tab').forEach((b) => b.addEventListener('click', () => { clearMsg(); showTab(b.dataset.tab); }));
+  // Phím mũi tên / Home / End chuyển tab (mẫu ARIA Tabs).
+  $('.tabs').addEventListener('keydown', (ev) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(ev.key)) return;
+    ev.preventDefault();
+    const next = $('#tab-login').getAttribute('aria-selected') === 'true' ? 'register' : 'login';
+    const tab = ev.key === 'Home' ? 'login' : ev.key === 'End' ? 'register' : next;
+    clearMsg();
+    showTab(tab);
+    $(`#tab-${tab}`).focus();
+  });
 
   $('#form-login').addEventListener('submit', (ev) => {
     ev.preventDefault();

@@ -4,9 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Linh Kiện PC</title>
+  <meta name="description" content="Cửa hàng linh kiện máy tính: CPU, mainboard, RAM, VGA, ổ cứng, nguồn, case, tản nhiệt.">
+  <meta name="theme-color" content="#1a5fd0">
   <link rel="stylesheet" href="css/style.css">
+  <!-- Tải song song các module thay vì tuần tự theo chuỗi import (giảm thời gian hiện sản phẩm đầu tiên) -->
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js">
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js">
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js">
+  <link rel="modulepreload" href="js/firebase-config.js">
+  <link rel="modulepreload" href="js/firebase.js">
+  <link rel="modulepreload" href="js/ui.js">
+  <link rel="modulepreload" href="js/categories.js">
+  <link rel="modulepreload" href="js/catalog.js">
+  <link rel="modulepreload" href="js/account.js">
+  <link rel="modulepreload" href="js/cart.js">
 </head>
 <body>
+  <a href="#main" class="skip" id="skip">Bỏ qua tới nội dung chính</a>
   <header class="topbar">
     <a href="#/" class="brand">Linh Kiện PC</a>
     <form id="search" class="search" role="search">
@@ -23,29 +38,29 @@
     </nav>
   </header>
 
-  <div class="wrap">
+  <main id="main" class="wrap" tabindex="-1">
     <div id="msg" class="msg" role="status" aria-live="polite" hidden></div>
     <div id="loading" class="loading">Đang tải…</div>
 
     <!-- DANH SÁCH SẢN PHẨM -->
     <section id="view-list" class="view" hidden>
-      <nav class="crumbs" id="list-crumbs"></nav>
+      <nav class="crumbs" id="list-crumbs" aria-label="Đường dẫn"></nav>
       <h1 id="list-title">Tất cả sản phẩm</h1>
       <div class="chips" id="cat-chips"></div>
       <div class="list-layout">
         <details class="filters" id="filters" open>
           <summary>Bộ lọc</summary>
           <div class="filter-group">
-            <h3>Danh mục</h3>
+            <h2>Danh mục</h2>
             <div id="f-cats"></div>
           </div>
           <div class="filter-group">
-            <h3>Khoảng giá</h3>
+            <h2>Khoảng giá</h2>
             <div id="f-prices"></div>
-            <form id="f-custom" class="price-custom">
-              <input name="min" type="number" min="0" step="100000" placeholder="Từ" inputmode="numeric">
-              <span>–</span>
-              <input name="max" type="number" min="0" step="100000" placeholder="Đến" inputmode="numeric">
+            <form id="f-custom" class="price-custom" aria-label="Khoảng giá tự nhập">
+              <input name="min" type="number" min="0" step="100000" placeholder="Từ" inputmode="numeric" aria-label="Giá từ (đồng)">
+              <span aria-hidden="true">–</span>
+              <input name="max" type="number" min="0" step="100000" placeholder="Đến" inputmode="numeric" aria-label="Giá đến (đồng)">
               <button type="submit" class="btn small">Áp dụng</button>
             </form>
           </div>
@@ -65,9 +80,9 @@
               </select>
             </label>
           </div>
-          <p id="result-count" class="hint"></p>
+          <p id="result-count" class="hint" role="status"></p>
           <div id="grid" class="grid"></div>
-          <nav id="pager" class="pager"></nav>
+          <nav id="pager" class="pager" aria-label="Phân trang"></nav>
         </div>
       </div>
     </section>
@@ -87,13 +102,14 @@
     <!-- ĐĂNG NHẬP / ĐĂNG KÝ -->
     <section id="view-auth" class="view narrow" hidden>
       <div class="card">
-        <div class="tabs" role="tablist">
-          <button type="button" class="tab active" data-tab="login" role="tab">Đăng nhập</button>
-          <button type="button" class="tab" data-tab="register" role="tab">Đăng ký</button>
+        <h1 class="sr-only">Đăng nhập hoặc đăng ký</h1>
+        <div class="tabs" role="tablist" aria-label="Đăng nhập hoặc đăng ký">
+          <button type="button" class="tab active" data-tab="login" role="tab" id="tab-login" aria-controls="form-login" aria-selected="true">Đăng nhập</button>
+          <button type="button" class="tab" data-tab="register" role="tab" id="tab-register" aria-controls="form-register" aria-selected="false" tabindex="-1">Đăng ký</button>
         </div>
         <p id="auth-reason" class="note" hidden></p>
 
-        <form id="form-login" class="form" novalidate>
+        <form id="form-login" class="form" aria-labelledby="tab-login" novalidate>
           <label>Email
             <input name="email" type="email" autocomplete="email" required>
           </label>
@@ -104,7 +120,7 @@
           <a class="link" href="#/quen-mat-khau">Quên mật khẩu?</a>
         </form>
 
-        <form id="form-register" class="form" novalidate hidden>
+        <form id="form-register" class="form" aria-labelledby="tab-register" novalidate hidden>
           <label>Họ tên
             <input name="name" type="text" autocomplete="name" maxlength="100" required>
           </label>
@@ -182,7 +198,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </main>
 
   <script type="module" src="js/app.js"></script>
 </body>

@@ -112,18 +112,33 @@ Danh sách → lọc → chi tiết → Thêm vào giỏ → đăng nhập → g
 Kiểm tra trong Console: `orders` có đơn mới, `carts/{uid}` có `items` rỗng.
 
 ### Bước 8 — Nhúng vào Google Sites
+Google Sites chỉ nhúng được URL **https** và trang đích phải cho phép nhúng (app đã đặt `frame-ancestors` cho
+`sites.google.com` trong `firebase.json`).
+
+**Cách A (nên dùng) — trang nhúng toàn màn hình:** **Trang → Trang mới → Nhúng toàn trang** (*Full page embed*)
+→ dán URL app. App chiếm cả trang nên không phải chỉnh chiều cao khung.
+
+**Cách B — khung trong một trang có nội dung khác:**
 1. Chế độ chỉnh sửa → **Chèn → Nhúng → Nhúng theo URL** → `https://mindmap-4ad79-e47cc.web.app` → **Toàn bộ trang** → **Chèn**.
 2. Kéo khung rộng hết cột, cao khoảng **900–1200px**. Đây là cửa hàng nên cần khung cao hơn bản chỉ có đăng nhập. Google Sites không tự giãn chiều cao, phần thừa sẽ cuộn bên trong khung.
 3. **Xem trước** ở chế độ điện thoại và máy tính → **Xuất bản**.
 
 Có thể nhúng thẳng một trang con, ví dụ danh mục VGA: `https://mindmap-4ad79-e47cc.web.app/#/?cat=vga`.
 
+## Kiểm thử tự động
+
+```bash
+cd auth-app/tests && npm install && ./run.sh   # rules + E2E (máy tính + điện thoại) + accessibility/tốc độ
+```
+Chi tiết và yêu cầu (Java, Chromium) xem `docs/TIEN-DO.md` mục "Cách test".
+
 ## Chạy thử trên máy (không đụng dữ liệu thật)
 
-Khi mở ở `localhost` / `127.0.0.1`, app tự dùng Auth và Firestore **giả lập**. Cần cài Java 11 trở lên.
+Khi mở ở `localhost` / `127.0.0.1`, app tự dùng Auth và Firestore **giả lập**, với project `demo-webbanhang`
+(project `demo-*` không bao giờ gọi dịch vụ thật). Cần cài Java 11 trở lên.
 ```bash
 cd ~/Project/WebBanHang/auth-app
-firebase emulators:start --project mindmap-4ad79
+firebase emulators:start --project demo-webbanhang
 ```
 - App: <http://127.0.0.1:5000>. Giao diện emulator để xem và sửa dữ liệu: <http://127.0.0.1:4000>.
 - Dữ liệu giả lập mất khi tắt emulator. Để nạp mẫu: đăng ký 1 tài khoản → trong Emulator UI tạo `admins/{uid}` → mở `http://127.0.0.1:5000/admin/seed.html`.

@@ -6,7 +6,7 @@
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
 import { auth } from './firebase.js';
 import { $, $$, say, clearMsg, errText } from './ui.js';
-import { renderList, renderDetail, listHref } from './catalog.js';
+import { renderList, renderDetail, listHref, loadProducts } from './catalog.js';
 import { initAccount, ensureProfile, clearProfile, renderAccount, showTab, setAuthReason } from './account.js';
 import { initCart, startCart, stopCart, addToCart, renderCart, renderCheckout, renderDone } from './cart.js';
 
@@ -16,6 +16,13 @@ let returnTo = null;        // trang cần quay lại sau khi đăng nhập
 let pendingAdd = null;      // sản phẩm khách bấm "thêm vào giỏ" khi chưa đăng nhập
 
 const VIEWS = ['list', 'detail', 'cart', 'checkout', 'done', 'auth', 'forgot', 'account'];
+// Trang xem được khi chưa biết trạng thái đăng nhập: hiện ngay, không chờ Firebase Auth.
+const PUBLIC = new Set([undefined, 'sp']);
+let renderedHash = null;   // hash đã hiển thị xong
+let lastPage = null;       // để chỉ chuyển focus khi sang trang khác (không phải khi đổi bộ lọc)
+
+// Bắt đầu tải sản phẩm ngay, song song với việc khôi phục phiên đăng nhập.
+loadProducts().catch(() => {});
 
 function show(name, navKey) {
   $('#loading').hidden = true;
@@ -36,9 +43,10 @@ function requireLogin(reason) {
 }
 
 async function route() {
-  if (!authKnown) return;
   const { parts, params } = parseHash();
   const [page, arg] = parts;
+  if (!authKnown && !PUBLIC.has(page)) return;
+  const hash = location.hash;
   clearMsgOnNav();
   try {
     switch (page) {
@@ -84,9 +92,20 @@ async function route() {
         location.hash = '#/';
     }
     window.scrollTo(0, 0);
+    renderedHash = hash;
+    // Sang trang khác: đưa focus tới tiêu đề để trình đọc màn hình đọc trang mới (bỏ qua lần tải đầu).
+    if (lastPage !== null && lastPage !== (page || 'list')) focusHeading();
+    lastPage = page || 'list';
   } catch (e) {
     say(errText(e), 'err');
   }
+}
+
+function focusHeading() {
+  const h = VIEWS.map((v) => $(`#view-${v}`)).find((el) => !el.hidden)?.querySelector('h1');
+  if (!h) return;
+  h.tabIndex = -1;
+  h.focus({ preventScroll: true });
 }
 
 // Ẩn thông báo lỗi cũ khi chuyển trang (giữ thông báo thành công để người dùng kịp đọc).
@@ -122,12 +141,19 @@ onAuthStateChanged(auth, async (u) => {
   if (u && parts[0] === 'dang-nhap') {
     location.hash = returnTo || '#/tai-khoan';
     returnTo = null;
-  } else {
-    route();
+  } else if (!(PUBLIC.has(parts[0]) && renderedHash === location.hash)) {
+    route();   // trang công khai đã hiện từ trước thì không vẽ lại
   }
 });
 
 window.addEventListener('hashchange', route);
+route();
+
+// Link "Bỏ qua tới nội dung chính": app dùng hash để điều hướng nên không để trình duyệt đổi hash.
+$('#skip').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  $('#main').focus();
+});
 
 // ---------- Nút "thêm vào giỏ" / "mua ngay" ở mọi trang ----------
 document.addEventListener('click', async (ev) => {

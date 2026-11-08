@@ -134,7 +134,7 @@ export function card(p) {
       <a href="#/sp/${esc(p.id)}" class="pcard-link">
         ${d ? `<span class="tag-sale">-${d}%</span>` : ''}
         ${thumb(p)}
-        <h3 class="pname">${esc(p.name)}</h3>
+        <h2 class="pname">${esc(p.name)}</h2>
         ${p.summary ? `<p class="psum">${esc(p.summary)}</p>` : ''}
       </a>
       <div class="pprice">
@@ -181,7 +181,7 @@ function facetHtml(all, params) {
       const on = want.includes(v);
       return `<a class="opt ${on ? 'on' : ''}" href="${toggleHref(params, g.key, v)}">${esc(v)}${on ? SR_ON : ''} <small>${counts.get(v)}</small></a>`;
     }).join('');
-    return `<div class="filter-group"><h3>${esc(g.label)}</h3>${opts}</div>`;
+    return `<div class="filter-group"><h2>${esc(g.label)}</h2>${opts}</div>`;
   }).join('');
 }
 
@@ -275,9 +275,9 @@ export async function renderDetail(id) {
 
   document.title = `${p.name} – Linh Kiện PC`;
   view.innerHTML = `
-    <nav class="crumbs">
+    <nav class="crumbs" aria-label="Đường dẫn">
       <a href="#/">Trang chủ</a> › <a href="#/?cat=${esc(p.category)}">${esc(catName(p.category))}</a> ›
-      <span>${esc(p.name)}</span>
+      <span aria-current="page">${esc(p.name)}</span>
     </nav>
     <div class="detail">
       <div class="detail-media">${thumb(p, 'big')}</div>
@@ -288,10 +288,10 @@ export async function renderDetail(id) {
           <strong>${money(p.price)}</strong>
           ${d ? `<s>${money(p.oldPrice)}</s> <span class="tag-sale inline">-${d}%</span>` : ''}
         </div>
-        ${p.summary ? `<div class="keyspecs"><h3>Thông số chính</h3><p>${esc(p.summary)}</p></div>` : ''}
+        ${p.summary ? `<div class="keyspecs"><h2>Thông số chính</h2><p>${esc(p.summary)}</p></div>` : ''}
         <p class="stock ${out ? 'out' : ''}">${out ? 'Tạm hết hàng' : `Còn hàng (${p.stock})`}</p>
         <div class="buy-row" id="buy-row">
-          <label class="qty">SL
+          <label class="qty"><span aria-hidden="true">SL</span><span class="sr-only">Số lượng</span>
             <input id="qty" type="number" min="1" max="${Math.min(10, p.stock || 1)}" value="1" inputmode="numeric" ${out ? 'disabled' : ''}>
           </label>
           <button type="button" class="btn" data-add="${esc(p.id)}" data-qty-from="#qty" ${out ? 'disabled' : ''}>Thêm vào giỏ</button>
@@ -322,7 +322,7 @@ export async function renderDetail(id) {
       <div class="grid">${similar.map(card).join('')}</div>
     </section>` : ''}
 
-    <div class="sticky-buy">
+    <div class="sticky-buy" role="region" aria-label="Mua nhanh">
       <strong>${money(p.price)}</strong>
       <button type="button" class="btn" data-add="${esc(p.id)}" data-qty-from="#qty" ${out ? 'disabled' : ''}>Thêm vào giỏ</button>
       <button type="button" class="btn primary" data-buy="${esc(p.id)}" data-qty-from="#qty" ${out ? 'disabled' : ''}>Mua ngay</button>

@@ -138,13 +138,13 @@ export async function renderCart() {
               ${out ? '<span class="stock out">Hết hàng</span>'
                 : qty > p.stock ? `<span class="stock out">Chỉ còn ${p.stock}</span>` : ''}
             </div>
-            <div class="stepper" aria-label="Số lượng">
-              <button type="button" data-step="${esc(id)}" data-d="-1" aria-label="Giảm">−</button>
-              <span>${qty}</span>
-              <button type="button" data-step="${esc(id)}" data-d="1" aria-label="Tăng" ${qty >= max ? 'disabled' : ''}>+</button>
+            <div class="stepper" role="group" aria-label="Số lượng ${esc(p.name)}">
+              <button type="button" data-step="${esc(id)}" data-d="-1" aria-label="Giảm 1">−</button>
+              <span aria-live="polite">${qty}</span>
+              <button type="button" data-step="${esc(id)}" data-d="1" aria-label="Tăng 1" ${qty >= max ? 'disabled' : ''}>+</button>
             </div>
             <strong class="line-total">${money(p.price * qty)}</strong>
-            <button type="button" class="link danger" data-remove="${esc(id)}" aria-label="Xóa">✕</button>
+            <button type="button" class="link danger" data-remove="${esc(id)}" aria-label="Xóa ${esc(p.name)} khỏi giỏ">✕</button>
           </div>`;
         }).join('')}
       </div>

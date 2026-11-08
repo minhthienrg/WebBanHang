@@ -4,19 +4,21 @@
   --text: #1c2330;
   --muted: #5b6575;
   --border: #d7dce3;
-  --primary: #1f6feb;
+  --primary: #1a5fd0;
   --primary-text: #ffffff;
-  --sale: #d92d20;
+  --sale: #c4271b;          /* chữ giá (đạt tương phản AA trên nền sáng) */
+  --sale-bg: #c4271b;       /* nền nhãn giảm giá / số lượng giỏ, chữ trắng */
   --ok-bg: #e7f6ec;  --ok-text: #1a6b35;
   --err-bg: #fdecec; --err-text: #a12222;
   --warn-bg: #fff6e0; --warn-text: #7a5600;
-  --ph-bg: #e9eef5; --ph-text: #6a7890;
+  --ph-bg: #e9eef5; --ph-text: #546178;
   --radius: 10px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #12161c; --card: #1b2028; --text: #e6e9ee; --muted: #9aa4b2;
-    --border: #2f3743; --primary: #4c8dff; --sale: #ff6b5e;
+    --border: #2f3743; --primary: #4c8dff; --primary-text: #0b1220;
+    --sale: #ff6b5e; --sale-bg: #c0392b;
     --ok-bg: #173323; --ok-text: #8fe0ab;
     --err-bg: #3a1c1c; --err-text: #ffaaaa;
     --warn-bg: #3a3017; --warn-text: #ffd98a;
@@ -33,9 +35,20 @@ body {
 }
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
+/* Link nằm trong đoạn chữ phải phân biệt được không chỉ bằng màu (WCAG 1.4.1). */
+.crumbs a, .hint a, .empty a, .note a, .card p a { text-decoration: underline; text-underline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.skip {
+  position: absolute; left: 8px; top: -60px; z-index: 100; padding: 8px 12px; border-radius: 8px;
+  background: var(--primary); color: var(--primary-text); font-weight: 600;
+}
+.skip:focus { top: 8px; }
+main:focus { outline: none; }
+h1:focus { outline: none; }
 h1 { font-size: 1.3rem; margin: 4px 0 10px; }
 h2 { font-size: 1.05rem; margin: 0 0 10px; }
 h3 { font-size: .9rem; margin: 0 0 6px; }
+.filter-group h2, .keyspecs h2 { font-size: .9rem; margin: 0 0 6px; }
 [hidden] { display: none !important; }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -63,7 +76,7 @@ h3 { font-size: .9rem; margin: 0 0 6px; }
 .nav a:hover { text-decoration: none; background: var(--bg); }
 .badge {
   display: inline-block; min-width: 18px; padding: 0 5px; border-radius: 9px;
-  background: var(--sale); color: #fff; font-size: .75rem; text-align: center; line-height: 18px;
+  background: var(--sale-bg); color: #fff; font-size: .75rem; text-align: center; line-height: 18px;
 }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 12px 16px 80px; }
 .view.narrow { max-width: 420px; margin: 0 auto; }
@@ -171,7 +184,7 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--primary); o
 .pprice s { color: var(--muted); font-size: .82rem; }
 .pfoot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
 .tag-sale {
-  position: absolute; top: 10px; left: 10px; z-index: 1; background: var(--sale); color: #fff;
+  position: absolute; top: 10px; left: 10px; z-index: 1; background: var(--sale-bg); color: #fff;
   font-size: .75rem; font-weight: 700; padding: 2px 6px; border-radius: 6px;
 }
 .tag-sale.inline { position: static; }
@@ -249,6 +262,10 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--primary); o
   .wrap { padding: 10px 12px 90px; }
   .topbar { padding: 8px 12px; flex-wrap: wrap; row-gap: 8px; }
   .search { order: 3; flex-basis: 100%; max-width: none; }
+  .nav [data-nav=list] { display: none; }   /* logo đã dẫn về trang chủ; giữ header 1 hàng */
+  #msg { top: 104px; }
+  /* iOS tự phóng to khi ô nhập có chữ < 16px */
+  input, textarea, select { font-size: 16px; }
   .nav a { padding: 6px 8px; font-size: .9rem; }
   .list-layout { grid-template-columns: 1fr; }
   .filters:not([open]) { padding: 10px 12px; }
@@ -256,7 +273,7 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--primary); o
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .pcard { padding: 8px; }
   .detail { grid-template-columns: 1fr; }
-  .detail .big { max-height: 260px; }
+  .detail .big { max-height: 220px; }
   .buy-row .btn { display: none; }         /* dùng thanh dính đáy */
   .sticky-buy {
     display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
