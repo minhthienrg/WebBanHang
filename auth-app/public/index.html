@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linh Kiện PC</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand">Linh Kiện PC</a>
+    <nav class="nav">
+      <a href="#/" data-nav="list">Sản phẩm</a>
+      <a href="#/gio-hang" data-nav="cart">Giỏ hàng <span id="cart-count" class="badge" hidden>0</span></a>
+      <a href="#/tai-khoan" data-nav="account" id="nav-account">Đăng nhập</a>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <div id="msg" class="msg" role="status" aria-live="polite" hidden></div>
+    <div id="loading" class="loading">Đang tải…</div>
+
+    <!-- DANH SÁCH SẢN PHẨM -->
+    <section id="view-list" class="view" hidden>
+      <nav class="crumbs" id="list-crumbs"></nav>
+      <h1 id="list-title">Tất cả sản phẩm</h1>
+      <div class="chips" id="cat-chips"></div>
+      <div class="list-layout">
+        <details class="filters" id="filters" open>
+          <summary>Bộ lọc</summary>
+          <div class="filter-group">
+            <h3>Danh mục</h3>
+            <div id="f-cats"></div>
+          </div>
+          <div class="filter-group">
+            <h3>Khoảng giá</h3>
+            <div id="f-prices"></div>
+            <form id="f-custom" class="price-custom">
+              <input name="min" type="number" min="0" step="100000" placeholder="Từ" inputmode="numeric">
+              <span>–</span>
+              <input name="max" type="number" min="0" step="100000" placeholder="Đến" inputmode="numeric">
+              <button type="submit" class="btn small">Áp dụng</button>
+            </form>
+          </div>
+          <label class="check"><input type="checkbox" id="f-stock"> Chỉ hiện còn hàng</label>
+        </details>
+        <div class="results">
+          <div class="toolbar">
+            <div id="active-filters" class="active-filters"></div>
+            <label class="sort">Sắp xếp
+              <select id="sort">
+                <option value="pop">Phổ biến</option>
+                <option value="price_asc">Giá tăng dần</option>
+                <option value="price_desc">Giá giảm dần</option>
+                <option value="new">Mới nhất</option>
+                <option value="discount">Giảm giá nhiều</option>
+              </select>
+            </label>
+          </div>
+          <p id="result-count" class="hint"></p>
+          <div id="grid" class="grid"></div>
+          <nav id="pager" class="pager"></nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHI TIẾT SẢN PHẨM -->
+    <section id="view-detail" class="view" hidden></section>
+
+    <!-- GIỎ HÀNG -->
+    <section id="view-cart" class="view" hidden></section>
+
+    <!-- THANH TOÁN -->
+    <section id="view-checkout" class="view" hidden></section>
+
+    <!-- ĐẶT HÀNG THÀNH CÔNG -->
+    <section id="view-done" class="view" hidden></section>
+
+    <!-- ĐĂNG NHẬP / ĐĂNG KÝ -->
+    <section id="view-auth" class="view narrow" hidden>
+      <div class="card">
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab active" data-tab="login" role="tab">Đăng nhập</button>
+          <button type="button" class="tab" data-tab="register" role="tab">Đăng ký</button>
+        </div>
+        <p id="auth-reason" class="note" hidden></p>
+
+        <form id="form-login" class="form" novalidate>
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>Mật khẩu
+            <input name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit" class="btn primary">Đăng nhập</button>
+          <a class="link" href="#/quen-mat-khau">Quên mật khẩu?</a>
+        </form>
+
+        <form id="form-register" class="form" novalidate hidden>
+          <label>Họ tên
+            <input name="name" type="text" autocomplete="name" maxlength="100" required>
+          </label>
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>Mật khẩu <small>(ít nhất 6 ký tự)</small>
+            <input name="password" type="password" autocomplete="new-password" minlength="6" required>
+          </label>
+          <label>Nhập lại mật khẩu
+            <input name="password2" type="password" autocomplete="new-password" minlength="6" required>
+          </label>
+          <button type="submit" class="btn primary">Tạo tài khoản</button>
+        </form>
+
+        <div class="divider"><span>hoặc</span></div>
+        <button type="button" id="btn-google" class="btn google">
+          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+          Tiếp tục với Google
+        </button>
+        <p id="open-tab-hint" class="hint" hidden>
+          Trình duyệt chặn cửa sổ đăng nhập trong khung nhúng.
+          <a href="./" target="_blank" rel="noopener">Mở trong tab mới</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- QUÊN MẬT KHẨU -->
+    <section id="view-forgot" class="view narrow" hidden>
+      <div class="card">
+        <h1>Quên mật khẩu</h1>
+        <p class="hint">Nhập email đã đăng ký, chúng tôi sẽ gửi link đặt lại mật khẩu.</p>
+        <form id="form-forgot" class="form" novalidate>
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <button type="submit" class="btn primary">Gửi link đặt lại</button>
+          <a class="link" href="#/dang-nhap">← Quay lại đăng nhập</a>
+        </form>
+      </div>
+    </section>
+
+    <!-- TÀI KHOẢN: HỒ SƠ + ĐƠN HÀNG -->
+    <section id="view-account" class="view" hidden>
+      <div class="account-layout">
+        <div class="card">
+          <header class="profile-head">
+            <img id="avatar" class="avatar" alt="" hidden>
+            <div>
+              <h1 id="hello">Xin chào</h1>
+              <p id="user-email" class="hint"></p>
+            </div>
+          </header>
+          <p id="verify-note" class="note" hidden>
+            Email chưa được xác minh.
+            <button type="button" id="btn-resend" class="link">Gửi lại email xác minh</button>
+          </p>
+          <form id="form-profile" class="form" novalidate>
+            <label>Họ tên
+              <input name="name" type="text" autocomplete="name" maxlength="100" required>
+            </label>
+            <label>Số điện thoại
+              <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="VD: 0912345678" maxlength="15">
+            </label>
+            <label>Địa chỉ
+              <textarea name="address" rows="2" autocomplete="street-address" maxlength="300" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea>
+            </label>
+            <button type="submit" class="btn primary">Lưu hồ sơ</button>
+          </form>
+          <button type="button" id="btn-logout" class="btn mt">Đăng xuất</button>
+        </div>
+        <div class="card">
+          <h2>Đơn hàng của tôi</h2>
+          <div id="orders"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

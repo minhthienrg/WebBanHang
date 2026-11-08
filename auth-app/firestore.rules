@@ -1,0 +1,161 @@
+rules_version = '2';
+
+// Cấu trúc dữ liệu
+//   admins/{uid}       tài liệu rỗng; có mặt = là quản trị viên (tạo tay trong Console)
+//   users/{uid}        hồ sơ: name, phone, address, email, createdAt, updatedAt
+//   products/{id}      sản phẩm: name, category, brand, price, oldPrice, stock, active, ...
+//   carts/{uid}        giỏ hàng: items { productId: qty }, updatedAt
+//   orders/{id}        đơn hàng: userId, items[], subtotal, shippingFee, total, shipping, ...
+//
+// Các hằng số dưới đây PHẢI khớp với public/js/categories.js:
+//   tối đa 10 dòng/đơn, tối đa 10 chiếc/dòng, miễn phí giao từ 5.000.000, phí giao 30.000.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // ---------- Quản trị viên ----------
+    match /admins/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;   // để app tự kiểm tra mình có phải admin
+      allow write: if false;                                    // chỉ thêm/xóa trong Console
+    }
+
+    // ---------- Hồ sơ người dùng ----------
+    match /users/{uid} {
+      function isOwner() { return signedIn() && request.auth.uid == uid; }
+
+      function validProfile(d) {
+        return d.keys().hasOnly(['name', 'phone', 'address', 'email', 'createdAt', 'updatedAt'])
+          && d.keys().hasAll(['name', 'phone', 'address', 'email', 'createdAt', 'updatedAt'])
+          && d.name is string && d.name.size() > 0 && d.name.size() <= 100
+          && d.phone is string && d.phone.matches('^[+0-9]{0,15}$')
+          && d.address is string && d.address.size() <= 300
+          && d.email == request.auth.token.get('email', null)
+          && d.updatedAt == request.time;
+      }
+
+      allow read: if isOwner() || isAdmin();
+      allow create: if isOwner()
+        && validProfile(request.resource.data)
+        && request.resource.data.createdAt == request.time;
+      allow update: if isOwner()
+        && validProfile(request.resource.data)
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if false;
+    }
+
+    // ---------- Sản phẩm ----------
+    // Ai cũng xem được sản phẩm đang bán (kể cả chưa đăng nhập).
+    // Truy vấn danh sách phải có where('active', '==', true).
+    match /products/{id} {
+      allow read: if resource.data.active == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ---------- Giỏ hàng ----------
+    match /carts/{uid} {
+      function isOwner() { return signedIn() && request.auth.uid == uid; }
+      allow read, delete: if isOwner();
+      allow create, update: if isOwner()
+        && request.resource.data.keys().hasOnly(['items', 'updatedAt'])
+        && request.resource.data.items is map
+        && request.resource.data.items.size() <= 10
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    // ---------- Đơn hàng ----------
+    match /orders/{orderId} {
+
+      // Một dòng hợp lệ: số lượng nguyên 1–10, giá khớp sản phẩm trong CSDL, sản phẩm đang bán,
+      // không vượt tồn kho.
+      //
+      // GIỚI HẠN: Firestore chỉ cho tối đa 1000 biểu thức mỗi request. Kiểm tra thêm tên sản phẩm
+      // hoặc cấu trúc khóa của từng dòng làm đơn 10 dòng vượt giới hạn (đã đo trên emulator).
+      // Vì vậy trường `name` trong items CHỈ để hiển thị; nhân viên đối chiếu theo `productId`.
+      function lineOk(it) {
+        return lineMatch(it, get(/databases/$(database)/documents/products/$(it.productId)).data);
+      }
+      function lineMatch(it, p) {
+        return it.qty is int && it.qty >= 1 && it.qty <= 10
+          && p.price == it.price && p.active == true && it.qty <= p.stock;
+      }
+      // Rules không có vòng lặp nên kiểm tra tường minh 10 vị trí (MAX_LINES = 10).
+      function itemsOk(items) {
+        let n = items.size();
+        return n >= 1 && n <= 10
+          && lineOk(items[0])
+          && (n < 2 || lineOk(items[1]))
+          && (n < 3 || lineOk(items[2]))
+          && (n < 4 || lineOk(items[3]))
+          && (n < 5 || lineOk(items[4]))
+          && (n < 6 || lineOk(items[5]))
+          && (n < 7 || lineOk(items[6]))
+          && (n < 8 || lineOk(items[7]))
+          && (n < 9 || lineOk(items[8]))
+          && (n < 10 || lineOk(items[9]));
+      }
+      function line(items, i) {
+        return items.size() > i ? items[i].price * items[i].qty : 0;
+      }
+      function sumOf(items) {
+        return line(items, 0) + line(items, 1) + line(items, 2) + line(items, 3) + line(items, 4)
+          + line(items, 5) + line(items, 6) + line(items, 7) + line(items, 8) + line(items, 9);
+      }
+      function shipFee(subtotal) { return subtotal >= 5000000 ? 0 : 30000; }
+
+      function validShipping(s) {
+        return s is map
+          && s.keys().hasOnly(['name', 'phone', 'address'])
+          && s.keys().hasAll(['name', 'phone', 'address'])
+          && s.name is string && s.name.size() > 0 && s.name.size() <= 100
+          && s.phone is string && s.phone.matches('^(0|[+]84)[0-9]{9,10}$')
+          && s.address is string && s.address.size() > 0 && s.address.size() <= 300;
+      }
+
+      function validNewOrder(d) {
+        return d.keys().hasOnly(['userId', 'items', 'subtotal', 'shippingFee', 'total', 'shipping',
+                                 'paymentMethod', 'note', 'status', 'createdAt', 'updatedAt'])
+          && d.keys().hasAll(['userId', 'items', 'subtotal', 'shippingFee', 'total', 'shipping',
+                              'paymentMethod', 'note', 'status', 'createdAt', 'updatedAt'])
+          && d.userId == request.auth.uid
+          && d.status == 'pending'
+          && d.items is list
+          && d.subtotal == sumOf(d.items)
+          && itemsOk(d.items)
+          && d.shippingFee == shipFee(d.subtotal)
+          && d.total == d.subtotal + d.shippingFee
+          && validShipping(d.shipping)
+          && d.paymentMethod in ['cod', 'bank']
+          && d.note is string && d.note.size() <= 300
+          && d.status == 'pending'
+          && d.createdAt == request.time
+          && d.updatedAt == request.time;
+      }
+
+      allow read: if signedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+
+      allow create: if signedIn() && validNewOrder(request.resource.data);
+
+      // Khách chỉ được hủy đơn của mình khi còn "Chờ xác nhận". Quản trị viên sửa được mọi đơn.
+      allow update: if isAdmin() || (
+        signedIn()
+        && resource.data.userId == request.auth.uid
+        && resource.data.status == 'pending'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+        && request.resource.data.status == 'cancelled'
+        && request.resource.data.updatedAt == request.time
+      );
+
+      allow delete: if false;
+    }
+
+    // Mọi đường dẫn khác: từ chối.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
