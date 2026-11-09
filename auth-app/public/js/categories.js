@@ -12,6 +12,26 @@ export const CATEGORIES = [
 
 export const catName = (key) => CATEGORIES.find((c) => c.key === key)?.name || key;
 
+// Ảnh minh họa theo danh mục (cùng bộ ảnh với trang NEXORA trên Google Sites),
+// dùng khi sản phẩm chưa có imageUrl riêng.
+const U = (id) => `https://images.unsplash.com/photo-${id}?w=400&q=80`;
+const CAT_IMAGES = {
+  cpu:         U('1555680202-c86f0e12f086'),
+  mainboard:   U('1518770660439-4636190af475'),
+  ram:         U('1562976540-1502c2145186'),
+  vga:         U('1587202372616-b43abea06c2a'),
+  'o-cung':    U('1597872200969-2b65d56bd16b'),
+  nguon:       U('1587202372775-e229f172b9d7'),
+  case:        U('1587202372634-32705e3bf49c'),
+  'tan-nhiet': U('1587202372775-e229f172b9d7')  // ảnh gốc 1618764400608 đã bị Unsplash gỡ (404)
+};
+const CPU_RYZEN = U('1591799264318-7e6ef8ddb7ea');
+
+export function catImage(p) {
+  if (p.category === 'cpu' && /ryzen/i.test(p.name || '')) return CPU_RYZEN;
+  return CAT_IMAGES[p.category] || CAT_IMAGES.nguon;
+}
+
 // Khoảng giá có sẵn (đơn vị: đồng).
 export const PRICE_RANGES = [
   { key: '0-2',   label: 'Dưới 2 triệu',   min: 0,          max: 2_000_000 },

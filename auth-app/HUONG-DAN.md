@@ -1,4 +1,4 @@
-# Hướng dẫn: cửa hàng Linh Kiện PC (Firebase + Google Sites)
+# Hướng dẫn: cửa hàng NEXORA (Firebase + Google Sites)
 
 ## Tính năng
 

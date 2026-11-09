@@ -7,7 +7,7 @@ import {
   collection, query, where, getDocs, doc, getDoc
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
 import { db } from './firebase.js';
-import { CATEGORIES, PRICE_RANGES, SPEC_FILTERS, catName } from './categories.js';
+import { CATEGORIES, PRICE_RANGES, SPEC_FILTERS, catName, catImage } from './categories.js';
 import { $, esc, money } from './ui.js';
 
 const PAGE_SIZE = 12;
@@ -121,10 +121,16 @@ function sortList(out, params) {
 
 // ---------- Thẻ sản phẩm (dùng chung) ----------
 export function thumb(p, cls = 'thumb') {
-  return p.imageUrl
-    ? `<img class="${cls}" src="${esc(p.imageUrl)}" alt="${esc(p.name)}" loading="lazy">`
-    : `<div class="${cls} ph" aria-hidden="true"><span>${esc(catName(p.category))}</span></div>`;
+  const fb = catImage(p);
+  if (!p.imageUrl) return `<img class="${cls}" src="${esc(fb)}" alt="${esc(p.name)}" loading="lazy" decoding="async">`;
+  // Ảnh lỗi, hoặc ảnh "rỗng" 1×1 (Amazon trả về khi không có ảnh) → đổi sang ảnh minh họa danh mục.
+  return `<img class="${cls}" src="${esc(p.imageUrl)}" data-fb="${esc(fb)}" alt="${esc(p.name)}" loading="lazy" decoding="async"
+    onerror="imgFallback(this)" onload="this.naturalWidth < 2 && imgFallback(this)">`;
 }
+
+window.imgFallback = (img) => {
+  if (img.dataset.fb) { img.src = img.dataset.fb; img.removeAttribute('data-fb'); }
+};
 
 export function card(p) {
   const d = discount(p);
@@ -196,7 +202,7 @@ export async function renderList(params) {
     ? `<a href="#/">Trang chủ</a> › <span aria-current="page">${esc(cat ? catName(cat) : 'Tìm kiếm')}</span>`
     : '<span aria-current="page">Trang chủ</span>';
   $('#list-title').textContent = title;
-  document.title = `${title} – Linh Kiện PC`;
+  document.title = `${title} – NEXORA`;
   $('#search-q').value = q;
 
   // Chip danh mục (lối vào nhanh). Số đếm theo tìm kiếm hiện tại.
@@ -273,7 +279,7 @@ export async function renderDetail(id) {
     .sort((a, b) => Math.abs(a.price - p.price) - Math.abs(b.price - p.price))
     .slice(0, 4);
 
-  document.title = `${p.name} – Linh Kiện PC`;
+  document.title = `${p.name} – NEXORA`;
   view.innerHTML = `
     <nav class="crumbs" aria-label="Đường dẫn">
       <a href="#/">Trang chủ</a> › <a href="#/?cat=${esc(p.category)}">${esc(catName(p.category))}</a> ›
