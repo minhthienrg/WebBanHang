@@ -4,7 +4,8 @@
 #   ./run.sh rules      chỉ test Security Rules
 #   ./run.sh e2e        chỉ test E2E Playwright
 #   ./run.sh audit      kiểm tra accessibility (axe-core) + đo tốc độ
-#   ./run.sh dev        chạy thử trên máy: emulator + sản phẩm mẫu, mở http://localhost:5000
+#   ./run.sh dev        chạy thử trên máy: emulator + 254 linh kiện NEXORA, mở http://localhost:5000
+#   ./run.sh dev-mau    như trên nhưng dùng 23 sản phẩm mẫu
 # Cần: Java 11+ (biến JAVA_HOME hoặc `java` trong PATH), Chromium của Playwright
 # (`npx playwright install chromium`, hoặc đặt PLAYWRIGHT_BROWSERS_PATH).
 set -euo pipefail
@@ -25,6 +26,7 @@ case "${1:-all}" in
   e2e)   CMD="node e2e.mjs" ;;
   audit) CMD="node audit.mjs" ;;
   dev)   CMD="node seed.mjs && sleep infinity" ;;
+  dev-mau) CMD="node seed.mjs mau && sleep infinity" ;;
   *)     CMD="node rules.test.mjs && node e2e.mjs && node audit.mjs" ;;
 esac
 

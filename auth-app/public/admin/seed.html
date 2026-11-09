@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Nạp dữ liệu mẫu</title>
+  <title>Nạp dữ liệu sản phẩm</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <div class="wrap">
     <div class="card narrow-card">
-      <h1>Nạp sản phẩm mẫu</h1>
+      <h1>Nạp dữ liệu sản phẩm</h1>
       <p class="hint">Chỉ quản trị viên (có tài liệu <code>admins/{uid}</code> trong Firestore) mới ghi được.
         Đăng nhập ở <a href="../#/dang-nhap">trang chính</a> trước, rồi quay lại đây (mở trực tiếp, không qua Google Sites).</p>
       <p id="who" class="note">Đang kiểm tra đăng nhập…</p>
-      <button type="button" id="btn-seed" class="btn primary" disabled>Nạp / cập nhật sản phẩm mẫu</button>
+      <button type="button" id="btn-nexora" class="btn primary" disabled>Nạp / cập nhật 254 linh kiện NEXORA</button>
+      <button type="button" id="btn-seed" class="btn mt" disabled>Nạp / cập nhật 23 sản phẩm mẫu</button>
       <pre id="log" class="hint"></pre>
     </div>
   </div>
@@ -24,43 +25,50 @@
     import { doc, getDoc, writeBatch, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
     import { auth, db } from '../js/firebase.js';
     import { SEED_PRODUCTS } from './seed-data.js';
+    import { NEXORA_PRODUCTS } from './nexora-data.js';
 
     const who = document.getElementById('who');
-    const btn = document.getElementById('btn-seed');
+    const btns = [document.getElementById('btn-nexora'), document.getElementById('btn-seed')];
+    const setDisabled = (v) => btns.forEach((b) => { b.disabled = v; });
     const log = document.getElementById('log');
 
     onAuthStateChanged(auth, async (user) => {
-      btn.disabled = true;
+      setDisabled(true);
       if (!user) { who.textContent = 'Chưa đăng nhập.'; return; }
       try {
         const isAdmin = (await getDoc(doc(db, 'admins', user.uid))).exists();
         who.textContent = isAdmin
           ? `Đăng nhập: ${user.email} — là quản trị viên.`
           : `Đăng nhập: ${user.email} — CHƯA là quản trị viên. Tạo tài liệu admins/${user.uid} trong Console (xem HUONG-DAN.md).`;
-        btn.disabled = !isAdmin;
+        setDisabled(!isAdmin);
       } catch (e) {
         who.textContent = `Lỗi: ${e.code || e.message}`;
       }
     });
 
-    btn.addEventListener('click', async () => {
-      btn.disabled = true;
+    async function seed(products) {
+      setDisabled(true);
       log.textContent = '';
       try {
-        const batch = writeBatch(db);
-        for (const { id, ...p } of SEED_PRODUCTS) {
-          batch.set(doc(db, 'products', id), {
-            imageUrl: '', description: '', ...p, active: true, createdAt: serverTimestamp()
-          });
+        // Firestore giới hạn 500 thao tác mỗi batch.
+        for (let i = 0; i < products.length; i += 400) {
+          const batch = writeBatch(db);
+          for (const { id, ...p } of products.slice(i, i + 400)) {
+            batch.set(doc(db, 'products', id), {
+              imageUrl: '', description: '', ...p, active: true, createdAt: serverTimestamp()
+            });
+          }
+          await batch.commit();
         }
-        await batch.commit();
-        log.textContent = `Đã ghi ${SEED_PRODUCTS.length} sản phẩm.`;
+        log.textContent = `Đã ghi ${products.length} sản phẩm.`;
       } catch (e) {
         log.textContent = `Lỗi: ${e.code || e.message}`;
       } finally {
-        btn.disabled = false;
+        setDisabled(false);
       }
-    });
+    }
+    btns[0].addEventListener('click', () => seed(NEXORA_PRODUCTS));
+    btns[1].addEventListener('click', () => seed(SEED_PRODUCTS));
   </script>
 </body>
 </html>
