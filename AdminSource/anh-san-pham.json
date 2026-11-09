@@ -1,0 +1,501 @@
+{
+ "updated": "2026-11-09",
+ "note": "Ảnh thay cho link Amazon trống/hỏng. image = ảnh og:image hoặc ảnh sản phẩm trên trang nguồn (page). Đã kiểm tra hiển thị được từ https://da1gb.web.app.",
+ "products": {
+  "4b82e241-5baf-42a0-9884-9eabd67fcaf5": {
+   "name": "Case Xigmatek Cubi ATX Mid Tower Black Tempered Glass Side Panel, USB 3.2 Gen 2 Type-C USB 3.2 Gen 1 Type-A Front Panel",
+   "image": "https://lh3.googleusercontent.com/PwGatjg6c2Plk7pQ0LP9M1FsRhdaJDUK9d1UK-ZWvDch8umB5LcLQhA2vbNr1ktOkG1kv6U1UR1Ff63VXUFB7ehY0WxopWI",
+   "page": "https://phongvu.vn/vo-may-tinh-case-xigmatek-cubi-den-bk-eatx-usb3-0x1-type-c-3pcs-tempered-glass-no-fan-en41921--s231103628"
+  },
+  "d9276c03-de62-4eaa-a294-acfded612cba": {
+   "name": "Case Cougar OmnyX ATX Mid Tower Black with Tempered Glass Side Panel and USB 3.2 Gen 1 Type-A",
+   "image": "https://computechstore.in/media/uploads/wp/2026/03/OmnyX-Black-3-1.jpg",
+   "page": "https://computechstore.in/product/cougar-omnyx-mid-tower-atx-panoramic-pc-case/"
+  },
+  "2409aafd-cc1c-4e55-9a55-89b669892856": {
+   "name": "Case Deepcool CC560 ARGB V2 ATX Mid Tower Tempered Glass Side Panel",
+   "image": "https://www.startech.com.bd/image/cache/catalog/casing/deepcool/cc560-argb-v2/cc560-argb-v2-06-1200x630.webp",
+   "page": "https://www.startech.com.bd/deepcool-cc560-argb-v2-casing"
+  },
+  "06edf99d-ba33-4e40-9ae4-87f8ecaf9bbf": {
+   "name": "Case Deepcool MACUBE 110 Micro ATX Mini Tower Black Tempered Glass Side Panel",
+   "image": "https://www.computeralliance.com.au/wp-content/uploads/2024/07/33781.webp",
+   "page": "https://computeralliance.com.au/deepcool-microatx-macube-110-tempered-glass-case-black"
+  },
+  "be18fc71-e783-489b-a496-1a3073b84c41": {
+   "name": "Case Montech AIR 903 BASE ATX Mid Tower Black Tempered Glass Side Panel",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/3b46b051-9eef-4108-9ebf-b82f58db0cfa.jpg?v=1773656694403",
+   "page": "https://memoryzone.com.vn/case-may-tinh-montech-air-903-base-black-caair903baseblmt"
+  },
+  "5619fdec-6575-4d2c-887e-70da440a40ac": {
+   "name": "Case NZXT H5 Flow (2022) ATX Mid Tower White with Tempered Glass Side Panel",
+   "image": "https://product.hstatic.net/200000722513/product/1666138830-h5-flow-hero-white_b07a47e4546048be848148c351a0bb9a_a8377d3a44e54b488d3a2ce298efec60.png",
+   "page": "https://gearvn.com/products/case-nzxt-h5-flow-white"
+  },
+  "239bbf73-b1e0-4450-b5c1-6d5d13e7cc04": {
+   "name": "Case Lian Li O11 Vision M Black",
+   "image": "https://product.hstatic.net/200000722513/product/o11vp_x01_ef07b2bd61ff42efa5d7a69cf027a789.png",
+   "page": "https://gearvn.com/products/vo-may-tinh-lian-li-o11-vision-compact-bkack"
+  },
+  "0166a285-c025-4fef-868b-251a8ca785b0": {
+   "name": "Case Lian Li O11 Dynamic EVO ATX Mid Tower Gray / Black Tinted Tempered Glass Side Panel, USB 3.2 Gen 2 Type-C USB 3.2 Gen 1 Type-A",
+   "image": "https://product.hstatic.net/200000420363/product/1_09567518dcc0460b8c18af2b79933ba2_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/case-lian-li-o11-dynamic-evo-black"
+  },
+  "80ddf430-efb7-4abf-8ba0-ad0639b4a944": {
+   "name": "CPU Intel Core i5 4590S",
+   "image": "https://product.hstatic.net/200000420363/product/cpu-intel-core-i5-4590s-tray-600x600_d2b797554dc74e1185643fdc2a10d2de_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/cpu-intel-core-i5-4590s-3-70ghz-6m-4-cores-4-threads-tray-chua-gom-fan"
+  },
+  "7e2631f6-7672-4930-9c02-728bab88198f": {
+   "name": "CPU AMD Ryzen™ 5 7500F",
+   "image": "https://cdn.hstatic.net/products/200000420363/1_29b7e751dff5471abbd00b737cf9ea_f6ea77b862d9461cb864922fb25250b2_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/cpu-amd-ryzen-5-7500f"
+  },
+  "d0a9a88a-e191-44de-8678-ad32c2d2e4bb": {
+   "name": "CPU AMD Ryzen 5 5500GT",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/cpu-amd-ryzen-5-5600gt-up-to-4-6ghz-6-cores-12-threads-16mb-100-100001488box-1-cf2fa30a-6cbe-4eb8-a030-8537db26d998.jpg?v=1706686644020",
+   "page": "https://memoryzone.com.vn/cpu-amd-ryzen-5-5500gt-up-to-4-4ghz-6-cores-12-threads-16mb-100-100001489box"
+  },
+  "115d2821-5d45-41b8-b4c9-aa3f95215fab": {
+   "name": "CPU AMD Ryzen 5 7500F OEM/Tray",
+   "image": "https://cdn.hstatic.net/products/200000420363/t_i_xu_ng_-_2026-02-11t152338.503_8eedecc6d25f402c92a477d171bcf211_grande.png",
+   "page": "https://tinhocngoisao.com/products/cpu-amd-ryzen-5-7500f-tr"
+  },
+  "7564da71-725e-4a56-9d79-d80377b7a92f": {
+   "name": "CPU AMD Ryzen 5 5600G",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/amd-5600g-02-477946d3-a79a-40b5-a823-d5f3f40e3fdb.jpg?v=1734109214530",
+   "page": "https://memoryzone.com.vn/cpu-amd-ryzen-5-5600g-3-9ghz-6-cores-12-threads-16mb-100-100000252box"
+  },
+  "b9d94d66-3b82-42bc-ab7a-e2e14c2e94a7": {
+   "name": "CPU AMD Ryzen 5 5600GT",
+   "image": "https://www.startech.com.bd/image/cache/catalog/processor/amd/ryzen-5-5600gt/ryzen-5-5600gt-01-1200x630.webp",
+   "page": "https://www.startech.com.bd/amd-ryzen-5-5600gt-processor"
+  },
+  "e11970e8-4f2c-426d-872c-92c0f4160ec4": {
+   "name": "CPU AMD Ryzen 7 5700X3D",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/cpu-amd-ryzen-7-5700x3d-up-to-4-1ghz-8-cores-16-threads-96mb-100-100001503wof-fef75d75-455e-4495-85b8-b10bb7fe0f9d.jpg?v=1754585457730",
+   "page": "https://memoryzone.com.vn/cpu-amd-ryzen-7-5700x3d-up-to-4-1ghz-8-cores-16-threads-96mb-100-100001503wof"
+  },
+  "850de815-7c76-48e5-8097-a009109be14b": {
+   "name": "CPU AMD Ryzen 5 7600X3D",
+   "image": "https://cdn.hstatic.net/products/200000420363/tinhocngoisao.com1__11__1647c4a5__1__6c42b707740c4b86814103582d2c40da_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/cpu-amd-ryzen-5-7600x3d-box-cong-ty"
+  },
+  "08f812a3-fd3a-4ddd-881d-02505f6d06de": {
+   "name": "Mainboard Gigabyte H81 GA-H81M-S2PV DDR3 Micro ATX",
+   "image": "https://product.hstatic.net/200000420363/product/mainboard_gigabyte_h81m-s2pv_c5584ea6b0d84e97a8cc4acd522770a9_grande.png",
+   "page": "https://tinhocngoisao.com/products/mainboard-gigabyte-h81m-s2pv"
+  },
+  "0b02e3d0-cd28-462b-860a-35d34f23ce3f": {
+   "name": "Mainboard ASRock H510M HDV/M.2 SE DDR4 Micro ATX",
+   "image": "https://hanoicomputercdn.com/media/product/76710_mainboard_asrock_h510m_hdv_m__4_.jpg",
+   "page": "https://hacom.vn/mainboard-asrock-h510m-hdv-m.2-se"
+  },
+  "037d8442-dcc8-4b8f-9820-d0dad119babb": {
+   "name": "Mainboard Gigabyte B360M HD3 DDR4 Micro ATX LGA1151",
+   "image": "https://www.startech.com.bd/image/cache/catalog/motherboard/gigabyte/b360m-hd3/b360m-hd3-1200x630.jpg",
+   "page": "https://www.startech.com.bd/gigabyte-b360m-hd3-motherboard"
+  },
+  "13d0eae1-e81c-4998-b147-06d0614478b7": {
+   "name": "Mainboard Gigabyte H410M S2 V3 DDR4 Micro ATX",
+   "image": "https://hanoicomputercdn.com/media/product/60502_mainboard_gigabyte_h410m_s2h_v3_intel_h510_socket_1200_m_atx_2_khe_ram_ddr4_4.png",
+   "page": "https://hacom.vn/mainboard-gigabyte-h410m-s2h-v3-intel-h510-socket-1200-m-atx-2-khe-ram-ddr4"
+  },
+  "0a634b68-beb2-4e81-849a-f8ae980ad6f0": {
+   "name": "Mainboard Gigabyte B450 M S2H DDR4 Micro ATX",
+   "image": "https://www.startech.com.bd/image/cache/catalog/motherboard/gigabyte/b450m-s2h-ultra/b450m-s2h-ultra-1-1200x630.jpg",
+   "page": "https://www.startech.com.bd/gigabyte-b450m-s2h-ultra-durable-motherboard"
+  },
+  "03c6dcec-9f3a-4a46-955d-5a0b18a50a95": {
+   "name": "Mainboard MSI B460M MAG BAZOOKA DDR4 Micro ATX",
+   "image": "https://www.startech.com.bd/image/cache/catalog/component/motherboard/msi-intel/mag-b460m-bazooka/mag-b460m-bazooka-1-1200x630.jpg",
+   "page": "https://www.startech.com.bd/msi-mag-b460m-bazooka-motherboard"
+  },
+  "01074bc3-89ac-4fa5-b706-5f84dd7bbb65": {
+   "name": "Mainboard ASRock B560M Pro4 LGA1200 DDR4 Micro ATX",
+   "image": "https://product.hstatic.net/200000722513/product/b560m_pro4_l1__591c11f13ec3455bb949d9406b69c314_7e2b7e97d7ba4db39c9c12e9594209ca.png",
+   "page": "https://gearvn.com/products/asrock-b560m-pro4"
+  },
+  "05ff20ef-96a2-4685-a832-3d3d51b4c0bf": {
+   "name": "Mainboard Biostar B550 MXC PRO DDR4 Micro ATX",
+   "image": "https://www.startech.com.bd/image/cache/catalog/motherboard/biostar/b550mxc-pro/b550mxc-pro-01-1200x630.webp",
+   "page": "https://www.startech.com.bd/biostar-b550mxc-pro-ddr4-am4-motherboard"
+  },
+  "00bdcf8a-bb2e-417c-8cbd-5945512b0a5f": {
+   "name": "Mainboard ASRock H410 M/ac DDR4 Micro ATX",
+   "image": "https://product.hstatic.net/200000722513/product/h410m-itxac-1_d2339a5596684a1fa11cae8125133e0a_8d56d5448bc64b46828533e9a7ff6977.png",
+   "page": "https://gearvn.com/products/asrock-h410m-itx-ac"
+  },
+  "0456fa65-e049-4ae0-ba3f-bab1e470d82e": {
+   "name": "Mainboard Asus H610 PRIME H610M-K LGA1700 DDR5 Micro ATX",
+   "image": "https://product.hstatic.net/200000420363/product/tai_xuong_-_2023-10-31t092208.936_e3a7405a457b44daa563a6acc9137aa9_grande.png",
+   "page": "https://tinhocngoisao.com/products/mainboard-asus-h610m-k"
+  },
+  "00b88b4c-907a-4b42-bf8d-465e0f58e634": {
+   "name": "Mainboard Biostar B560 M-SILVER LGA1200 DDR4 Micro ATX",
+   "image": "https://www.biostar.com.tw/upload/Motherboard/bB560M-SILVER_TOP_1aoV.png",
+   "page": "https://www.biostar.com.tw/upload/Motherboard/bB560M-SILVER_TOP_1aoV.png"
+  },
+  "1c8483ac-3e42-4dd3-80bb-b7f9a4bbeebf": {
+   "name": "Mainboard Biostar A620 MP-E PRO AM5 DDR5 Micro ATX",
+   "image": "https://www.biostar.com.tw/upload/Motherboard/bA620MP-E_PRO_TOP_nAnL.png",
+   "page": "https://www.biostar.com.tw/upload/Motherboard/bA620MP-E_PRO_TOP_nAnL.png"
+  },
+  "021f8667-c720-481b-9ffd-38306c0dd323": {
+   "name": "Mainboard MAXSUN B760 iCraft B760M CROSS LGA1700 DDR5 Micro ATX",
+   "image": "https://assets.pcbyte.com.au/newsite/images/202412/goods_img/Intel-LGA-1700-MAXSUN-iCraft-B760M-Cross-LGA-1700-mATX-Motherboard-iCraft-B760M-CROSS-6.jpg",
+   "page": "https://www.pcbyte.com.au/product/maxsun-icraft-b760m-cross-lga-1700-matx-motherboard-icraft-b760m-cross-81086"
+  },
+  "06edba6d-afad-4360-be7a-cb7d3355b281": {
+   "name": "Mainboard ASUS TUF GAMING B550M-E",
+   "image": "https://www.startech.com.bd/image/cache/catalog/motherboard/asus/b550m-e/b550m-e-01-1200x630.jpg",
+   "page": "https://www.startech.com.bd/asus-tuf-gaming-b550m-e-motherboard"
+  },
+  "0215085b-5ad3-4bcb-a4b1-4cff9f083ec9": {
+   "name": "Mainboard Gigabyte B650M C AM5 DDR5 Micro ATX",
+   "image": "https://static.gigabyte.com/StaticFile/Image/Global/20145cd54ad4e62058a1ddb922cbafbe/ProductRemoveBg/33960",
+   "page": "https://www.gigabyte.com/Motherboard/B650M-C-rev-10"
+  },
+  "0343e5fe-1325-47bf-8a22-9db5fcc62788": {
+   "name": "Mainboard Gigabyte B760 DS3H AX DDR5 ATX",
+   "image": "https://www.startech.com.bd/image/cache/catalog/motherboard/gigabyte/b760-ds3h/b760-ds3h-01-1200x630.webp",
+   "page": "https://www.startech.com.bd/gigabyte-b760-ds3h-motherboard"
+  },
+  "02674a77-9b71-4266-8062-6fa6d25f1683": {
+   "name": "Mainboard Asus Z890 MAX GAMING WIFI7 DDR5 ATX",
+   "image": "https://dlcdnwebimgs.asus.com/gain/432ea3e5-a899-44d7-be0f-8f5bab833ce5/w800",
+   "page": "https://www.asus.com/motherboards-components/motherboards/others/z890-max-gaming-wifi7/"
+  },
+  "03090354-e1c4-4671-be8d-2a2e5384e308": {
+   "name": "Mainboard MSI Z790 MPG EDGE MONSTER HUNTER EDITION DDR5 ATX",
+   "image": "https://storage-asset.msi.com/global/picture/product/product_170840771852bc8dccb5f971faa81248aa4ba0d7b9.webp",
+   "page": "https://www.msi.com/Motherboard/MPG-Z790-EDGE-MONSTER-HUNTER-EDITION"
+  },
+  "17f32f3f-7de5-40a0-8e5e-b5bfa77477b0": {
+   "name": "Nguồn Cooler Master MWE GOLD 650 V2 Black 650W Fully Modular 80+ Gold",
+   "image": "https://product.hstatic.net/200000420363/product/cm-mwe-650-gold_db6126e5ea54459da0750414d1dfbc6d_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/nguon-cooler-master-650w-mwe-650-80-plus-gold-full-modular-mpy-6501-afaag"
+  },
+  "00952dd1-42e0-4f3c-a0ef-c5e70a12c0b6": {
+   "name": "Nguồn Super Flower Leadex Platinum Black 750W Fully Modular 80+ Platinum",
+   "image": "https://www.super-flower.com.tw/upload/catalog_list_pic/2024%20web_IM_2601_III%20P_02_BK__26F12SUJno.png",
+   "page": "https://www.super-flower.com.tw/tw/products-detail/LIII-P/"
+  },
+  "004b108b-3385-4f23-ad33-b29dfe26d0e4": {
+   "name": "Nguồn SeaSonic ATX3-FOCUS-GX White 850W Fully Modular 80+ Gold",
+   "image": "https://seasonic.com/wp-content/uploads/2024/02/atx3-focus-gx-1000-850-750-white-back-panel-angled.png",
+   "page": "https://seasonic.com/atx3-focus-gx-white/"
+  },
+  "5c5693ec-79ce-4fa4-a2b6-0010a3be6081": {
+   "name": "Ổ cứng Samsung 980 Pro 250GB M.2-2280 SSD PCIe 4.0 NVMe",
+   "image": "https://product.hstatic.net/200000722513/product/80-pro-250gb-m-2-nvme-mz-v8p250bw-666_b213a29b2d8b41c89b026e69341ed21e_c73e660d4e5344b3b27b0937e56d4a97.jpg",
+   "page": "https://gearvn.com/products/ssd-samsung-980-pro-250gb-m-2-nvme-mz-v8p250bw"
+  },
+  "19bc80ae-70e3-4620-b8c9-c5c0f08a95ae": {
+   "name": "Ổ cứng Kingston A400 480GB M.2 SSD SATA",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/sa400m8-01-93669938-904b-44fd-84b6-0d95d6650a61-da4931ab-9f9e-4fe7-ba9f-ba8d865c9924.jpg?v=1654139467280",
+   "page": "https://memoryzone.com.vn/ssd-kingston-a400-m-2-2280-sata-3-480gb-sa400m8-480g"
+  },
+  "066e4669-ada2-43cc-aa44-972b436b666c": {
+   "name": "Ổ cứng Netac NV2000 512GB SSD M.2-2280 PCIe 3.0 X4 NVMe",
+   "image": "https://www.ryans.com/storage/products/small/netac-nv2000-512gb-m2-2280-pcie-30-x4-nvme-11665058833.webp",
+   "page": "https://www.ryans.com/netac-nv2000-512gb-m.2-2280-pcie-3.0-x4-nvme-ssd"
+  },
+  "03116eec-b3d3-4daf-83d0-48e3d6cdbc9d": {
+   "name": "Ổ cứng Western Digital Black SN850X 8TB M.2 SSD PCIe 4.0 NVMe",
+   "image": "https://www.sandisk.com/content/dam/sandisk/en-us/assets/products/internal-storage/wd-black-sn850x-nvme-ssd/gallery/wd-black-sn850x-nvme-ssd-front.png",
+   "page": "https://www.westerndigital.com/en-sg/products/internal-drives/wd-black-sn850x-nvme-ssd?sku=WDS800T2X0E-00CDD0"
+  },
+  "0450ea05-a8ac-4cb0-87a9-81f93aa29e9e": {
+   "name": "RAM ADATA XPG LANCER BLADE DDR5-6000 16GB (1x16GB) CL28 Black",
+   "image": "https://cdn.hstatic.net/products/200000420363/data-xpg-lancer-blade-black-16gb-ddr5-6000mhz-ax5u6000c3616g-slabbk-01_ddd7c45280844f5bbd1d46619d776f34_grande.png",
+   "page": "https://tinhocngoisao.com/products/ram-adata-lancer-blade-black-16gb-1-x-16gb-ddr5-6000mhz"
+  },
+  "3e7e2441-4169-42c1-a66a-2461bf36f8ad": {
+   "name": "RAM OLOy DDR4 RAM 16GB (2x8GB) 3200 MHz CL16  UDIMM (MD4U0832160BHRDA) RED",
+   "image": "https://m.media-amazon.com/images/I/61Mm3fK+TSL._AC_SL1500_.jpg",
+   "page": "https://specpicks.com/product/B08JTSF45X"
+  },
+  "08c02c9c-0564-46a8-a416-4e594ca455a8": {
+   "name": "RAM G.Skill Sniper Black / Red DDR3-2400 CL11 16GB (2x8GB)",
+   "image": "https://www.gskill.com/_upload/images/153250466210.png",
+   "page": "https://www.gskill.com/product/165/182/1532504662/F3-2400C11D-16GSR"
+  },
+  "5205c32c-295d-4170-9661-da759c3cfbaf": {
+   "name": "Case Zalman CUBIX-G Micro-ATX PC Case Black",
+   "image": "https://m.media-amazon.com/images/I/410bV6Y1JsL._AC_SL1500_.jpg",
+   "page": "https://specpicks.com/product/B0GFH846S6"
+  },
+  "012111af-404e-42d6-aace-f3931da2eae1": {
+   "name": "RAM G.Skill Trident Z5 Metallic Silver DDR5-5600 CL30 64GB (2x32GB)",
+   "image": "https://m.media-amazon.com/images/I/410TWmn-GtL._AC_SL1500_.jpg",
+   "page": "https://specpicks.com/product/B09PTGZM6Y"
+  },
+  "03aa26f2-4307-46c6-85b1-36ad768a12c6": {
+   "name": "Tản nhiệt Thermalright Peerless Assassin 140 SE Black/Silver",
+   "image": "https://m.media-amazon.com/images/I/41Bx40iLRpL._SL500_.jpg",
+   "page": "https://specpicks.com/product/B0FV8K4SWY"
+  },
+  "27cc18ba-4130-4f93-bac2-a9aac3cd3adf": {
+   "name": "Tản nhiệt Thermalright Phantom Spirit 120 SE Air 154mm Black / Silver",
+   "image": "https://m.media-amazon.com/images/I/51dEaxojocL._AC_SL1500_.jpg",
+   "page": "https://specpicks.com/product/B0BNDTJVPL"
+  },
+  "3399cdee-81d3-45af-8b12-9bffd53eec0b": {
+   "name": "Tản nhiệt Thermalright Frozen Prism Water 240mm Black",
+   "image": "https://m.media-amazon.com/images/I/61Wpv-LKr5L._SL1500_.jpg",
+   "page": "https://specpicks.com/product/B0BWD59L4K"
+  },
+  "348f32b0-73d4-4cc7-8166-1cfe35b778e9": {
+   "name": "Tản nhiệt Noctua NH-D15 Air 168mm G2 LBC 91.58 CFM Brown / Silver",
+   "image": "https://m.media-amazon.com/images/I/51-eBeqvOrL._AC_SL1500_.jpg",
+   "page": "https://specpicks.com/product/B0D5B5B821"
+  },
+  "0d772bed-9062-4309-81da-f6567ae54093": {
+   "name": "Tản nhiệt Jonsbo CR-1400 DV2 38.2 CFM Air 136mm White",
+   "image": "https://hanoicomputercdn.com/media/product/68000_fanc962_anhdaidien__1_.jpg",
+   "page": "https://hacom.vn/tan-nhiet-khi-jonsbo-cr-1400-white-kem-san-backplate-1700-jonsbo"
+  },
+  "281ce54a-1f82-4aee-b8f2-10fb1ded2d46": {
+   "name": "Tản nhiệt Jonsbo CR-1000 EVO Air 154mm 59.48 CFM White",
+   "image": "https://hanoicomputercdn.com/media/product/72164_tan_nhiet_khi_jonsbo_cr_1000_evo_color_90.jpg",
+   "page": "https://hacom.vn/tan-nhiet-khi-jonsbo-cr-1000-evo-argb-white"
+  },
+  "25f0d944-b4df-4cd9-bb48-f72ee55ff0b4": {
+   "name": "Tản nhiệt Deepcool AG400 Air 150mm LED Black / Silver",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/tan-nhiet-khi-deepcool-ag400-argb-r-ag400-bkanmc-g-1-1-592333de-63c2-4174-9b73-9430903d9a15.jpg?v=1743639068327",
+   "page": "https://memoryzone.com.vn/tan-nhiet-khi-deepcool-ag400-led-r-ag400-bklnmc-g-1"
+  },
+  "12c6f6f5-e5d3-4f4e-a7ce-eab32ea3afda": {
+   "name": "Tản nhiệt Deepcool AG400 DIGITAL PLUS Air 153mm Black",
+   "image": "https://product.hstatic.net/200000420363/product/ag400-digital-6_129d9abfde164107ac871066bf8c5a09_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/tan-nhiet-khi-deepcool-ag400-digital-nhap-khau-fan-den-hien-thi-nhiet-do"
+  },
+  "253446e3-2c69-40d5-beaa-06dc4e216add": {
+   "name": "Tản nhiệt DeepCool AK400 ZERO DARK Performance CPU Cooler, 4 Copper Heat Pipes, 120mm Fluid Dynamic Bearing PWM Fan, 220W TDP",
+   "image": "https://lh3.googleusercontent.com/-IlPqdWrDLM_zCBa7tisyLrZHWD8c9jYEkFQnNErE8kLzGiWk9Pfw-ZOMHPFqhZOkz24s_zlPbqRtetE5yovmP4xRjK1pIsSVg",
+   "page": "https://phongvu.vn/bo-tan-nhiet-cho-cpu-cua-may-vi-tinh-deepcool-ak400-zero-dark-r-ak400-bknnmn-g-2--s250115699"
+  },
+  "158e0b51-f560-46e1-b867-5a6fa20a40ab": {
+   "name": "Tản nhiệt Deepcool AK620 ZERO DARK Air 68.99 CFM 160mm Black",
+   "image": "https://hanoicomputercdn.com/media/product/81271_t___n_nhi___t_kh___deepcool_ak620_zero_dark__2_.jpg",
+   "page": "https://hacom.vn/tan-nhiet-khi-deepcool-ak620-zero-dark"
+  },
+  "1d3f7ee1-6568-4a50-900d-1cdfd23a7d1b": {
+   "name": "Tản nhiệt Deepcool AK620 DIGITAL Air 162mm 68.99 CFM White",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/tan-nhiet-khi-deepcool-ak620-digital-wh-r-ak620-whadmn-g-3.jpg?v=1748879454263",
+   "page": "https://memoryzone.com.vn/tan-nhiet-khi-deepcool-ak620-digital-wh-r-ak620-whadmn-g"
+  },
+  "08d33494-342d-4c87-a678-853754dd931f": {
+   "name": "Tản nhiệt Thermalright AQUA ELITE ARGB V4 66.17 CFM Water 240mm Black",
+   "image": "https://product.hstatic.net/200000420363/product/ae240-white-argb__-1-600x600_2c10d2e9ecc442dda442af7f77197ec7_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/tan-nhiet-nuoc-thermalright-aqua-elite-240-argb-black-white"
+  },
+  "2b4a92cf-6f0d-4b9c-8d5c-087b9c25438d": {
+   "name": "Tản nhiệt Deepcool LT720 WH Water 360mm 85.85 CFM White",
+   "image": "https://product.hstatic.net/200000722513/product/01_e1d5be6f3eb248a2a3f46eae0839845e_a08290c040574954ac9144d0ec19088e.png",
+   "page": "https://gearvn.com/products/tan-nuoc-aio-deepcool-lt720-white"
+  },
+  "89ae3577-8ecb-480b-9fca-0a7db3378f97": {
+   "name": "Tản nhiệt Deepcool LT720 Water 360mm 85.85 CFM Black / Gray",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/tan-nhiet-nuoc-aio-deepcool-lt720-a-rgb-r-lt720-bkamnf-g-1-7365cd1c-f205-4685-8500-9d9dd4e9ea7d.jpg?v=1754585302160",
+   "page": "https://memoryzone.com.vn/tan-nhiet-nuoc-aio-deepcool-lt720-a-rgb-r-lt720-bkamnf-g-1"
+  },
+  "02af6bd9-efaa-465d-98a9-7808ba97992a": {
+   "name": "RAM G.Skill Ripjaws V Black DDR4-3600 CL14 32GB (2x16GB)",
+   "image": "https://www.gskill.com/_upload/images/160430500810.png",
+   "page": "https://www.gskill.com/product/165/184/1604305008/F4-3600C14D-32GVK-EOL"
+  },
+  "04020748-08e9-414a-b02c-3667aee89fc8": {
+   "name": "RAM G.Skill Ripjaws Red DDR4-2133 CL15 32GB (4x8GB)",
+   "image": "https://www.gskill.com/_upload/images/153603128510.png",
+   "page": "https://www.gskill.com/product/165/184/1536031285/F4-2133C15D-32GVR"
+  },
+  "0a32ecfc-90a0-4e40-bbaa-3aa92a4ef0e0": {
+   "name": "RAM G.Skill Ripjaws Black DDR4-4000 CL18 64GB (2x32GB)",
+   "image": "https://www.gskill.com/_upload/images/159860324110.png",
+   "page": "https://www.gskill.com/product/165/184/1598603241/F4-4000C18D-64GVK"
+  },
+  "016ab36c-c699-4cf1-b6bf-b8fe01c75e0f": {
+   "name": "RAM Corsair Dominator Platinum RGB Gray / Black DDR5-6000 CL30 32GB (2x16GB)",
+   "image": "https://product.hstatic.net/200000722513/product/-platinum-32gb-2x16gb-rgb-6000-ddr5-1_a308ab7282c548528c4e82aab55fd665_4a55904a44454127aad4c004abcb4e69.jpg",
+   "page": "https://gearvn.com/products/ram-corsair-dominator-platinum-32gb-2x16gb-rgb-6000-ddr5"
+  },
+  "1cad4788-f66d-487e-b34d-9c213cc24d1b": {
+   "name": "RAM Silicon Power DDR5 32GB (2x16GB) Zenith RGB 6000MHz CL36 WHITE",
+   "image": "https://www.silicon-power.com/upload/catalog_list_pic/siliconpower-Dram-Zenith-DDR5-RGB-400x400_%5BC%5D__25H05x2004.png",
+   "page": "https://www.silicon-power.com/product-detail/XPOWER_Zenith_DDR5_RGB_Gaming_UDIMM/"
+  },
+  "0252c1f5-ba4c-4c51-acf4-f0879a1491ba": {
+   "name": "RAM G.Skill Trident Z Royal Silver DDR4-3200 CL14 256GB (8x32GB)",
+   "image": "https://www.gskill.com/_upload/images/159860310110.png",
+   "page": "https://www.gskill.com/product/165/299/1598603101/F4-4000C18D-64GTRS"
+  },
+  "0aa1ca6a-7ff6-4374-beeb-935f33eb6eff": {
+   "name": "Card màn hình Gigabyte OC Low Profile GeForce GTX 1650 G6 4GB GDDR6 Black",
+   "image": "https://product.hstatic.net/200000722513/product/1000__5__325ce53d84a44ba9a184f8f1086a6203_cd4a10e2f13f4045afe032d03eed2588.png",
+   "page": "https://gearvn.com/products/gigabyte-geforce-gtx-1650-d6-oc-low-profile-4g"
+  },
+  "0d7455ba-af37-47ff-b4fa-b7577ee5a1ea": {
+   "name": "Card màn hình GALAX 26NRL7HPX7OC GeForce RTX 2060 6GB GDDR6 Black",
+   "image": "https://hanoicomputercdn.com/media/product/45935_galax_rtx_2060__1_click_oc____6gb_ddr6__01.jpg",
+   "page": "https://hacom.vn/card-man-hinh-galax-rtx-2060-1-click-oc-6gb-ddr6-26nrl7hpx7oc"
+  },
+  "1309b5ed-47b5-4664-8061-9757526eb825": {
+   "name": "Card màn hình ZOTAC GAMING GeForce RTX 4060 8GB Twin Edge OC",
+   "image": "https://www.startech.com.bd/image/cache/catalog/graphics-card/zotac/geforce-rtx-4060-8gb-twin-edge-oc/geforce-rtx-4060-8gb-twin-edge-oc-05-1200x630.webp",
+   "page": "https://www.startech.com.bd/zotac-gaming-geforce-rtx-4060-8gb-twin-edge-oc-graphics-card"
+  },
+  "24db0917-1bd4-4f38-bce1-b976c2cfcb71": {
+   "name": "Card màn hình ASRock Challenger ITX Radeon RX 6600 8GB GDDR6 Black",
+   "image": "https://product.hstatic.net/200000722513/product/1_3d12dbb1f2d445348a47c5b35b481cd6_454e6d3730c049b4b16de34fe1474cf2.jpg",
+   "page": "https://gearvn.com/products/asrock-radeon-rx-6600-challenger-d-8gb"
+  },
+  "30e00ac2-21ce-4d64-aab0-84bc8cb8846f": {
+   "name": "Card màn hình MSI ARMOR V1 Radeon RX 6600 8GB GDDR6 Black / Silver",
+   "image": "https://product.hstatic.net/200000722513/product/1_4925299b4f0645838f4dc2ce5415217a_56a82ed4c0044670b2940ce7fff93ce5.jpg",
+   "page": "https://gearvn.com/products/msi-radeon-rx-6600-armor-8g"
+  },
+  "0ca7d77a-5ff4-457b-8ea8-c6efea09e7be": {
+   "name": "Card màn hình Asus DUAL MINI OC V2 GeForce RTX 3060 Ti LHR 8GB GDDR6 Black",
+   "image": "https://product.hstatic.net/200000722513/product/tai_xuong__5__848b9305a77b4e8b85ebfe73b87c5c2b_ab2d4dae2c3942dbb0bd02a380929e67.png",
+   "page": "https://gearvn.com/products/asus-dual-geforce-rtx-3060-ti-v2-mini-oc-edition-8gb-gddr6-lhr"
+  },
+  "09e1c2d8-98aa-4f98-8fa6-a120eb82ec91": {
+   "name": "Card màn hình PowerColor Red Devil Limited Edition OC Radeon RX 7800 XT 16GB GDDR6 Black",
+   "image": "https://www.startech.com.bd/image/cache/catalog/graphics-card/powercolor/red-devil-amd-radeon-rx-7800-xt-16gb/red-devil-amd-radeon-rx-7800-xt-16gb-01-1200x630.webp",
+   "page": "https://www.startech.com.bd/powercolor-red-devil-amd-radeon-rx-7800-xt-16gb-gddr6-graphics-card"
+  },
+  "02ea16bd-0572-484e-8367-9a881c31db29": {
+   "name": "Card màn hình Inno3D GeForce RTX 4070 SUPER X3 OC 12GB GDDR6X Black / Silver",
+   "image": "https://product.hstatic.net/200000420363/product/card-man-hinh-vga-inno3d-geforce-rtx-4070-super-x3-oc-12gb-2_956dc6fae14e41d087480513754d2f8b_grande.png",
+   "page": "https://tinhocngoisao.com/products/card-man-hinh-vga-inno3d-geforce-rtx-4070-super-x3-oc-12gb"
+  },
+  "06efad50-3bbb-4f02-8bba-2675dc2001b7": {
+   "name": "Card màn hình Zotac GAMING SOLID GeForce RTX 4070 Ti SUPER 16GB GDDR6X Black / Gray",
+   "image": "https://product.hstatic.net/200000420363/product/tinhocngoisao.com1__5__8b85ae51edda4b7badf50a7bea594bcc_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/card-man-hinh-vga-zotac-gaming-geforce-rtx-4070-ti-super-solid-16gb-gddr6x"
+  },
+  "01aa7b75-afbe-4cea-966b-73ff88e8d189": {
+   "name": "Card màn hình MSI SUPRIM X GeForce RTX 4080 16GB GDDR6X Black",
+   "image": "https://product.hstatic.net/200000722513/product/rtx_4080_suprim_x_16gb_45957bdd6ab74158ab65172664c419c8.jpg",
+   "page": "https://gearvn.com/products/msi-geforce-rtx-4080-suprim-x-16gb"
+  },
+  "0459be68-a0e8-4273-8595-066fbb571935": {
+   "name": "Card màn hình MSI GAMING X SLIM GeForce RTX 4080 SUPER 16GB GDDR6X White",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-msi-geforce-rtx-4080-super-gaming-x-slim-white-16g-gddr6x-1.jpg?v=1743639791747",
+   "page": "https://memoryzone.com.vn/vga-msi-geforce-rtx-4080-super-gaming-x-slim-white-16g-gddr6x"
+  },
+  "12a040ae-a296-4d84-bc4a-965d99236a0e": {
+   "name": "Card màn hình MSI Black GeForce RTX 4080 SUPER 16GB GDDR6X Black",
+   "image": "https://hanoicomputercdn.com/media/product/79170_card_man_hinh_msi_rtx_4080_super_16g_ventus_3x_oc__1_.jpg",
+   "page": "https://hacom.vn/card-man-hinh-msi-rtx-4080-super-16g-ventus-3x-oc"
+  },
+  "0dd8bae5-5674-4a59-9604-acf38fd32ba3": {
+   "name": "Card màn hình Gainward Panther GeForce RTX 4070 12 GB",
+   "image": "https://www.gainward.com/main/product/vga/pro/p01179/p01179_pic2_16006436b397e29f3.png",
+   "page": "https://www.gainward.com/main/vgapro.php?id=1179&lang=en"
+  },
+  "010abcce-a3d8-488c-a89d-9713092820c1": {
+   "name": "Tản nhiệt Deepcool AK400 Air 155mm Black / Silver",
+   "image": "https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/tan-nhiet-khi-deepcool-ak400-r-ak400-bknnmn-g-1-6.jpg?v=1748878976797",
+   "page": "https://memoryzone.com.vn/tan-nhiet-khi-deepcool-ak400-r-ak400-bknnmn-g-1"
+  },
+  "bfa61c70-b6b6-4e15-a44f-c9386226c941": {
+   "name": "RAM VENGEANCE® RGB PRO 32GB (2 x 16GB) DDR4 DRAM 3200MHz C16 Memory Kit — White",
+   "image": "https://www.startech.com.bd/image/cache/catalog/ram/cosair/vengeance-rgb-pro-sl-32gb/vengeance-rgb-pro-sl-32gb-01-1200x630.jpg",
+   "page": "https://www.startech.com.bd/corsair-vengeance-rgb-pro-sl-32gb-ddr4-3200mhz-ram-kit-white"
+  },
+  "0259ece2-55a2-4932-b3f7-be54a69dcb2b": {
+   "name": "Tản nhiệt NZXT Kraken X73 Water 360mm RGB 52.44 CFM Black",
+   "image": "https://www.startech.com.bd/image/cache/catalog/cpu-cooler/nzxt/kraken-x73-rgb/kraken-x73-rgb-1200x630.jpg",
+   "page": "https://www.startech.com.bd/nzxt-kraken-x73-rgb-liquid-cpu-cooler"
+  },
+  "04249aee-1b50-460c-b658-2ddc90c528ea": {
+   "name": "Card màn hình Asus DUAL OC Radeon RX 7900 XT 20GB GDDR6 Black",
+   "image": "https://dlcdnwebimgs.asus.com/gain/71a682a1-7d0d-44e9-bd8b-bf73115240db/w800",
+   "page": "https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rx7900xt-o20g/"
+  },
+  "0f19eb6a-59be-46b5-9d32-5473acf029c5": {
+   "name": "Card màn hình Asus ROG STRIX LC GAMING GeForce RTX 4090 24GB GDDR6X Black / Silver",
+   "image": "https://dlcdnwebimgs.asus.com/gain/91E4248E-FD86-46EE-A3B7-078532AC6372/w800",
+   "page": "https://rog.asus.com/us/graphics-cards/graphics-cards/rog-strix/rog-strix-lc-rtx4090-o24g-gaming/spec/"
+  },
+  "31af4fc2-4455-463e-8b90-f913493c979d": {
+   "name": "Card màn hình Gigabyte GeForce GTX 750 Ti 2GB GDDR5 Black",
+   "image": "https://product.hstatic.net/200000420363/product/gg-gtx750ti-600x600_4d431c47299142c9a860da6e3daa437a_grande.jpg",
+   "page": "https://tinhocngoisao.com/products/vga-gigabyte-gtx750ti-2g-d5-1-fan-cu"
+  },
+  "1c621d66-92ae-404b-9b13-4fdec53ea59b": {
+   "name": "Tản nhiệt Jonsbo CR-1000 GT 66.81 CFM Air 158mm Black",
+   "image": "https://www.jonsbo.com/Upfiles/Prod_X/20207215189.webp",
+   "page": "https://www.jonsbo.com/Upfiles/Prod_X/20207215189.webp"
+  },
+  "887adada-b0dc-448d-8fe8-9ebeada978fb": {
+   "name": "Tản nhiệt Deepcool LE520 Water 240mm White",
+   "image": "https://www.deepcool.com/public/ProductFile/DEEPCOOL/Cooling/CPULiquidCoolers/LE520_WH/Gallery/1440X850/01.jpg",
+   "page": "https://www.deepcool.com/public/ProductFile/DEEPCOOL/Cooling/CPULiquidCoolers/LE520_WH/Gallery/1440X850/01.jpg"
+  },
+  "279fe5cd-27d4-407b-a00c-cb9fcc61a8f4": {
+   "name": "Mainboard Gigabyte GA-B85M-D3H Micro ATX LGA1150",
+   "image": "https://anphat.com.vn/media/product/13227_.jpg",
+   "page": "https://www.anphatpc.com.vn/mainboard-gigabyte-ga-b85m-d3h_id13227.html"
+  },
+  "2266258e-9875-4052-9417-50a160282e60": {
+   "name": "Mainboard Asus A620 Pro A620M-DASH-CSM AM5 DDR5 Micro ATX",
+   "image": "https://anphat.com.vn/media/product/45970_mainboard_asus_prime_a620m_a_ddr5_anphat88.jpg",
+   "page": "https://www.anphatpc.com.vn/mainboard-asus-prime-a620m-a-ddr5.html"
+  },
+  "02426428-a50d-4d40-8de2-1805414b11e3": {
+   "name": "Mainboard ASUS TUF GAMING B650-PLUS",
+   "image": "https://anphat.com.vn/media/product/43504_mainboard_asus_tuf_gaming_b650_plus_ddr5_anphat88.jpg",
+   "page": "https://www.anphatpc.com.vn/mainboard-asus-tuf-gaming-b650-plus-ddr5.html"
+  },
+  "17ddc32d-7c9f-4476-a0ab-69c49206d4fc": {
+   "name": "Mainboard ASRock X670E Pro RS AM5 DDR5 ATX",
+   "image": "https://anphat.com.vn/media/product/43331_mainboard_asrock_x670e_pro_rs_ddr5_anphat88.jpg",
+   "page": "https://www.anphatpc.com.vn/mainboard-asrock-x670e-pro-rs-ddr5.html"
+  },
+  "02201f54-8c7c-4bf3-bfb9-afdc61479917": {
+   "name": "RAM ADATA AD3U1600W8G11-R Black / Green DDR3-1600 CL11 8GB (1x8GB)",
+   "image": "https://anphat.com.vn/media/product/18505_ram_adata_ad3u1600.jpg",
+   "page": "https://www.anphatpc.com.vn/ram-adata-8gb-ddr3-1600mhz-ad3u1600w8g11-s_id18505.html"
+  },
+  "1e8634c9-e304-44c8-805d-cdf5dbe67459": {
+   "name": "Tản nhiệt Jonsbo CR-1400 EVO ARGB Air 38.2 CFM Black",
+   "image": "https://anphat.com.vn/media/product/47072_t___n_nhi___t_kh___cpu_jonsbo_cr_1400_evo_argb__black__3_.jpg",
+   "page": "https://www.anphatpc.com.vn/tan-nhiet-khi-cpu-jonsbo-cr-1400-evo-argb-black.html"
+  },
+  "1af157b2-6786-4321-83ed-b47b5efb13d6": {
+   "name": "Tản nhiệt Thermalright Assassin X 120 R Digital ARGB Air 151mm 70.84 CFM White",
+   "image": "https://anphat.com.vn/media/product/42148_t___n_nhi___t_cpu_thermalright_assassin_x_120_refined_se___ax120_r_se_argb_white__3_.jpg",
+   "page": "https://www.anphatpc.com.vn/tan-nhiet-cpu-thermalright-assassin-x-120-refined-se-ax120-r-se-argb-white.html"
+  },
+  "15d90538-ec4b-4b35-843d-9449c551c833": {
+   "name": "Card màn hình Asus STRIX DC2OC GeForce GTX 960 4GB GDDR5 Black / Red",
+   "image": "https://anphat.com.vn/media/product/17847_strix_gtx960_dc2oc_4gd5_box_vga.jpg",
+   "page": "https://www.anphatpc.com.vn/vga-asus-strix-gtx960-dc2oc-4gd5-gaming-128-bits_id17847.html"
+  },
+  "027e352a-695b-4bd5-a2c4-6db65a8e39ed": {
+   "name": "Card màn hình Gigabyte GAMING GeForce GTX 1050 Ti 4GB GDDR5 Black",
+   "image": "https://anphat.com.vn/media/product/21276_20161017191701_big.png",
+   "page": "https://www.anphatpc.com.vn/card-man-hinh-gigabyte-geforce-gtx-1050-ti-g1-gaming-4g_id21276.html"
+  },
+  "0122d16b-843c-4ab1-a189-d07d2d94dc33": {
+   "name": "Mainboard MSI A320M PRO-VD PLUS AM4 DDR4 Micro ATX",
+   "image": "https://product.hstatic.net/200000722513/product/a320m_pro_vh-plus_gearvn00_0a683e6c3d0d487e8c8b4ec4672d4227.jpg",
+   "page": "https://gearvn.com/products/msi-a320m-pro-vh-plus"
+  },
+  "055a0a65-510b-4c91-9b6f-cdb9f240b8bb": {
+   "name": "Mainboard MSI H110 H110M PRO-D DDR4 Micro ATX",
+   "image": "https://anphat.com.vn/media/product/24283_mainboard_msi_h110m_pro_d_1.png",
+   "page": "https://www.anphatpc.com.vn/mainboard-msi-h110m-pro-d_id24283.html"
+  },
+  "04bbea51-a395-4f3c-aeac-77036f2c8c1d": {
+   "name": "Mainboard Asus H510 PRIME H510M-A R2.0 DDR4 Micro ATX",
+   "image": "https://anphat.com.vn/media/product/36939_w800__5_.png",
+   "page": "https://www.anphatpc.com.vn/mainboard-asus-prime-h510m-a_id36939.html"
+  }
+ }
+}

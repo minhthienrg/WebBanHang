@@ -1,0 +1,5529 @@
+{
+ "updated": "2026-11-09",
+ "method": "Trung bình giá các shop (bỏ giá lệch >35% so với trung vị khi có ≥3 giá), làm tròn 10.000đ. Hàng ngừng bán lấy giá hàng cũ trên Chợ Tốt.",
+ "products": {
+  "4b82e241-5baf-42a0-9884-9eabd67fcaf5": {
+   "name": "Case Xigmatek Cubi ATX Mid Tower Black Tempered Glass Side Panel, USB 3.2 Gen 2 Type-C USB 3.2 Gen 1 Type-A Front Panel",
+   "price": 690000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 650000,
+     "note": "case phổ thông tương đương (Xigmatek NYX 3F RGB) – chưa thấy giá đúng mẫu"
+    },
+    {
+     "shop": "An Phát",
+     "price": 759000,
+     "note": "case phổ thông tương đương (Xigmatek Dynamic ML)"
+    },
+    {
+     "shop": "An Phát",
+     "price": 649000,
+     "note": "case phổ thông tương đương (GameMax G361)"
+    }
+   ]
+  },
+  "5205c32c-295d-4170-9661-da759c3cfbaf": {
+   "name": "Case Zalman CUBIX-G Micro-ATX PC Case Black",
+   "price": 690000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 650000,
+     "note": "case phổ thông tương đương (Xigmatek NYX 3F RGB) – chưa thấy giá đúng mẫu"
+    },
+    {
+     "shop": "An Phát",
+     "price": 759000,
+     "note": "case phổ thông tương đương (Xigmatek Dynamic ML)"
+    },
+    {
+     "shop": "An Phát",
+     "price": 649000,
+     "note": "case phổ thông tương đương (GameMax G361)"
+    }
+   ]
+  },
+  "643eaef6-9699-4ed3-b03a-11557376b631": {
+   "name": "Case GameMax ONYX ATX Mid Tower Black Tempered Glass Side Panel",
+   "price": 690000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 650000,
+     "note": "case phổ thông tương đương (Xigmatek NYX 3F RGB) – chưa thấy giá đúng mẫu"
+    },
+    {
+     "shop": "An Phát",
+     "price": 759000,
+     "note": "case phổ thông tương đương (Xigmatek Dynamic ML)"
+    },
+    {
+     "shop": "An Phát",
+     "price": 649000,
+     "note": "case phổ thông tương đương (GameMax G361)"
+    }
+   ]
+  },
+  "d9276c03-de62-4eaa-a294-acfded612cba": {
+   "name": "Case Cougar OmnyX ATX Mid Tower Black with Tempered Glass Side Panel and USB 3.2 Gen 1 Type-A",
+   "price": 690000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 650000,
+     "note": "case phổ thông tương đương (Xigmatek NYX 3F RGB) – chưa thấy giá đúng mẫu"
+    },
+    {
+     "shop": "An Phát",
+     "price": 759000,
+     "note": "case phổ thông tương đương (Xigmatek Dynamic ML)"
+    },
+    {
+     "shop": "An Phát",
+     "price": 649000,
+     "note": "case phổ thông tương đương (GameMax G361)"
+    }
+   ]
+  },
+  "06edf99d-ba33-4e40-9ae4-87f8ecaf9bbf": {
+   "name": "Case Deepcool MACUBE 110 Micro ATX Mini Tower Black Tempered Glass Side Panel",
+   "price": 890000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 790000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 989000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1390000,
+     "used": "loại (lệch >35%)"
+    }
+   ]
+  },
+  "12ebed9d-7312-4456-aa82-d37c6e4ef8ae": {
+   "name": "Case Deepcool MACUBE 310 ATX Mid Tower White with Tempered Glass Side Panel and USB 3.2 Gen 1 Type-A Front Panel",
+   "price": 1600000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 1600000,
+     "note": "Macube 310P White"
+    }
+   ]
+  },
+  "2409aafd-cc1c-4e55-9a55-89b669892856": {
+   "name": "Case Deepcool CC560 ARGB V2 ATX Mid Tower Tempered Glass Side Panel",
+   "price": 1100000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 1099000,
+     "note": "CC560 đen"
+    }
+   ]
+  },
+  "32ee2ea6-0703-4cb4-bc3a-5cf4ae4fdb3d": {
+   "name": "Case Deepcool CC560 ATX Mid Tower White Tempered Glass Side Panel, USB 3.2 Gen 1 Type-A USB 2.0 Type-A",
+   "price": 1290000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 1290000,
+     "note": "CC560 trắng"
+    }
+   ]
+  },
+  "021d3b2e-8f92-48e0-b1fc-2dd7961fefca": {
+   "name": "Case Montech AIR 903 MAX ATX Mid Tower Black Tempered Glass Side Panel",
+   "price": 1900000,
+   "used": false,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1900000,
+     "note": "ƯỚC TÍNH: chưa thấy bản MAX – Air 903 Base 1,59tr + ~300k"
+    }
+   ]
+  },
+  "be18fc71-e783-489b-a496-1a3073b84c41": {
+   "name": "Case Montech AIR 903 BASE ATX Mid Tower Black Tempered Glass Side Panel",
+   "price": 1590000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1590000
+    }
+   ]
+  },
+  "15228416-2ac1-4ff8-9039-d006728ae451": {
+   "name": "Case NZXT H5 Flow RGB (2023) ATX Mid Tower Black Tempered Glass",
+   "price": 2650000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 2649000,
+     "note": "H5 Flow RGB 2024"
+    }
+   ]
+  },
+  "5619fdec-6575-4d2c-887e-70da440a40ac": {
+   "name": "Case NZXT H5 Flow (2022) ATX Mid Tower White with Tempered Glass Side Panel",
+   "price": 1990000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 1990000,
+     "note": "H5 Flow"
+    },
+    {
+     "shop": "An Phát",
+     "price": 1989000,
+     "note": "H5 Flow 2024"
+    }
+   ]
+  },
+  "090334a6-3c7c-42e6-9b7c-901b9781f7cd": {
+   "name": "Case Corsair 4000D Airflow ATX Mid Tower Black Tempered Glass Side Panel, w/750 W Power Supply",
+   "price": 1980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1850000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1990000
+    },
+    {
+     "shop": "GearVN",
+     "price": 2090000
+    }
+   ]
+  },
+  "18a08afb-dc9b-459a-8bf1-de148727e4d3": {
+   "name": "Case Corsair FRAME 4000D RS ARGB Modular Mid-Tower PC Case - White",
+   "price": 1850000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1850000,
+     "note": "FRAME 4000D Airflow (bản RS ARGB chưa thấy giá)"
+    }
+   ]
+  },
+  "00827b00-c9c3-421a-8730-78e3cea68fe7": {
+   "name": "Case NZXT H7 Flow RGB (2024) ATX Mid Tower White Tempered Glass",
+   "price": 3450000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 3299000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 3599000
+    }
+   ]
+  },
+  "03aec929-39f5-43c7-8396-3de12002b795": {
+   "name": "Case NZXT H7 Flow (2024) ATX Mid Tower Black with Tempered Glass Side Panel and USB 3.2 Gen 2x2 Type-C USB 3.2 Gen 1 Type-A",
+   "price": 2870000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2749000
+    },
+    {
+     "shop": "An Phát",
+     "price": 2849000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 2999000
+    }
+   ]
+  },
+  "0166a285-c025-4fef-868b-251a8ca785b0": {
+   "name": "Case Lian Li O11 Dynamic EVO ATX Mid Tower Gray / Black Tinted Tempered Glass Side Panel, USB 3.2 Gen 2 Type-C USB 3.2 Gen 1 Type-A",
+   "price": 3990000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 3890000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 3890000
+    },
+    {
+     "shop": "HACOM",
+     "price": 4199000
+    }
+   ]
+  },
+  "239bbf73-b1e0-4450-b5c1-6d5d13e7cc04": {
+   "name": "Case Lian Li O11 Vision M Black",
+   "price": 3370000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 3189000,
+     "note": "O11 Vision Black compact"
+    },
+    {
+     "shop": "An Phát",
+     "price": 3549000,
+     "note": "O11 Vision Black"
+    }
+   ]
+  },
+  "25e1680f-d514-4622-8f17-4dce93e1b55a": {
+   "name": "Case Lian Li PC-O11 Dynamic Razer ATX Full Tower Black with Tempered Glass Side Panel and USB 3.2 Gen 2 Type-C / USB 3.2 Gen 1 Type-A",
+   "price": 2000000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "ƯỚC TÍNH: bản Razer (2019) ngừng bán, chưa thấy tin rao cũ"
+    }
+   ]
+  },
+  "11c8a8b2-048a-4492-ba06-f2b5c8c1de60": {
+   "name": "CPU Intel Core i3 12100F",
+   "price": 3020000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 2749000
+    },
+    {
+     "shop": "GearVN",
+     "price": 3290000
+    }
+   ]
+  },
+  "939fdb63-6331-4459-87ab-6810fd7c72eb": {
+   "name": "CPU Intel Core i3 10105",
+   "price": 2710000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 2499000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 2490000
+    },
+    {
+     "shop": "HACOM",
+     "price": 2499000
+    },
+    {
+     "shop": "GearVN",
+     "price": 2790000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 3290000
+    }
+   ]
+  },
+  "80ddf430-efb7-4abf-8ba0-ad0639b4a944": {
+   "name": "CPU Intel Core i5 4590S",
+   "price": 450000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 450000,
+     "note": "Chợ Tốt ~0,4–0,5tr (theo i5-4590)"
+    }
+   ]
+  },
+  "8fa3e52f-5fef-48ff-bba6-0f81708ccacf": {
+   "name": "CPU AMD Ryzen 3 3200G",
+   "price": 2060000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 1890000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1799000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 2499000
+    }
+   ]
+  },
+  "1d316a65-4f63-447e-b3ea-ca485c4334ac": {
+   "name": "CPU Intel Core i3 9100F",
+   "price": 450000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 450000,
+     "note": "Chợ Tốt 0,4–0,5tr"
+    }
+   ]
+  },
+  "abbabb54-67d1-46f3-b43e-6ca80c844001": {
+   "name": "CPU Intel Core i5 9400F OEM/Tray",
+   "price": 1260000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1260000,
+     "note": "Chợ Tốt 1,1–1,5tr"
+    }
+   ]
+  },
+  "09e91f36-20fd-4461-a117-37ef0872fc63": {
+   "name": "CPU Intel Core i7 4790K",
+   "price": 1080000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1080000,
+     "note": "Chợ Tốt 0,9–1,2tr"
+    }
+   ]
+  },
+  "571a3898-fab2-4596-83fc-c37d0c7257de": {
+   "name": "CPU Intel Core i7 4770K OEM/Tray",
+   "price": 900000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 900000,
+     "note": "Chợ Tốt ~0,9tr"
+    }
+   ]
+  },
+  "2b6e8f53-c9c6-4a64-a9fd-75d40fa7150a": {
+   "name": "CPU AMD Ryzen 5 2600X",
+   "price": 850000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "ước theo 2600 cũ (+~80k)"
+    }
+   ]
+  },
+  "d4f192f2-115a-4821-9510-369615c4b0a4": {
+   "name": "CPU AMD Ryzen 5 2600",
+   "price": 770000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 770000,
+     "note": "Chợ Tốt 0,7–0,85tr"
+    }
+   ]
+  },
+  "0f8f2a55-de64-490d-8f62-a11398b6f8f8": {
+   "name": "CPU AMD Ryzen 5 3600X",
+   "price": 1550000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1550000,
+     "note": "ước theo 3600 cũ (+~100k)"
+    }
+   ]
+  },
+  "40bb090d-7f4e-451e-99e5-fd9299a4aad7": {
+   "name": "CPU AMD Ryzen 5 3600",
+   "price": 1460000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1460000,
+     "note": "Chợ Tốt 1,2–1,65tr"
+    }
+   ]
+  },
+  "b3b4fd2c-5a52-4eb6-9167-8b54e778934e": {
+   "name": "CPU AMD Ryzen 3 3200G OEM/Tray",
+   "price": 1690000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 1690000,
+     "note": "MPK"
+    }
+   ]
+  },
+  "766557bd-4a3c-4fb1-93e4-2e12c0264a74": {
+   "name": "CPU Intel Core i5 10400F",
+   "price": 2640000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 2690000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 3990000,
+     "used": "loại (lệch >35%)"
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 2599000
+    }
+   ]
+  },
+  "7564da71-725e-4a56-9d79-d80377b7a92f": {
+   "name": "CPU AMD Ryzen 5 5600G",
+   "price": 4190000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 4390000
+    },
+    {
+     "shop": "HACOM",
+     "price": 3999000
+    }
+   ]
+  },
+  "31606fb8-29d9-43fc-bc34-7a7f7ec309c3": {
+   "name": "CPU Intel Core i5 11400",
+   "price": 4460000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 4390000
+    },
+    {
+     "shop": "GearVN",
+     "price": 4490000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 4450000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 5490000
+    },
+    {
+     "shop": "HACOM",
+     "price": 3499000
+    }
+   ]
+  },
+  "04984638-674b-4384-8866-a7b20d55f8b4": {
+   "name": "CPU AMD Ryzen 5 5600",
+   "price": 3260000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 2790000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3729000
+    }
+   ]
+  },
+  "b9d94d66-3b82-42bc-ab7a-e2e14c2e94a7": {
+   "name": "CPU AMD Ryzen 5 5600GT",
+   "price": 4260000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 4490000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 4190000
+    },
+    {
+     "shop": "HACOM",
+     "price": 4099000
+    }
+   ]
+  },
+  "bf36a706-491a-45e8-ba4a-8529d3ef91e9": {
+   "name": "CPU AMD Ryzen 5 5500",
+   "price": 2410000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 2690000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 2549000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1999000
+    }
+   ]
+  },
+  "d0a9a88a-e191-44de-8678-ad32c2d2e4bb": {
+   "name": "CPU AMD Ryzen 5 5500GT",
+   "price": 3830000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 3990000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3890000
+    },
+    {
+     "shop": "HACOM",
+     "price": 3599000
+    }
+   ]
+  },
+  "115d2821-5d45-41b8-b4c9-aa3f95215fab": {
+   "name": "CPU AMD Ryzen 5 7500F OEM/Tray",
+   "price": 4090000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 4790000,
+     "note": "tray"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3790000,
+     "note": "tray"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3699000
+    }
+   ]
+  },
+  "19fbd8f2-a226-4b83-9e5d-683db638d337": {
+   "name": "CPU Intel Core i5 12400F",
+   "price": 4090000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 4390000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 4290000
+    },
+    {
+     "shop": "HACOM",
+     "price": 3599000
+    }
+   ]
+  },
+  "6b03b443-7b22-491c-b301-7e2a285359df": {
+   "name": "CPU AMD Ryzen 5 7600",
+   "price": 5540000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 5790000
+    },
+    {
+     "shop": "HACOM",
+     "price": 5299000
+    }
+   ]
+  },
+  "7e2631f6-7672-4930-9c02-728bab88198f": {
+   "name": "CPU AMD Ryzen™ 5 7500F",
+   "price": 3790000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 3890000,
+     "note": "MPK"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3699000
+    }
+   ]
+  },
+  "22546c6c-9af1-4646-a9af-0ede3444c6b7": {
+   "name": "CPU Intel Core i5 13400F",
+   "price": 4630000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 3690000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 4390000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 4690000,
+     "note": "giá lẻ rời"
+    },
+    {
+     "shop": "An Phát",
+     "price": 4999000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 5399000
+    }
+   ]
+  },
+  "e88d12fe-6384-4d97-befc-3a0ec16a9e5b": {
+   "name": "CPU AMD Ryzen 7 5700X",
+   "price": 4820000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 5899000,
+     "note": "box"
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 4990000,
+     "note": "box"
+    },
+    {
+     "shop": "An Phát",
+     "price": 4199000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 4190000
+    }
+   ]
+  },
+  "0240f7db-68e5-4aac-9438-41d2f12ec15a": {
+   "name": "CPU Intel Core i5 14400F",
+   "price": 4330000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 4490000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 4690000
+    },
+    {
+     "shop": "HACOM",
+     "price": 3799000
+    }
+   ]
+  },
+  "60a8ba0d-d6a5-4e84-89df-a5ca2a8915c9": {
+   "name": "CPU AMD Ryzen 7 7700X",
+   "price": 9590000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 10990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 8199000
+    }
+   ]
+  },
+  "a58188f8-e9da-4ead-8d52-74117306545c": {
+   "name": "CPU Intel Core i5 13600KF",
+   "price": 7600000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 7590000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 7700000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 7729000
+    },
+    {
+     "shop": "An Phát",
+     "price": 7290000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 7690000
+    }
+   ]
+  },
+  "850de815-7c76-48e5-8097-a009109be14b": {
+   "name": "CPU AMD Ryzen 5 7600X3D",
+   "price": 7990000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 7990000,
+     "note": "giá lẻ rời"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 7990000,
+     "note": "box"
+    }
+   ]
+  },
+  "09086e21-4979-41ba-a451-3f8bb1c9cc55": {
+   "name": "CPU AMD Ryzen 7 9700X",
+   "price": 9810000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7899000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 10190000
+    },
+    {
+     "shop": "GearVN",
+     "price": 9990000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 10990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 9999000
+    }
+   ]
+  },
+  "54157058-0ff5-4208-9466-5ce1e985ca7a": {
+   "name": "CPU Intel Core i5 14600KF",
+   "price": 7690000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 7990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 7399000
+    }
+   ]
+  },
+  "6ac6af9c-ce11-4466-bdc2-781547645907": {
+   "name": "CPU Intel Core Ultra 5 245KF",
+   "price": 6190000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 6290000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 6090000
+    }
+   ]
+  },
+  "6c0ac2b9-20b2-40f8-b206-06877dc8f047": {
+   "name": "CPU AMD Ryzen 7 5800X3D 3.4 GHz 8-Core AM4",
+   "price": 8980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 8590000
+    },
+    {
+     "shop": "HACOM",
+     "price": 8599000
+    },
+    {
+     "shop": "GearVN",
+     "price": 8690000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 9559000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 9450000
+    }
+   ]
+  },
+  "e11970e8-4f2c-426d-872c-92c0f4160ec4": {
+   "name": "CPU AMD Ryzen 7 5700X3D",
+   "price": 6530000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 5299000
+    },
+    {
+     "shop": "GearVN",
+     "price": 6490000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 6990000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 6390000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 7490000
+    }
+   ]
+  },
+  "28155df9-8c91-4150-8786-96b8c54c309c": {
+   "name": "CPU Intel Core i7 13700K",
+   "price": 9850000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 9599000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 11190000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 10890000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 9690000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 7890000
+    }
+   ]
+  },
+  "7ab840c3-8c52-4ced-a65c-7b0922ca479e": {
+   "name": "CPU AMD Ryzen 7 9800X3D",
+   "price": 12940000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 13890000
+    },
+    {
+     "shop": "HACOM",
+     "price": 11999000
+    }
+   ]
+  },
+  "4dcfffec-423b-4052-8aca-db6c0f84bb43": {
+   "name": "CPU AMD Ryzen 7 7800X3D",
+   "price": 10990000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 11990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 9999000
+    }
+   ]
+  },
+  "4d8d9d6b-723c-40ee-b1e9-e6665c58ae75": {
+   "name": "CPU Intel Core Ultra 7 265K",
+   "price": 10960000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 10490000
+    },
+    {
+     "shop": "HACOM",
+     "price": 9399000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 12990000
+    }
+   ]
+  },
+  "24b3997b-1de2-42f5-a680-07818370a0da": {
+   "name": "CPU AMD Ryzen 7 7700X3D",
+   "price": 9120000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 9490000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 8750000,
+     "note": "NC ước 8,5–9tr"
+    }
+   ]
+  },
+  "402c2508-a75c-4f4d-9d09-778349ae72bb": {
+   "name": "CPU Intel Core i7 14700KF",
+   "price": 10630000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 11490000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 10990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 9399000
+    }
+   ]
+  },
+  "eda463d1-d4b6-4f1a-96dd-0416efe84381": {
+   "name": "CPU AMD Ryzen 9 7900X",
+   "price": 10440000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 12290000
+    },
+    {
+     "shop": "HACOM",
+     "price": 8599000
+    }
+   ]
+  },
+  "cf33502b-5930-4faa-b387-835d0c65efc1": {
+   "name": "CPU AMD Ryzen 9 9950X3D",
+   "price": 18240000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 18990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 17499000
+    }
+   ]
+  },
+  "045802be-240a-4bce-9e67-2722f885e671": {
+   "name": "CPU Intel Core i9 13900K",
+   "price": 15180000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 15990000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 15999000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 15450000
+    },
+    {
+     "shop": "HACOM",
+     "price": 13299000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 9990000,
+     "used": "loại (lệch >35%)"
+    }
+   ]
+  },
+  "63f23f26-d52c-4e3c-be6e-0d25163cff59": {
+   "name": "CPU AMD Ryzen 9 7950X",
+   "price": 15290000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 15399000
+    },
+    {
+     "shop": "GearVN",
+     "price": 15190000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 20990000,
+     "used": "loại (lệch >35%)"
+    }
+   ]
+  },
+  "78196eaf-6ffa-4232-976b-c50e0680157e": {
+   "name": "CPU AMD Ryzen 9 7900X3D",
+   "price": 13390000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 13390000
+    }
+   ]
+  },
+  "CaYv9qhkLGosCVa5CphZ": {
+   "name": "CPU AMD Ryzen 7 9850X3D",
+   "price": 14690000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 15990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 13399000
+    }
+   ]
+  },
+  "536e31d4-f1a4-4936-897a-8866bcfb01e6": {
+   "name": "CPU Intel Core i9-14900KF",
+   "price": 13960000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 15990000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 15390000
+    },
+    {
+     "shop": "HACOM",
+     "price": 10499000
+    }
+   ]
+  },
+  "4fb54223-132b-42ac-b668-4be50bb6df71": {
+   "name": "CPU AMD Ryzen 9 7950X3D",
+   "price": 18800000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 18799000
+    }
+   ]
+  },
+  "d71a770f-6ff6-4174-97c8-d7995a70e339": {
+   "name": "CPU Intel Core Ultra 9 285",
+   "price": 16830000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 16990000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 16990000
+    },
+    {
+     "shop": "An Phát",
+     "price": 16499000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 9999000,
+     "note": "thấp bất thường",
+     "used": "loại (lệch >35%)"
+    }
+   ]
+  },
+  "00617df5-4a12-49ec-82f2-0caa9e347539": {
+   "name": "Mainboard Asus H81 H81M-C/CSM DDR3 Micro ATX",
+   "price": 370000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 300000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 450000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 360000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "00bdcf8a-bb2e-417c-8cbd-5945512b0a5f": {
+   "name": "Mainboard ASRock H410 M/ac DDR4 Micro ATX",
+   "price": 830000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 700000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 950000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0122d16b-843c-4ab1-a189-d07d2d94dc33": {
+   "name": "Mainboard MSI A320M PRO-VD PLUS AM4 DDR4 Micro ATX",
+   "price": 650000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 650000,
+     "note": "ƯỚC TÍNH: chưa thấy tin A320; thấp hơn B450 cũ (~1,1tr)"
+    }
+   ]
+  },
+  "027c71c1-2dd7-44de-b45b-075050b801bf": {
+   "name": "Mainboard ASRock B360M ITX/ac DDR4 Mini ITX",
+   "price": 830000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "037d8442-dcc8-4b8f-9820-d0dad119babb": {
+   "name": "Mainboard Gigabyte B360M HD3 DDR4 Micro ATX LGA1151",
+   "price": 830000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "055a0a65-510b-4c91-9b6f-cdb9f240b8bb": {
+   "name": "Mainboard MSI H110 H110M PRO-D DDR4 Micro ATX",
+   "price": 600000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 350000,
+     "note": "Chợ Tốt",
+     "used": "loại (lệch >35%)"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 650000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "064cfff4-539a-4592-bdd3-ab562f3c8151": {
+   "name": "Mainboard Gigabyte H110M GA-H110M-S2H GSM DDR4 Micro ATX",
+   "price": 600000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 350000,
+     "note": "Chợ Tốt",
+     "used": "loại (lệch >35%)"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 650000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "08f812a3-fd3a-4ddd-881d-02505f6d06de": {
+   "name": "Mainboard Gigabyte H81 GA-H81M-S2PV DDR3 Micro ATX",
+   "price": 370000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 300000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 450000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 360000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0a634b68-beb2-4e81-849a-f8ae980ad6f0": {
+   "name": "Mainboard Gigabyte B450 M S2H DDR4 Micro ATX",
+   "price": 1110000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1250000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0a769001-33f0-48cb-a485-3dada5745326": {
+   "name": "Mainboard MSI A320M-A PRO",
+   "price": 650000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 650000,
+     "note": "ƯỚC TÍNH: chưa thấy tin A320; thấp hơn B450 cũ (~1,1tr)"
+    }
+   ]
+  },
+  "13a58bb5-47d2-4715-8245-f0ff60e7eee9": {
+   "name": "Mainboard ASUS PRIME B450M-A/CSM",
+   "price": 1110000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1250000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "279fe5cd-27d4-407b-a00c-cb9fcc61a8f4": {
+   "name": "Mainboard Gigabyte GA-B85M-D3H Micro ATX LGA1150",
+   "price": 560000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 400000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 700000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "2d1e9d21-5985-4f18-ad98-08a768954efc": {
+   "name": "Mainboard Asus B85 M-F DDR3 Micro ATX",
+   "price": 560000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 400000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 700000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "04bbea51-a395-4f3c-aeac-77036f2c8c1d": {
+   "name": "Mainboard Asus H510 PRIME H510M-A R2.0 DDR4 Micro ATX",
+   "price": 680000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 680000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 750000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0b02e3d0-cd28-462b-860a-35d34f23ce3f": {
+   "name": "Mainboard ASRock H510M HDV/M.2 SE DDR4 Micro ATX",
+   "price": 680000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 680000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 750000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "00b88b4c-907a-4b42-bf8d-465e0f58e634": {
+   "name": "Mainboard Biostar B560 M-SILVER LGA1200 DDR4 Micro ATX",
+   "price": 1380000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1950000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "01074bc3-89ac-4fa5-b706-5f84dd7bbb65": {
+   "name": "Mainboard ASRock B560M Pro4 LGA1200 DDR4 Micro ATX",
+   "price": 1380000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1950000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "03c6dcec-9f3a-4a46-955d-5a0b18a50a95": {
+   "name": "Mainboard MSI B460M MAG BAZOOKA DDR4 Micro ATX",
+   "price": 1130000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1150000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0456fa65-e049-4ae0-ba3f-bab1e470d82e": {
+   "name": "Mainboard Asus H610 PRIME H610M-K LGA1700 DDR5 Micro ATX",
+   "price": 1820000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 1880000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 1690000
+    },
+    {
+     "shop": "GearVN",
+     "price": 1890000,
+     "note": "bản DDR4 (tương đương)"
+    }
+   ]
+  },
+  "05f1e2f1-5a83-40a2-82ab-6f35a8fd5ded": {
+   "name": "Mainboard B460M D3H",
+   "price": 1130000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1150000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "05ff20ef-96a2-4685-a832-3d3d51b4c0bf": {
+   "name": "Mainboard Biostar B550 MXC PRO DDR4 Micro ATX",
+   "price": 2900000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2899000,
+     "note": "Biostar không bán ở VN – lấy B550M phổ thông tương đương"
+    }
+   ]
+  },
+  "13d0eae1-e81c-4998-b147-06d0614478b7": {
+   "name": "Mainboard Gigabyte H410M S2 V3 DDR4 Micro ATX",
+   "price": 830000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 700000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 950000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 850000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "198e62d6-cbe2-4897-9a44-23e9c8b882e8": {
+   "name": "Mainboard MSI H610 PRO H610M-G LGA1700 DDR4 Micro ATX",
+   "price": 2480000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 2250000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 2490000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 2690000
+    }
+   ]
+  },
+  "1c8483ac-3e42-4dd3-80bb-b7f9a4bbeebf": {
+   "name": "Mainboard Biostar A620 MP-E PRO AM5 DDR5 Micro ATX",
+   "price": 2450000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2499000,
+     "note": "lấy Asus A620M-K tương đương"
+    },
+    {
+     "shop": "An Phát",
+     "price": 2399000,
+     "note": "lấy Asus A620M-E tương đương"
+    }
+   ]
+  },
+  "2266258e-9875-4052-9417-50a160282e60": {
+   "name": "Mainboard Asus A620 Pro A620M-DASH-CSM AM5 DDR5 Micro ATX",
+   "price": 2450000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2499000,
+     "note": "lấy Asus A620M-K tương đương"
+    },
+    {
+     "shop": "An Phát",
+     "price": 2399000,
+     "note": "lấy Asus A620M-E tương đương"
+    }
+   ]
+  },
+  "06edba6d-afad-4360-be7a-cb7d3355b281": {
+   "name": "Mainboard ASUS TUF GAMING B550M-E",
+   "price": 2900000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2899000,
+     "note": "chưa bán ở VN – lấy TUF B550M-PLUS tương đương"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 2900000,
+     "note": "chưa bán ở VN – lấy TUF B550M-PLUS WIFI II"
+    }
+   ]
+  },
+  "011e1664-de3e-4923-9e24-1ba2dbb138e6": {
+   "name": "Mainboard MSI PRO B650M-P",
+   "price": 3630000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 3490000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 3190000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 4200000
+    }
+   ]
+  },
+  "0215085b-5ad3-4bcb-a4b1-4cff9f083ec9": {
+   "name": "Mainboard Gigabyte B650M C AM5 DDR5 Micro ATX",
+   "price": 3220000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 2849000,
+     "note": "không bán ở VN – lấy Gigabyte B650M D2HP tương đương"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3599000,
+     "note": "không bán ở VN – lấy Gigabyte B650M Gaming Plus WiFi"
+    }
+   ]
+  },
+  "021f8667-c720-481b-9ffd-38306c0dd323": {
+   "name": "Mainboard MAXSUN B760 iCraft B760M CROSS LGA1700 DDR5 Micro ATX",
+   "price": 2800000,
+   "used": true,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2800000,
+     "note": "ƯỚC TÍNH: Maxsun không bán chính hãng ở VN; ngang B760M phổ thông (2,6–3tr)"
+    }
+   ]
+  },
+  "0343e5fe-1325-47bf-8a22-9db5fcc62788": {
+   "name": "Mainboard Gigabyte B760 DS3H AX DDR5 ATX",
+   "price": 4280000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 4280000,
+     "note": "bản B760M DS3H AX DDR5"
+    }
+   ]
+  },
+  "000deb7d-a2c6-4134-9d33-ffc0508cb277": {
+   "name": "Mainboard ASUS B760M-AYW WIFI D4 LGA1700 DDR4 Micro-ATX",
+   "price": 2820000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 2990000
+    },
+    {
+     "shop": "HACOM",
+     "price": 2849000
+    },
+    {
+     "shop": "An Phát",
+     "price": 2849000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 2600000
+    }
+   ]
+  },
+  "007f47a7-f6d7-4be4-897b-a5c59055c20b": {
+   "name": "Mainboard Gigabyte B860M AORUS ELITE WIFI6E DDR5 Micro ATX",
+   "price": 5250000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 5299000
+    },
+    {
+     "shop": "HACOM",
+     "price": 5299000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 5150000
+    }
+   ]
+  },
+  "0246829c-801b-427c-b658-5b50b24e9a06": {
+   "name": "Mainboard Asus PRIME B650-PLUS WIFI",
+   "price": 6030000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 5999000,
+     "note": "bản không WiFi"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 5890000,
+     "note": "bản không WiFi"
+    },
+    {
+     "shop": "An Phát",
+     "price": 5999000,
+     "note": "bản không WiFi"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 6240000,
+     "note": "bản không WiFi"
+    }
+   ]
+  },
+  "02426428-a50d-4d40-8de2-1805414b11e3": {
+   "name": "Mainboard ASUS TUF GAMING B650-PLUS",
+   "price": 6690000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 6290000
+    },
+    {
+     "shop": "An Phát",
+     "price": 6599000
+    },
+    {
+     "shop": "GearVN",
+     "price": 6690000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 7200000
+    }
+   ]
+  },
+  "06ab04ef-e0c9-4bb8-8557-625f115666ee": {
+   "name": "Mainboard ASUS TUF GAMING B760M-PLUS WIFI II",
+   "price": 4010000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 3999000
+    },
+    {
+     "shop": "GearVN",
+     "price": 4290000
+    },
+    {
+     "shop": "An Phát",
+     "price": 3899000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 3990000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 3890000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3990000
+    }
+   ]
+  },
+  "17ddc32d-7c9f-4476-a0ab-69c49206d4fc": {
+   "name": "Mainboard ASRock X670E Pro RS AM5 DDR5 ATX",
+   "price": 7390000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7299000
+    },
+    {
+     "shop": "An Phát",
+     "price": 8899000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 6990000,
+     "note": "bản WiFi"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 6390000
+    }
+   ]
+  },
+  "00a76de3-ab0b-4444-b418-c7201b8fd560": {
+   "name": "Mainboard ASROCK X870 Challenger WIFI",
+   "price": 6340000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 5790000,
+     "note": "không bán ở VN – lấy ASRock X870 Pro RS WiFi tương đương"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 6890000,
+     "note": "không bán ở VN – lấy ASRock X870 Steel Legend WiFi"
+    }
+   ]
+  },
+  "01be04cd-4dba-4d95-b06c-4f24846a60fe": {
+   "name": "Mainboard ASUS X870 MAX GAMING WIFI7 W AM5 DDR5 ATX",
+   "price": 8390000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 8399000,
+     "note": "không bán ở VN – lấy Asus TUF X870-PLUS WiFi tương đương"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 8390000,
+     "note": "không bán ở VN – lấy Asus TUF X870-PLUS WiFi tương đương"
+    }
+   ]
+  },
+  "02674a77-9b71-4266-8062-6fa6d25f1683": {
+   "name": "Mainboard Asus Z890 MAX GAMING WIFI7 DDR5 ATX",
+   "price": 6740000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 6990000,
+     "note": "không bán ở VN – lấy Asus Z890 AYW Gaming WiFi tương đương"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 6950000,
+     "note": "không bán ở VN – lấy Asus Z890 AYW Gaming WiFi tương đương"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 6290000,
+     "note": "lấy Asus TUF Z890-PLUS WiFi tương đương"
+    }
+   ]
+  },
+  "03090354-e1c4-4671-be8d-2a2e5384e308": {
+   "name": "Mainboard MSI Z790 MPG EDGE MONSTER HUNTER EDITION DDR5 ATX",
+   "price": 10330000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 9490000,
+     "note": "bản thường (không Monster Hunter)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 10499000,
+     "note": "bản thường"
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 10990000,
+     "note": "bản thường"
+    }
+   ]
+  },
+  "0e44b458-a70a-42b2-a84f-00bdc581827e": {
+   "name": "Mainboard ASRock Z790 Nova WiFi DDR5 ATX",
+   "price": 6230000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 6399000,
+     "note": "không bán ở VN – lấy ASRock Z790 Steel Legend WiFi tương đương"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 6290000,
+     "note": "lấy ASRock Z790 Pro RS WiFi tương đương"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 5999000,
+     "note": "lấy ASRock Z790 Lightning WiFi tương đương"
+    }
+   ]
+  },
+  "19d84efa-ff94-47c5-91d3-d7b4816f6ef0": {
+   "name": "Mainboard ASRock X670E Taichi Carrara",
+   "price": 16860000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 16590000
+    },
+    {
+     "shop": "An Phát",
+     "price": 16999000
+    },
+    {
+     "shop": "HACOM",
+     "price": 16999000
+    }
+   ]
+  },
+  "2T9471klOq96PtkFmOVy": {
+   "name": "Mainboard GIGABYTE Z790 AORUS XTREME X ICE",
+   "price": 44940000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 40990000
+    },
+    {
+     "shop": "An Phát",
+     "price": 48899000
+    }
+   ]
+  },
+  "45b0b446-ae1a-4fce-a1e0-195cf6ff648e": {
+   "name": "Nguồn Cooler Master Elite 400 V3 400W Non-Modular 80+ Certified",
+   "price": 750000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 750000
+    }
+   ]
+  },
+  "032b0cc9-f8e5-43fa-8b31-e0290d4c14e6": {
+   "name": "Nguồn HEC XPOWER780 ATX 600W Non-Modular",
+   "price": 990000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 990000,
+     "note": "HEC không bán ở VN – lấy nguồn 650W 80+ White phổ thông (FSP VIC WD)"
+    }
+   ]
+  },
+  "39b057a4-103f-4482-9817-dbb5a1d8912f": {
+   "name": "Nguồn Deepcool PK550D Black Certified ATX 550W Non-Modular 80+ Bronze",
+   "price": 1160000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1129000,
+     "note": "chưa thấy giá PK550D – lấy nguồn 550W Bronze tương đương (Corsair CV550)"
+    },
+    {
+     "shop": "GearVN",
+     "price": 1190000,
+     "note": "lấy Corsair CV550 tương đương"
+    }
+   ]
+  },
+  "45aa8003-6787-4641-9465-1cea15358c97": {
+   "name": "Nguồn CORSAIR CV Series CV550 CP-9020210-NA 550 W ATX12V 80 PLUS BRONZE Certified Non-Modular Power Supply",
+   "price": 1130000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 999000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1129000
+    },
+    {
+     "shop": "GearVN",
+     "price": 1190000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1230000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 1090000
+    }
+   ]
+  },
+  "df85cec5-7c93-497d-b230-24361aae6110": {
+   "name": "Nguồn Corsair CV550 Black 550W 80+ Bronze Certified Non-Modular ATX",
+   "price": 1130000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 999000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1129000
+    },
+    {
+     "shop": "GearVN",
+     "price": 1190000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1230000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 1090000
+    }
+   ]
+  },
+  "25f580cc-887d-4b15-922b-3202e8e94ef8": {
+   "name": "Nguồn MSI MAG A650BE Black ATX 650W Semi-Modular 80+ Bronze Certified",
+   "price": 1270000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1150000,
+     "note": "chưa thấy A650BE – lấy MSI MAG A650BNL"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 1390000,
+     "note": "lấy nguồn 650W Bronze tương đương (Corsair CV650)"
+    }
+   ]
+  },
+  "59e2cdaa-7d80-498f-b659-87c5e268efaa": {
+   "name": "Nguồn CV Series CV650 — 650 Watt 80 Plus® Bronze Certified PSU",
+   "price": 1360000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1290000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1350000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 1390000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 1399000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1349000
+    }
+   ]
+  },
+  "9c4d5aac-2206-41c3-be6c-a1b8dd54b524": {
+   "name": "Nguồn Deepcool PK650D Black ATX 650W Non-Modular 80+ Bronze Certified",
+   "price": 1280000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1209000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 1209000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 1190000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1490000
+    },
+    {
+     "shop": "An Phát",
+     "price": 1299000
+    }
+   ]
+  },
+  "0ecaed55-dba6-49ce-91ea-4ab0115dab9e": {
+   "name": "Nguồn Corsair RM750e (2025) White 750W Fully Modular",
+   "price": 2980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 2590000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3190000
+    },
+    {
+     "shop": "An Phát",
+     "price": 3160000
+    }
+   ]
+  },
+  "0e1d710b-c5e2-4ec3-beb8-a65102b7cdc6": {
+   "name": "Nguồn Corsair CV650 Black 650W Non-Modular 80+ Bronze Certified ATX",
+   "price": 1360000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1290000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1350000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 1390000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 1399000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1349000
+    }
+   ]
+  },
+  "4dee899f-360c-4d18-9c3a-111286981089": {
+   "name": "Nguồn MSI MAG A750BE Black 750W Semi-Modular 80+ Bronze",
+   "price": 1520000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1459000,
+     "note": "chưa thấy A750BE – lấy MSI MAG A750BN PCIE5"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 1590000,
+     "note": "lấy MSI MAG A750BN PCIE5"
+    }
+   ]
+  },
+  "17f32f3f-7de5-40a0-8e5e-b5bfa77477b0": {
+   "name": "Nguồn Cooler Master MWE GOLD 650 V2 Black 650W Fully Modular 80+ Gold",
+   "price": 1550000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1550000
+    }
+   ]
+  },
+  "2d6332a6-c8b6-4ba7-afcd-a4e23f19dc3e": {
+   "name": "Nguồn MSI MAG A650GL Black 650W Fully Modular 80+ Gold Certified ATX",
+   "price": 1800000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1550000,
+     "note": "chưa thấy A650GL – lấy nguồn 650W Gold full modular (CM MWE Gold 650 V2)"
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 2050000,
+     "note": "lấy CM MWE Gold 650"
+    }
+   ]
+  },
+  "15681140-62bf-4db9-b725-6fda41fafb49": {
+   "name": "Nguồn Corsair RM850e White 850W Fully Modular",
+   "price": 3220000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 2850000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3590000
+    }
+   ]
+  },
+  "62108dd6-df4d-4df1-bb13-83644d858991": {
+   "name": "Nguồn MSI MAG A750GL PCIE5 Black 750W Fully Modular 80+ Gold Certified",
+   "price": 2430000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 2490000
+    },
+    {
+     "shop": "An Phát",
+     "price": 2489000
+    },
+    {
+     "shop": "HACOM",
+     "price": 2439000
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 2490000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 2249000
+    }
+   ]
+  },
+  "0d707b52-7d6e-4824-8126-84c7c1bd830b": {
+   "name": "Nguồn Corsair RM750 750W 80+ Gold Certified Fully Modular ATX",
+   "price": 2840000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 2690000,
+     "note": "RM750 cũ ngừng bán – lấy RM750e"
+    },
+    {
+     "shop": "GearVN",
+     "price": 2990000,
+     "note": "lấy RM750x"
+    }
+   ]
+  },
+  "004b108b-3385-4f23-ad33-b29dfe26d0e4": {
+   "name": "Nguồn SeaSonic ATX3-FOCUS-GX White 850W Fully Modular 80+ Gold",
+   "price": 3470000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 3465000,
+     "note": "Focus GX-850 White"
+    }
+   ]
+  },
+  "1904d6f1-b154-4eb3-bae7-79b50ca97770": {
+   "name": "Nguồn Corsair RM850x (2018) ATX 850W Fully Modular 80+ Gold Certified",
+   "price": 3740000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 3590000,
+     "note": "RM850x đời mới (bản 2018 ngừng bán)"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3890000,
+     "note": "RM850x"
+    }
+   ]
+  },
+  "00952dd1-42e0-4f3c-a0ef-c5e70a12c0b6": {
+   "name": "Nguồn Super Flower Leadex Platinum Black 750W Fully Modular 80+ Platinum",
+   "price": 3270000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 3250000,
+     "note": "chưa thấy Leadex Platinum 750W – lấy Super Flower Leadex VII 850W Gold"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 3290000,
+     "note": "lấy Super Flower Leadex VII 850W Gold"
+    }
+   ]
+  },
+  "0a455c64-4d39-4b46-af14-324c6a847948": {
+   "name": "Nguồn SeaSonic FOCUS Plus Platinum 750 W 80+ Platinum Certified Fully Modular ATX Power Supply",
+   "price": 3470000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 3465000,
+     "note": "chưa thấy Focus Plus Platinum 750 – lấy Seasonic Focus GX-850"
+    }
+   ]
+  },
+  "21b5ab4c-6a03-4fd6-b425-00446688c0e7": {
+   "name": "Nguồn FOCUS GM-850",
+   "price": 3470000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "FPT Shop",
+     "price": 3465000,
+     "note": "chưa thấy GM-850 – lấy Seasonic Focus GX-850"
+    }
+   ]
+  },
+  "0c9c6e4e-2a32-4e2d-849a-2fe55ec42c8a": {
+   "name": "Ổ cứng Netac NV3000 250 GB SSD M.2-2280 PCIe 3.0 x4 NVMe",
+   "price": 1560000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1590000,
+     "note": "Kingmax PQ3480 256GB NVMe Gen3 (cùng phân khúc)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1490000,
+     "note": "Transcend 115S 250GB NVMe Gen3"
+    },
+    {
+     "shop": "GearVN",
+     "price": 1590000,
+     "note": "SSTC Max III 256GB NVMe Gen3"
+    }
+   ]
+  },
+  "16565478-18f3-4908-ad4d-9f5e74ad2f46": {
+   "name": "Ổ cứng Kingston A400 240GB SSD M.2-2280 SATA",
+   "price": 1210000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1390000,
+     "note": "Kingmax SMV32 240GB SATA (cùng phân khúc)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1229000,
+     "note": "Gigabyte 240GB SATA"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1019000,
+     "note": "Exascend 240GB SATA"
+    }
+   ]
+  },
+  "41252cd8-1ca5-4de6-879f-c1039cccfe70": {
+   "name": "Ổ cứng Kingston NV2 250GB SSD M.2-2280 PCIe 4.0 X4 NVMe",
+   "price": 1640000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1790000,
+     "note": "Kingmax AX4480 256GB NVMe Gen4 (mẫu gốc ngừng bán)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1490000,
+     "note": "Transcend 115S 250GB NVMe"
+    }
+   ]
+  },
+  "5c5693ec-79ce-4fa4-a2b6-0010a3be6081": {
+   "name": "Ổ cứng Samsung 980 Pro 250GB M.2-2280 SSD PCIe 4.0 NVMe",
+   "price": 1640000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1790000,
+     "note": "Kingmax AX4480 256GB NVMe Gen4 (mẫu gốc ngừng bán)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1490000,
+     "note": "Transcend 115S 250GB NVMe"
+    }
+   ]
+  },
+  "19bc80ae-70e3-4620-b8c9-c5c0f08a95ae": {
+   "name": "Ổ cứng Kingston A400 480GB M.2 SSD SATA",
+   "price": 2420000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2890000,
+     "note": "Kingston A400 480GB"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1990000,
+     "note": "Exascend 480GB SATA"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2390000,
+     "note": "Lexar NS100 512GB SATA"
+    }
+   ]
+  },
+  "132460e0-7554-4093-a781-c4a4d3dcf1fd": {
+   "name": "Ổ cứng Crucial P3 Plus 500GB M.2 SSD PCIe 4.0 NVMe",
+   "price": 3320000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 3290000,
+     "note": "Kingston NV3 500GB Gen4 (cùng phân khúc)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3190000,
+     "note": "WD SN5100 500GB Gen4"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2890000,
+     "note": "Lexar NQ710 500GB Gen4"
+    },
+    {
+     "shop": "GearVN",
+     "price": 3890000,
+     "note": "Kingston NV3 500GB"
+    }
+   ]
+  },
+  "066e4669-ada2-43cc-aa44-972b436b666c": {
+   "name": "Ổ cứng Netac NV2000 512GB SSD M.2-2280 PCIe 3.0 X4 NVMe",
+   "price": 2350000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2490000,
+     "note": "Transcend 112S 512GB NVMe Gen3"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2449000,
+     "note": "Transcend 115S 500GB NVMe Gen3"
+    },
+    {
+     "shop": "GearVN",
+     "price": 2290000,
+     "note": "KingSpec 512GB NVMe Gen3"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2190000,
+     "note": "VSP 512GB NVMe Gen3"
+    }
+   ]
+  },
+  "02a8542e-003d-4c82-b30e-3286a228391a": {
+   "name": "Ổ cứng Samsung 970 Evo 500 GB M.2-2280 SSD PCIe 3.0 X4 NVMe",
+   "price": 2350000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2490000,
+     "note": "Transcend 112S 512GB NVMe Gen3"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2449000,
+     "note": "Transcend 115S 500GB NVMe Gen3"
+    },
+    {
+     "shop": "GearVN",
+     "price": 2290000,
+     "note": "KingSpec 512GB NVMe Gen3"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2190000,
+     "note": "VSP 512GB NVMe Gen3"
+    }
+   ]
+  },
+  "036ace82-80b8-4408-bde3-359bc999ee80": {
+   "name": "Ổ cứng Kingston NV3 PCIe 4.0 NVMe SSD 2280 1TB",
+   "price": 4860000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 4590000,
+     "note": "Kingston NV3 1TB"
+    },
+    {
+     "shop": "GearVN",
+     "price": 4990000,
+     "note": "Kingston NV3 1TB"
+    },
+    {
+     "shop": "GearVN",
+     "price": 4990000,
+     "note": "MSI M480 Pro 1TB Gen4"
+    }
+   ]
+  },
+  "0bd31f89-46f3-487c-83d4-878518c4455a": {
+   "name": "Ổ cứng Crucial P3 Plus 1TB SSD M.2-2280 PCIe 4.0 x4 NVMe",
+   "price": 4860000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 4590000,
+     "note": "Kingston NV3 1TB"
+    },
+    {
+     "shop": "GearVN",
+     "price": 4990000,
+     "note": "Kingston NV3 1TB"
+    },
+    {
+     "shop": "GearVN",
+     "price": 4990000,
+     "note": "MSI M480 Pro 1TB Gen4"
+    }
+   ]
+  },
+  "37867e5b-0ced-40be-929d-eea79ea48e5b": {
+   "name": "Ổ cứng Kingston KC3000 512GB SSD M.2 PCIe 4.0 NVMe",
+   "price": 2910000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2990000,
+     "note": "Lexar NQ790 512GB Gen4 (cùng phân khúc)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2949000,
+     "note": "Lexar NQ780 512GB Gen4"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2790000,
+     "note": "TeamGroup G50 512GB Gen4"
+    }
+   ]
+  },
+  "00274e77-58c3-4fec-a978-180eaa79bee8": {
+   "name": "Ổ cứng Seagate Barracuda Compute 2TB 3.5\" HDD 5400RPM SATA 6.0 Gb/s",
+   "price": 3930000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 3590000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 4200000
+    },
+    {
+     "shop": "GearVN",
+     "price": 3990000
+    }
+   ]
+  },
+  "0d032e64-27d9-4f6b-bc53-a6bd8fc59d8d": {
+   "name": "Ổ cứng Western Digital WD Blue 2TB 3.5\" HDD 5400RPM SATA 6.0 Gb/s",
+   "price": 3960000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 3790000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 3990000
+    },
+    {
+     "shop": "An Phát",
+     "price": 4099000
+    }
+   ]
+  },
+  "0c9f0982-b9f0-48cd-8c3f-b33865cfe2ad": {
+   "name": "Ổ cứng SAMSUNG 970 EVO PLUS M.2 2280 1TB PCIe Gen 3.0 x4, NVMe 1.3 V-NAND Internal Solid State Drive (SSD) MZ-V7S1T0B/AM",
+   "price": 4160000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 3490000
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 5090000
+    },
+    {
+     "shop": "HACOM",
+     "price": 3890000,
+     "note": "Lexar NM610 Pro 1TB Gen3 (cùng phân khúc)"
+    }
+   ]
+  },
+  "5bed7f34-c7f3-406e-a58e-e767626a5d60": {
+   "name": "Ổ cứng Samsung 870 Evo 1TB 2.5\" SSD SATA",
+   "price": 10140000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 9990000
+    },
+    {
+     "shop": "An Phát",
+     "price": 10289000
+    }
+   ]
+  },
+  "35c11854-3cec-435b-a62a-bbdb1bfe1d22": {
+   "name": "Ổ cứng Crucial BX500 2TB 2.5\" SSD SATA 6.0 Gb/s",
+   "price": 7590000,
+   "used": false,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 6190000
+    },
+    {
+     "shop": "HACOM",
+     "price": 8980000,
+     "note": "ƯỚC: 2 × SATA 1TB (Lexar NQ100 4,49tr)"
+    }
+   ]
+  },
+  "6db7e608-5166-449c-ad95-58ba8bd22104": {
+   "name": "Ổ cứng SanDisk WD Blue SN5100 2TB SSD M.2-2280 PCIe 4.0 x4 NVMe",
+   "price": 13500000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 13500000,
+     "note": "SanDisk Optimus 5100 2TB (cùng sản phẩm, đổi tên)"
+    }
+   ]
+  },
+  "b6e946a5-c5dc-43e1-a85c-1937d8840fa1": {
+   "name": "Ổ cứng Kingston KC3000 1TB M.2 SSD PCIe 4.0 NVMe",
+   "price": 9590000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 9490000,
+     "note": "đúng mẫu"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 9690000,
+     "note": "đúng mẫu"
+    }
+   ]
+  },
+  "051381be-2151-4937-a52b-755eaacc55d8": {
+   "name": "Ổ cứng Samsung 870 Evo 2TB SSD 2.5\" SATA 6.0 Gb/s",
+   "price": 18390000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 17590000
+    },
+    {
+     "shop": "HACOM",
+     "price": 17590000
+    },
+    {
+     "shop": "An Phát",
+     "price": 19999000
+    }
+   ]
+  },
+  "1ff1b67b-9ebe-4c8f-8b32-74458509e529": {
+   "name": "Ổ cứng Samsung 980 Pro 2TB SSD M.2-2280 PCIe 4.0 X4 NVMe",
+   "price": 16880000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 16990000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 16590000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "HACOM",
+     "price": 16990000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "An Phát",
+     "price": 16969000,
+     "note": "990 PRO 2TB"
+    }
+   ]
+  },
+  "5531a3d5-1996-4f75-965a-ca8209548b99": {
+   "name": "Ổ cứng Crucial BX500 4TB SSD 2.5\" SATA",
+   "price": 15430000,
+   "used": false,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 12900000
+    },
+    {
+     "shop": "HACOM",
+     "price": 17960000,
+     "note": "ƯỚC: 4 × SATA 1TB (Lexar NQ100 4,49tr)"
+    }
+   ]
+  },
+  "060a50e7-3cfd-4582-9b81-ead8ed1c1dee": {
+   "name": "Ổ cứng Samsung 990 Pro w/Heatsink 2TB SSD M.2-2280 PCIe 4.0 NVMe",
+   "price": 16880000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 16990000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 16590000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "HACOM",
+     "price": 16990000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "An Phát",
+     "price": 16969000,
+     "note": "990 PRO 2TB"
+    }
+   ]
+  },
+  "18e3b4f5-7f63-4cf9-a266-141344d2cd82": {
+   "name": "Ổ cứng Samsung 990 Pro 2TB SSD M.2-2280 PCIe 4.0 x4 NVMe",
+   "price": 16880000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 16990000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 16590000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "HACOM",
+     "price": 16990000,
+     "note": "990 PRO 2TB"
+    },
+    {
+     "shop": "An Phát",
+     "price": 16969000,
+     "note": "990 PRO 2TB"
+    }
+   ]
+  },
+  "03116eec-b3d3-4daf-83d0-48e3d6cdbc9d": {
+   "name": "Ổ cứng Western Digital Black SN850X 8TB M.2 SSD PCIe 4.0 NVMe",
+   "price": 82990000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 82990000
+    }
+   ]
+  },
+  "14559c40-2721-428d-b102-552edf35415d": {
+   "name": "RAM Silicon Power SP008GBLTU160N02 Black / Green DDR3-1600 CL11 8GB (1x8GB)",
+   "price": 270000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 250000,
+     "note": "Chợ Tốt DDR3 8GB"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 270000,
+     "note": "Chợ Tốt DDR3 8GB"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 300000,
+     "note": "Chợ Tốt DDR3 8GB"
+    }
+   ]
+  },
+  "9b9cd4c6-2b8e-4b1d-b135-9e225b6b8843": {
+   "name": "RAM Kingston KHX1600C10D3B1/8G Blue / Silver DDR3-1600 CL10 8GB (1x8GB)",
+   "price": 270000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 250000,
+     "note": "Chợ Tốt DDR3 8GB"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 270000,
+     "note": "Chợ Tốt DDR3 8GB"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 300000,
+     "note": "Chợ Tốt DDR3 8GB"
+    }
+   ]
+  },
+  "020449f4-8e25-4c35-8460-fa8ed3739fa0": {
+   "name": "RAM Kingston HyperX Fury Black DDR4-2666 CL16 8GB (1x8GB)",
+   "price": 2070000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2190000,
+     "note": "Kingston Fury Beast 8GB DDR4 (dòng thay thế HyperX)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1990000,
+     "note": "DDR4 8GB phổ thông"
+    },
+    {
+     "shop": "GearVN",
+     "price": 1990000,
+     "note": "T-Force Delta RGB 8GB 3600"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2090000,
+     "note": "TeamGroup Delta RGB 8GB"
+    }
+   ]
+  },
+  "14966244-cb97-40bc-a5fa-29e6ca633be7": {
+   "name": "RAM Kingston FURY Beast Black DDR4-3600 CL17 8GB (1x8GB)",
+   "price": 2070000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2190000,
+     "note": "Kingston Fury Beast 8GB DDR4 (dòng thay thế HyperX)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1990000,
+     "note": "DDR4 8GB phổ thông"
+    },
+    {
+     "shop": "GearVN",
+     "price": 1990000,
+     "note": "T-Force Delta RGB 8GB 3600"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2090000,
+     "note": "TeamGroup Delta RGB 8GB"
+    }
+   ]
+  },
+  "214b8de1-a57f-4357-9f05-129f56bd470e": {
+   "name": "RAM HyperX Predator DDR4 RGB 8GB 3200MHz CL16 RGB DDR4",
+   "price": 2070000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2190000,
+     "note": "Kingston Fury Beast 8GB DDR4 (dòng thay thế HyperX)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 1990000,
+     "note": "DDR4 8GB phổ thông"
+    },
+    {
+     "shop": "GearVN",
+     "price": 1990000,
+     "note": "T-Force Delta RGB 8GB 3600"
+    },
+    {
+     "shop": "HACOM",
+     "price": 2090000,
+     "note": "TeamGroup Delta RGB 8GB"
+    }
+   ]
+  },
+  "08c02c9c-0564-46a8-a416-4e594ca455a8": {
+   "name": "RAM G.Skill Sniper Black / Red DDR3-2400 CL11 16GB (2x8GB)",
+   "price": 600000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 600000,
+     "note": "Chợ Tốt: 2 thanh DDR3 8GB (~250–350k/thanh)"
+    }
+   ]
+  },
+  "00224914-6d49-493d-8fda-5d0bfd2b087a": {
+   "name": "RAM TEAMGROUP T-Force Delta RGB DDR4 16GB (1x16GB) 2666MHz CL16 WHITE",
+   "price": 3440000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 3490000,
+     "note": "T-Force Delta RGB 16GB"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3390000,
+     "note": "TeamGroup Elite 16GB"
+    }
+   ]
+  },
+  "0a128e8c-f2b1-4b49-829c-239ab3826c79": {
+   "name": "RAM TEAMGROUP Team T-Force Dark Za DDR4 Gaming Memory, 2 x 8 GB, 3600 Mhz, 288 Pin DIMM, Black",
+   "price": 3790000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 3590000,
+     "note": "Corsair LPX 16GB (2x8GB) DDR4"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3980000,
+     "note": "2 × DDR4 8GB (~1,99tr)"
+    }
+   ]
+  },
+  "3e7e2441-4169-42c1-a66a-2461bf36f8ad": {
+   "name": "RAM OLOy DDR4 RAM 16GB (2x8GB) 3200 MHz CL16  UDIMM (MD4U0832160BHRDA) RED",
+   "price": 3790000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 3590000,
+     "note": "Corsair LPX 16GB (2x8GB) DDR4"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3980000,
+     "note": "2 × DDR4 8GB (~1,99tr)"
+    }
+   ]
+  },
+  "0164f75b-1318-46a3-b0f0-25b76d2ce74f": {
+   "name": "RAM TEAMGROUP Elite Plus Silver DDR5-5600 CL40 16GB (1x16GB)",
+   "price": 6590000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 6690000,
+     "note": "Kingston Fury Beast 16GB DDR5"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6290000,
+     "note": "Lexar 16GB DDR5"
+    },
+    {
+     "shop": "GearVN",
+     "price": 6490000,
+     "note": "Kingmax Horizon 16GB DDR5"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6890000,
+     "note": "Trident Z5 16GB 6000"
+    }
+   ]
+  },
+  "0450ea05-a8ac-4cb0-87a9-81f93aa29e9e": {
+   "name": "RAM ADATA XPG LANCER BLADE DDR5-6000 16GB (1x16GB) CL28 Black",
+   "price": 6590000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 6690000,
+     "note": "Kingston Fury Beast 16GB DDR5"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6290000,
+     "note": "Lexar 16GB DDR5"
+    },
+    {
+     "shop": "GearVN",
+     "price": 6490000,
+     "note": "Kingmax Horizon 16GB DDR5"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6890000,
+     "note": "Trident Z5 16GB 6000"
+    }
+   ]
+  },
+  "02af6bd9-efaa-465d-98a9-7808ba97992a": {
+   "name": "RAM G.Skill Ripjaws V Black DDR4-3600 CL14 32GB (2x16GB)",
+   "price": 6980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7180000,
+     "note": "2 × DDR4 16GB (Corsair LPX/G.Skill 3,59tr)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6780000,
+     "note": "2 × TeamGroup Elite 16GB (3,39tr)"
+    }
+   ]
+  },
+  "04020748-08e9-414a-b02c-3667aee89fc8": {
+   "name": "RAM G.Skill Ripjaws Red DDR4-2133 CL15 32GB (4x8GB)",
+   "price": 6980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7180000,
+     "note": "2 × DDR4 16GB (Corsair LPX/G.Skill 3,59tr)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6780000,
+     "note": "2 × TeamGroup Elite 16GB (3,39tr)"
+    }
+   ]
+  },
+  "68edd6b6-5143-421b-ae10-45f95f7fe965": {
+   "name": "RAM OLOy DDR4 RAM 32GB (2x16GB) 3200 MHz CL16 1.35V  (MD4U1632161DHRDA) RED",
+   "price": 6980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7180000,
+     "note": "2 × DDR4 16GB (Corsair LPX/G.Skill 3,59tr)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6780000,
+     "note": "2 × TeamGroup Elite 16GB (3,39tr)"
+    }
+   ]
+  },
+  "bfa61c70-b6b6-4e15-a44f-c9386226c941": {
+   "name": "RAM VENGEANCE® RGB PRO 32GB (2 x 16GB) DDR4 DRAM 3200MHz C16 Memory Kit — White",
+   "price": 6980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7180000,
+     "note": "2 × DDR4 16GB (Corsair LPX/G.Skill 3,59tr)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 6780000,
+     "note": "2 × TeamGroup Elite 16GB (3,39tr)"
+    }
+   ]
+  },
+  "1cad4788-f66d-487e-b34d-9c213cc24d1b": {
+   "name": "RAM Silicon Power DDR5 32GB (2x16GB) Zenith RGB 6000MHz CL36 WHITE",
+   "price": 14290000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 14290000,
+     "note": "Kingston Fury Beast EXPO 32GB DDR5 6000"
+    },
+    {
+     "shop": "HACOM",
+     "price": 14590000,
+     "note": "Corsair Vengeance RGB 32GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 13990000,
+     "note": "Corsair Vengeance RGB White 32GB 6000"
+    }
+   ]
+  },
+  "9b3cadea-ad6b-4794-b5a6-75fa5b3c72de": {
+   "name": "RAM Lexar Thor Z Series RGB DDR5 RAM 32GB Kit (2x16GB) 6000 MHz White",
+   "price": 14290000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 14290000,
+     "note": "Kingston Fury Beast EXPO 32GB DDR5 6000"
+    },
+    {
+     "shop": "HACOM",
+     "price": 14590000,
+     "note": "Corsair Vengeance RGB 32GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 13990000,
+     "note": "Corsair Vengeance RGB White 32GB 6000"
+    }
+   ]
+  },
+  "016ab36c-c699-4cf1-b6bf-b8fe01c75e0f": {
+   "name": "RAM Corsair Dominator Platinum RGB Gray / Black DDR5-6000 CL30 32GB (2x16GB)",
+   "price": 14470000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 14290000,
+     "note": "Kingston Fury Beast EXPO 32GB DDR5 6000"
+    },
+    {
+     "shop": "HACOM",
+     "price": 14590000,
+     "note": "Corsair Vengeance RGB 32GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 13990000,
+     "note": "Corsair Vengeance RGB White 32GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 14990000,
+     "note": "Dominator Titanium 32GB 6000 (dòng thay thế)"
+    }
+   ]
+  },
+  "0a32ecfc-90a0-4e40-bbaa-3aa92a4ef0e0": {
+   "name": "RAM G.Skill Ripjaws Black DDR4-4000 CL18 64GB (2x32GB)",
+   "price": 14360000,
+   "used": false,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 14360000,
+     "note": "ƯỚC TÍNH: 4 × DDR4 16GB (3,59tr); chưa thấy kit 64GB DDR4 đang bán"
+    }
+   ]
+  },
+  "0057d8fd-0bfd-4b75-b87a-0c44b7b1c147": {
+   "name": "RAM ADATA XPG LANCER RGB ROG CERTIFIED Black DDR5-7200 CL34 48GB (2x24GB)",
+   "price": 21600000,
+   "used": false,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 21600000,
+     "note": "ƯỚC TÍNH: 1,5 × kit 32GB DDR5 (~14,4tr); giá 48GB tìm được là giá cũ trước đợt tăng"
+    }
+   ]
+  },
+  "02201f54-8c7c-4bf3-bfb9-afdc61479917": {
+   "name": "RAM ADATA AD3U1600W8G11-R Black / Green DDR3-1600 CL11 8GB (1x8GB)",
+   "price": 270000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 250000,
+     "note": "Chợ Tốt DDR3 8GB"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 270000,
+     "note": "Chợ Tốt DDR3 8GB"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 300000,
+     "note": "Chợ Tốt DDR3 8GB"
+    }
+   ]
+  },
+  "012111af-404e-42d6-aace-f3931da2eae1": {
+   "name": "RAM G.Skill Trident Z5 Metallic Silver DDR5-5600 CL30 64GB (2x32GB)",
+   "price": 23660000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 28990000,
+     "note": "Corsair Vengeance RGB 64GB DDR5 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 20490000,
+     "note": "Dominator Titanium 64GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 21490000,
+     "note": "Dominator Titanium White 64GB 6000"
+    }
+   ]
+  },
+  "018e64d2-c744-4656-a22e-7da862794efb": {
+   "name": "RAM Kingston FURY White DDR5-5600 CL40 64GB (2x32GB)",
+   "price": 23660000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 28990000,
+     "note": "Corsair Vengeance RGB 64GB DDR5 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 20490000,
+     "note": "Dominator Titanium 64GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 21490000,
+     "note": "Dominator Titanium White 64GB 6000"
+    }
+   ]
+  },
+  "0180965b-df72-41b5-a7db-0b0415f385ec": {
+   "name": "RAM Corsair Vengeance RGB Black / Gray DDR5-6600 CL32 64GB (4x16GB)",
+   "price": 23660000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 28990000,
+     "note": "Corsair Vengeance RGB 64GB DDR5 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 20490000,
+     "note": "Dominator Titanium 64GB 6000"
+    },
+    {
+     "shop": "GearVN",
+     "price": 21490000,
+     "note": "Dominator Titanium White 64GB 6000"
+    }
+   ]
+  },
+  "0189f67f-5462-4b80-8886-4b9f6c5020a0": {
+   "name": "RAM Kingston FURY Renegade Pro Registered Black DDR5-6400 CL32 128GB (4x32GB)",
+   "price": 47000000,
+   "used": false,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 47000000,
+     "note": "ƯỚC TÍNH: 2 × kit 64GB DDR5 (~23,5tr); RAM server ECC, chưa thấy giá VN"
+    }
+   ]
+  },
+  "0252c1f5-ba4c-4c51-acf4-f0879a1491ba": {
+   "name": "RAM G.Skill Trident Z Royal Silver DDR4-3200 CL14 256GB (8x32GB)",
+   "price": 57400000,
+   "used": false,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 57400000,
+     "note": "ƯỚC TÍNH: 16 × DDR4 16GB (3,59tr); chưa thấy giá VN"
+    }
+   ]
+  },
+  "9LPvtKraeUSXd8shf8gO": {
+   "name": "RAM Corsair Dominator Titanium Black 96GB (2x48GB)",
+   "price": 39990000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 39990000,
+     "note": "đúng mẫu 96GB"
+    }
+   ]
+  },
+  "0d772bed-9062-4309-81da-f6567ae54093": {
+   "name": "Tản nhiệt Jonsbo CR-1400 DV2 38.2 CFM Air 136mm White",
+   "price": 310000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 299000,
+     "note": "CR-1400 EVO (đã ngừng kinh doanh)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 319000,
+     "note": "CR-1400 (đã ngừng kinh doanh)"
+    }
+   ]
+  },
+  "1c621d66-92ae-404b-9b13-4fdec53ea59b": {
+   "name": "Tản nhiệt Jonsbo CR-1000 GT 66.81 CFM Air 158mm Black",
+   "price": 370000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 359000,
+     "note": "chưa thấy giá CR-1000 GT – lấy CR-1000 EVO tương đương"
+    },
+    {
+     "shop": "An Phát",
+     "price": 379000,
+     "note": "chưa thấy giá CR-1000 GT – lấy CR-1000 EVO tương đương"
+    }
+   ]
+  },
+  "1e8634c9-e304-44c8-805d-cdf5dbe67459": {
+   "name": "Tản nhiệt Jonsbo CR-1400 EVO ARGB Air 38.2 CFM Black",
+   "price": 310000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 299000,
+     "note": "CR-1400 EVO (đã ngừng kinh doanh)"
+    },
+    {
+     "shop": "HACOM",
+     "price": 319000,
+     "note": "CR-1400 (đã ngừng kinh doanh)"
+    }
+   ]
+  },
+  "281ce54a-1f82-4aee-b8f2-10fb1ded2d46": {
+   "name": "Tản nhiệt Jonsbo CR-1000 EVO Air 154mm 59.48 CFM White",
+   "price": 390000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 389000,
+     "note": "bản trắng RGB"
+    },
+    {
+     "shop": "HACOM",
+     "price": 399000,
+     "note": "bản trắng ARGB"
+    }
+   ]
+  },
+  "010abcce-a3d8-488c-a89d-9713092820c1": {
+   "name": "Tản nhiệt Deepcool AK400 Air 155mm Black / Silver",
+   "price": 640000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 599000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 690000
+    }
+   ]
+  },
+  "12c6f6f5-e5d3-4f4e-a7ce-eab32ea3afda": {
+   "name": "Tản nhiệt Deepcool AG400 DIGITAL PLUS Air 153mm Black",
+   "price": 410000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Phong Vũ",
+     "price": 409000,
+     "note": "chưa thấy giá AG400 Digital Plus – lấy AG400 ARGB"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 420000,
+     "note": "lấy AG400 ARGB"
+    },
+    {
+     "shop": "GearVN",
+     "price": 390000,
+     "note": "lấy AG400 ARGB"
+    }
+   ]
+  },
+  "1af157b2-6786-4321-83ed-b47b5efb13d6": {
+   "name": "Tản nhiệt Thermalright Assassin X 120 R Digital ARGB Air 151mm 70.84 CFM White",
+   "price": 490000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 490000,
+     "note": "Assassin X 120 R SE (gần nhất)"
+    }
+   ]
+  },
+  "253446e3-2c69-40d5-beaa-06dc4e216add": {
+   "name": "Tản nhiệt DeepCool AK400 ZERO DARK Performance CPU Cooler, 4 Copper Heat Pipes, 120mm Fluid Dynamic Bearing PWM Fan, 220W TDP",
+   "price": 640000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 690000
+    },
+    {
+     "shop": "HACOM",
+     "price": 599000,
+     "note": "AK400 thường"
+    }
+   ]
+  },
+  "25f0d944-b4df-4cd9-bb48-f72ee55ff0b4": {
+   "name": "Tản nhiệt Deepcool AG400 Air 150mm LED Black / Silver",
+   "price": 350000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 350000
+    }
+   ]
+  },
+  "03aa26f2-4307-46c6-85b1-36ad768a12c6": {
+   "name": "Tản nhiệt Thermalright Peerless Assassin 140 SE Black/Silver",
+   "price": 800000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 799000,
+     "note": "chưa thấy 140 SE – lấy Peerless Assassin 120 SE"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 800000,
+     "note": "lấy Peerless Assassin 120 SE"
+    }
+   ]
+  },
+  "158e0b51-f560-46e1-b867-5a6fa20a40ab": {
+   "name": "Tản nhiệt Deepcool AK620 ZERO DARK Air 68.99 CFM 160mm Black",
+   "price": 1620000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "MemoryZone",
+     "price": 1550000
+    },
+    {
+     "shop": "HACOM",
+     "price": 1699000
+    }
+   ]
+  },
+  "1d3f7ee1-6568-4a50-900d-1cdfd23a7d1b": {
+   "name": "Tản nhiệt Deepcool AK620 DIGITAL Air 162mm 68.99 CFM White",
+   "price": 1540000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1399000,
+     "note": "AK620 ARGB (bản Digital chưa thấy giá)"
+    },
+    {
+     "shop": "An Phát",
+     "price": 1689000,
+     "note": "AK620"
+    }
+   ]
+  },
+  "27cc18ba-4130-4f93-bac2-a9aac3cd3adf": {
+   "name": "Tản nhiệt Thermalright Phantom Spirit 120 SE Air 154mm Black / Silver",
+   "price": 980000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "An Phát",
+     "price": 979000
+    }
+   ]
+  },
+  "08d33494-342d-4c87-a678-853754dd931f": {
+   "name": "Tản nhiệt Thermalright AQUA ELITE ARGB V4 66.17 CFM Water 240mm Black",
+   "price": 1160000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1099000,
+     "note": "Aqua Elite 240"
+    },
+    {
+     "shop": "An Phát",
+     "price": 1199000,
+     "note": "Aqua Elite 240 V3"
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 1190000,
+     "note": "Aqua Elite 240 V3"
+    }
+   ]
+  },
+  "3399cdee-81d3-45af-8b12-9bffd53eec0b": {
+   "name": "Tản nhiệt Thermalright Frozen Prism Water 240mm Black",
+   "price": 1150000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 1099000,
+     "note": "chưa thấy Frozen Prism – lấy Thermalright Aqua Elite 240 tương đương"
+    },
+    {
+     "shop": "An Phát",
+     "price": 1199000,
+     "note": "lấy Aqua Elite 240"
+    }
+   ]
+  },
+  "887adada-b0dc-448d-8fe8-9ebeada978fb": {
+   "name": "Tản nhiệt Deepcool LE520 Water 240mm White",
+   "price": 1940000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 1990000,
+     "note": "chưa thấy LE520 – AIO 240mm phổ thông (CM ML240 Illusion)"
+    },
+    {
+     "shop": "GearVN",
+     "price": 1890000,
+     "note": "AIO 240mm phổ thông (Corsair Titan 240 RX)"
+    }
+   ]
+  },
+  "026876f6-63fe-4b41-b576-cf6ae35a5d7e": {
+   "name": "Tản nhiệt NZXT Kraken Water 240mm RGB White",
+   "price": 4430000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 4390000
+    },
+    {
+     "shop": "HACOM",
+     "price": 4299000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 4590000
+    }
+   ]
+  },
+  "2b4a92cf-6f0d-4b9c-8d5c-087b9c25438d": {
+   "name": "Tản nhiệt Deepcool LT720 WH Water 360mm 85.85 CFM White",
+   "price": 3090000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 3190000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 2990000
+    }
+   ]
+  },
+  "89ae3577-8ecb-480b-9fca-0a7db3378f97": {
+   "name": "Tản nhiệt Deepcool LT720 Water 360mm 85.85 CFM Black / Gray",
+   "price": 2750000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 2749000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 2750000
+    }
+   ]
+  },
+  "348f32b0-73d4-4cc7-8166-1cfe35b778e9": {
+   "name": "Tản nhiệt Noctua NH-D15 Air 168mm G2 LBC 91.58 CFM Brown / Silver",
+   "price": 2950000,
+   "used": false,
+   "estimated": false,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 2990000,
+     "note": "chưa thấy NH-D15 G2 – lấy NH-D15 (G2 thường đắt hơn)"
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 2790000,
+     "note": "lấy NH-D15"
+    },
+    {
+     "shop": "HACOM",
+     "price": 3059000,
+     "note": "lấy NH-D15"
+    }
+   ]
+  },
+  "47be70e3-d8c1-4ffe-b74a-9b0dcc71a7ee": {
+   "name": "Tản nhiệt Noctua NH-D15 chromax.black Air 165mm Black",
+   "price": 3270000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 3389000
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 3190000
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 3199000
+    },
+    {
+     "shop": "Nguyễn Công PC",
+     "price": 3290000
+    }
+   ]
+  },
+  "0259ece2-55a2-4932-b3f7-be54a69dcb2b": {
+   "name": "Tản nhiệt NZXT Kraken X73 Water 360mm RGB 52.44 CFM Black",
+   "price": 2700000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2700000,
+     "note": "ƯỚC TÍNH: ngừng bán (giá mới cuối ~5,8–6,2tr), chưa thấy tin rao cũ – lấy ~45%"
+    }
+   ]
+  },
+  "31af4fc2-4455-463e-8b90-f913493c979d": {
+   "name": "Card màn hình Gigabyte GeForce GTX 750 Ti 2GB GDDR5 Black",
+   "price": 900000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 900000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "51febacd-016e-4e60-b9ca-994771f7bb0d": {
+   "name": "Card màn hình Zotac ZT-70601-10M GeForce GTX 750 Ti 2GB GDDR5 Black / Orange",
+   "price": 900000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 900000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "014cf56a-0c79-491a-b1d4-f91a63a6b5d6": {
+   "name": "Card màn hình EVGA GeForce GTX 960 FTW ACX 2.0+ 4GB GDDR5 Black / Silver",
+   "price": 1310000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1390000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1350000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1200000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "15d90538-ec4b-4b35-843d-9449c551c833": {
+   "name": "Card màn hình Asus STRIX DC2OC GeForce GTX 960 4GB GDDR5 Black / Red",
+   "price": 1310000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1390000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1350000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1200000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "00034350-61f0-4057-ad9d-9aaea84645d0": {
+   "name": "Card màn hình Asus ROG STRIX Radeon RX 570 4GB GDDR5 Black",
+   "price": 1000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1200000,
+     "note": "Chợ Tốt (Asus)"
+    }
+   ]
+  },
+  "00097466-68c7-4288-87af-a692475e1962": {
+   "name": "Card màn hình Radeon RX 570 ARMOR MK2 8G OC",
+   "price": 1350000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1300000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1400000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "040f5466-f1b9-4983-a0eb-6923fb20703a": {
+   "name": "Card màn hình PNY VCGGTX1050T4XGPB-OC GeForce GTX 1050 Ti 4GB GDDR5 Black / Red",
+   "price": 1640000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1900000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "02617af7-019a-418e-bbf3-5ed2c431ace2": {
+   "name": "Card màn hình Sapphire PULSE Radeon RX 580 4GB GDDR5 Black",
+   "price": 1530000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1650000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1400000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "04757a4c-a615-4cb4-8160-fd9a6e8b1473": {
+   "name": "Card màn hình Diamond RX580D58G Radeon RX 580 8GB GDDR5 Black / Red",
+   "price": 1590000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1700000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1650000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1950000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "027e352a-695b-4bd5-a2c4-6db65a8e39ed": {
+   "name": "Card màn hình Gigabyte GAMING GeForce GTX 1050 Ti 4GB GDDR5 Black",
+   "price": 1640000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1900000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "007aa248-c727-4a07-8c28-28a68bf44262": {
+   "name": "Card màn hình EVGA GeForce GTX 1060 GAMING 6GB GDDR5 Black / Silver",
+   "price": 2000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2200000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0aec8a46-9172-4ea1-8696-612fed537b8f": {
+   "name": "Card màn hình MSI ARMOR OC GeForce GTX 1060 6GB GDDR5 Black / White",
+   "price": 2000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2200000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "065f309c-bf41-406d-bfcd-5123917539cd": {
+   "name": "Card màn hình GIGABYTE Eagle GeForce GTX 1650 4GB GDDR6 PCI Express 3.0 x16 ATX Video Card GV-N1656EAGLE OC-4GD",
+   "price": 1940000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2100000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0aa1ca6a-7ff6-4374-beeb-935f33eb6eff": {
+   "name": "Card màn hình Gigabyte OC Low Profile GeForce GTX 1650 G6 4GB GDDR6 Black",
+   "price": 1940000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 1800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2100000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "079c8026-4c23-4eb2-b4e9-09f9a7d64f7d": {
+   "name": "Card màn hình EVGA BLACK GAMING GeForce GTX 1660 SUPER 6GB GDDR6 Black",
+   "price": 2850000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2850000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "1ccd2340-733d-48e6-95ef-6be6a6b4d750": {
+   "name": "Card màn hình MSI GeForce GTX 1660 SUPER GAMING X 6GB GDDR6",
+   "price": 2850000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2850000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3100000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0430285d-bf9a-4e55-b96a-dc9608f9ee8a": {
+   "name": "Card màn hình Asus DUAL EVO GeForce RTX 2060 6GB GDDR6 Black",
+   "price": 3560000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3250000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3900000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3880000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 4200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3400000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0d7455ba-af37-47ff-b4fa-b7577ee5a1ea": {
+   "name": "Card màn hình GALAX 26NRL7HPX7OC GeForce RTX 2060 6GB GDDR6 Black",
+   "price": 3560000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 2800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3250000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3900000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3880000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 4200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3400000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "24db0917-1bd4-4f38-bce1-b976c2cfcb71": {
+   "name": "Card màn hình ASRock Challenger ITX Radeon RX 6600 8GB GDDR6 Black",
+   "price": 3490000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3400000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3400000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3300000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3790000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "30e00ac2-21ce-4d64-aab0-84bc8cb8846f": {
+   "name": "Card màn hình MSI ARMOR V1 Radeon RX 6600 8GB GDDR6 Black / Silver",
+   "price": 3490000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3400000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3400000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3550000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3300000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 3790000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "029da7b4-0228-4dbb-a44c-39d75daf31d4": {
+   "name": "Card màn hình MSI GeForce RTX 3050 AERO ITX 8GB OC",
+   "price": 7060000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7399000,
+     "note": "bản 8GB"
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 5799000,
+     "note": "Asus Phoenix 8G"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 6599000,
+     "note": "MSI Aero ITX 8G"
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 8600000,
+     "note": "Asus Phoenix 8G"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 7090000
+    },
+    {
+     "shop": "An Phát",
+     "price": 6899000
+    }
+   ]
+  },
+  "081c92c6-8808-4688-b010-9c208bea17a8": {
+   "name": "Card màn hình Asus Phoenix GeForce RTX 3050 8GB GDDR6 Black",
+   "price": 7060000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "HACOM",
+     "price": 7399000,
+     "note": "bản 8GB"
+    },
+    {
+     "shop": "FPT Shop",
+     "price": 5799000,
+     "note": "Asus Phoenix 8G"
+    },
+    {
+     "shop": "Phong Vũ",
+     "price": 6599000,
+     "note": "MSI Aero ITX 8G"
+    },
+    {
+     "shop": "MemoryZone",
+     "price": 8600000,
+     "note": "Asus Phoenix 8G"
+    },
+    {
+     "shop": "Tin Học Ngôi Sao",
+     "price": 7090000
+    },
+    {
+     "shop": "An Phát",
+     "price": 6899000
+    }
+   ]
+  },
+  "01110bc3-78da-4304-8bb6-ec8f0e56fb0e": {
+   "name": "Card màn hình Sapphire Radeon RX 7600 PULSE 8GB GDDR6 Black / Red",
+   "price": 6320000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "04f32574-badf-4087-a02e-8b9be73d33ec": {
+   "name": "Card màn hình Acer Predator BiFrost OC Radeon RX 7600 8GB GDDR6 Black",
+   "price": 6320000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0ca7d77a-5ff4-457b-8ea8-c6efea09e7be": {
+   "name": "Card màn hình Asus DUAL MINI OC V2 GeForce RTX 3060 Ti LHR 8GB GDDR6 Black",
+   "price": 5950000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 4500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 4600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5700000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7600000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0d797f0a-ea81-452a-a0f4-82e2a2d34bff": {
+   "name": "Card màn hình ASUS KO GeForce RTX 3060 Ti OC Edition 8GB GDDR6",
+   "price": 5950000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 4500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 4600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 5700000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7200000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7600000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "1b48c3ec-6fc0-416e-83e4-cc6f671084f5": {
+   "name": "Card màn hình MSI VENTUS 2X BLACK OC GeForce RTX 4060 8GB GDDR6",
+   "price": 7610000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6900000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7250000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 8500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 8800000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "04249aee-1b50-460c-b658-2ddc90c528ea": {
+   "name": "Card màn hình Asus DUAL OC Radeon RX 7900 XT 20GB GDDR6 Black",
+   "price": 16500000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 16500000,
+     "note": "ƯỚC TÍNH: chưa thấy tin rao; dưới 7900 XTX cũ (22–23tr)"
+    }
+   ]
+  },
+  "1309b5ed-47b5-4664-8061-9757526eb825": {
+   "name": "Card màn hình ZOTAC GAMING GeForce RTX 4060 8GB Twin Edge OC",
+   "price": 7610000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 6900000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 7250000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 8500000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 8800000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "026d5ad6-9b64-4b04-8afd-39b3fd5492d9": {
+   "name": "Card màn hình PNY XLR8 Gaming VERTO EPIC-X RGB GeForce RTX 4070 Ti 12GB GDDR6X Black",
+   "price": 16000000,
+   "used": true,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 16000000,
+     "note": "ƯỚC TÍNH: giữa 4070 (13tr) và 4070 Ti Super (19,5tr)"
+    }
+   ]
+  },
+  "066ebd32-2f65-4966-b67b-e72c31400a52": {
+   "name": "Card màn hình Asus GeForce RTX 4060 Ti ROG Strix GAMING OC 16GB GDDR6 Black / Red",
+   "price": 10200000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 10200000,
+     "note": "ƯỚC TÍNH: bản 8GB cũ 7–10,5tr, chưa thấy tin 16GB"
+    }
+   ]
+  },
+  "0c5708bb-2edc-4ca8-9683-1d1cb2b26090": {
+   "name": "Card màn hình Palit JetStream OC GeForce RTX 4060 Ti 16GB GDDR6 Black",
+   "price": 10200000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 10200000,
+     "note": "ƯỚC TÍNH: bản 8GB cũ 7–10,5tr, chưa thấy tin 16GB"
+    }
+   ]
+  },
+  "001f4618-d3f8-44d7-8c6f-697bfbdc1858": {
+   "name": "Card màn hình MSI GeForce RTX 4070 VENTUS 2X WHITE 12G OC GDDR6X",
+   "price": 13000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 13000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 13000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0dd8bae5-5674-4a59-9604-acf38fd32ba3": {
+   "name": "Card màn hình Gainward Panther GeForce RTX 4070 12 GB",
+   "price": 13000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 13000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 13000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "09e1c2d8-98aa-4f98-8fa6-a120eb82ec91": {
+   "name": "Card màn hình PowerColor Red Devil Limited Edition OC Radeon RX 7800 XT 16GB GDDR6 Black",
+   "price": 12000000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 12000000,
+     "note": "ƯỚC TÍNH: chưa thấy tin rao; ngang RTX 4070 cũ (~13tr)"
+    }
+   ]
+  },
+  "1ccc8b90-0f57-42ba-8004-42bc2fec3dc1": {
+   "name": "Card màn hình PowerColor Hellhound Sakura OC Radeon RX 7800 XT 16GB GDDR6 White / Pink",
+   "price": 12000000,
+   "used": true,
+   "estimated": true,
+   "proxy": true,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 12000000,
+     "note": "ƯỚC TÍNH: chưa thấy tin rao; ngang RTX 4070 cũ (~13tr)"
+    }
+   ]
+  },
+  "01511338-d4a7-4870-895c-eaf9ad85d76e": {
+   "name": "Card màn hình Inno3D iChill X3 GeForce RTX 4070 SUPER 12GB GDDR6X Black",
+   "price": 15760000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 12800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 15600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 18890000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "02ea16bd-0572-484e-8367-9a881c31db29": {
+   "name": "Card màn hình Inno3D GeForce RTX 4070 SUPER X3 OC 12GB GDDR6X Black / Silver",
+   "price": 15760000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 12800000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 15600000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 18890000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "039be6f9-76b0-427c-8dd0-776ca4fa59c5": {
+   "name": "Card màn hình XFX SPEEDSTER MERC 310 AMD Radeon RX 7900 XTX Black Edition 24GB GDDR6",
+   "price": 22500000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 22000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 23000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "06efad50-3bbb-4f02-8bba-2675dc2001b7": {
+   "name": "Card màn hình Zotac GAMING SOLID GeForce RTX 4070 Ti SUPER 16GB GDDR6X Black / Gray",
+   "price": 19500000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 19500000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "01aa7b75-afbe-4cea-966b-73ff88e8d189": {
+   "name": "Card màn hình MSI SUPRIM X GeForce RTX 4080 16GB GDDR6X Black",
+   "price": 27000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 23000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 31000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0c0abe88-1e6f-4673-8165-ab55fc51b0be": {
+   "name": "Card màn hình Palit GamingPro GeForce RTX 4080 16GB GDDR6X Silver / Black",
+   "price": 27000000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 23000000,
+     "note": "Chợ Tốt"
+    },
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 31000000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "0459be68-a0e8-4273-8595-066fbb571935": {
+   "name": "Card màn hình MSI GAMING X SLIM GeForce RTX 4080 SUPER 16GB GDDR6X White",
+   "price": 30790000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 30790000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "12a040ae-a296-4d84-bc4a-965d99236a0e": {
+   "name": "Card màn hình MSI Black GeForce RTX 4080 SUPER 16GB GDDR6X Black",
+   "price": 30790000,
+   "used": true,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 30790000,
+     "note": "Chợ Tốt"
+    }
+   ]
+  },
+  "08690e09-bcad-4acd-99d9-72f0093db590": {
+   "name": "Card màn hình Asus TUF Gaming OG OC GeForce RTX 4090 24GB GDDR6X Black",
+   "price": 60000000,
+   "used": true,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 60000000,
+     "note": "ƯỚC TÍNH: tin rao 2025 ~68–70tr like new, NC bán mới 45–70tr"
+    }
+   ]
+  },
+  "0f19eb6a-59be-46b5-9d32-5473acf029c5": {
+   "name": "Card màn hình Asus ROG STRIX LC GAMING GeForce RTX 4090 24GB GDDR6X Black / Silver",
+   "price": 60000000,
+   "used": true,
+   "estimated": true,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "Chợ Tốt / hàng cũ",
+     "price": 60000000,
+     "note": "ƯỚC TÍNH: tin rao 2025 ~68–70tr like new, NC bán mới 45–70tr"
+    }
+   ]
+  },
+  "PQTYimRFeRcH4Ka0Kgyy": {
+   "name": "Card màn hình Zotac GeForce RTX 5080 Solid Core OC 16GB",
+   "price": 63490000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 60990000,
+     "note": "đúng mẫu Zotac Solid Core OC"
+    },
+    {
+     "shop": "HACOM",
+     "price": 65999000,
+     "note": "Asus TUF (cùng chip)"
+    }
+   ]
+  },
+  "poltWHKmSb3nbZ7xxlqA": {
+   "name": "Card màn hình Leadtek NVIDIA RTX PRO 5000 Blackwell",
+   "price": 320000000,
+   "used": false,
+   "estimated": false,
+   "proxy": false,
+   "sources": [
+    {
+     "shop": "GearVN",
+     "price": 320000000
+    }
+   ]
+  }
+ }
+}

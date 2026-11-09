@@ -5,11 +5,18 @@
 //   node tools/convert-nexora.mjs --no-check   (bỏ qua kiểm tra ảnh)
 //
 // Vào:  ../AdminSource/nexora-components.json   (bản sao chỉ-đọc từ Firestore của nhóm)
+//       ../AdminSource/anh-san-pham.json           (ảnh thay thế cho link Amazon trống, có trang nguồn)
+//       ../AdminSource/gia-thi-truong-2026-11.json (giá bán theo thị trường, ghi đè giá của nhóm; có nguồn từng shop)
 // Ra:   public/admin/nexora-data.js              (export NEXORA_PRODUCTS)
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 const SRC = new URL('../../AdminSource/nexora-components.json', import.meta.url);
 const OUT = new URL('../public/admin/nexora-data.js', import.meta.url);
+const PRICES = new URL('../../AdminSource/gia-thi-truong-2026-11.json', import.meta.url);
+const IMAGES = new URL('../../AdminSource/anh-san-pham.json', import.meta.url);
+const IMG = existsSync(IMAGES) ? JSON.parse(readFileSync(IMAGES, 'utf8')).products : {};
+const MARKET = existsSync(PRICES) ? JSON.parse(readFileSync(PRICES, 'utf8')).products : {};
+const USED_NOTE = 'Hàng đã qua sử dụng (2nd). Dòng sản phẩm đã ngừng bán mới; giá tham khảo thị trường hàng cũ tháng 11/2026.';
 
 const CAT = {
   CPU: 'cpu', Motherboard: 'mainboard', RAM: 'ram', GPU: 'vga',
@@ -137,6 +144,7 @@ for (const r of rows) {
   const brand = s(r.metadata?.manufacturer || r.manufacturer) || 'Khác';
   const name = `${PREFIX[category]} ${rawName}`.slice(0, 200);
   const specs = clean(SPECS[category](r));
+  if (MARKET[r._id]?.used) specs['Tình trạng'] = 'Hàng cũ (2nd)';
   // Bản ghi thiếu metadata (nhóm tự nhập tay) chỉ có chuỗi `specs` tóm tắt.
   const summary = Object.keys(specs).length >= 2
     ? Object.values(specs).filter((v) => v.length <= 30).slice(0, 4).join(' · ')
@@ -149,13 +157,13 @@ for (const r of rows) {
 
   out.push({
     id, category, brand, name,
-    price: Math.round(num(r.price)),
+    price: MARKET[r._id]?.price ?? Math.round(num(r.price)),
     oldPrice: 0,
     stock: r.stock === undefined || r.stock === null ? 10 : Math.max(0, Math.round(num(r.stock))),
     sold: 0,
     summary,
-    imageUrl: s(r.image),
-    description: '',
+    imageUrl: IMG[r._id]?.image || s(r.image),
+    description: MARKET[r._id]?.used ? USED_NOTE : '',
     specs,
     sourceId: r._id
   });
@@ -182,3 +190,6 @@ writeFileSync(OUT,
   `export const NEXORA_PRODUCTS = ${JSON.stringify(out, null, 1)};\n`);
 console.log(`Đã chuyển ${out.length} sản phẩm → public/admin/nexora-data.js. Bỏ qua: ${skipped.join(', ') || 'không'}.`);
 console.log(`Ảnh trống/hỏng đã thay bằng ảnh danh mục: ${dropped}.`);
+console.log(`Ảnh thay thế từ anh-san-pham.json: ${out.filter((p) => IMG[p.sourceId]).length}.`);
+const priced = out.filter((p) => MARKET[p.sourceId]).length;
+console.log(`Giá thị trường áp dụng: ${priced}/${out.length} (hàng cũ: ${out.filter((p) => MARKET[p.sourceId]?.used).length}).`);
