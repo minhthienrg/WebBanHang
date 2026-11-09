@@ -6,7 +6,7 @@
 // iframe của Google Sites (trình duyệt chặn/khoanh vùng cookie bên thứ ba).
 export const firebaseConfig = {
   apiKey: 'AIzaSyAs60jlcNfMv_CkmrRcGaGEtFhwhQKq0so',
-  authDomain: 'mindmap-4ad79-e47cc.web.app',
+  authDomain: 'da1gb.web.app',
   projectId: 'mindmap-4ad79',
   storageBucket: 'mindmap-4ad79.firebasestorage.app',
   messagingSenderId: '563586560712',

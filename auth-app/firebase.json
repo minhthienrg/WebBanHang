@@ -9,7 +9,7 @@
     "ui": { "enabled": true }
   },
   "hosting": {
-    "site": "mindmap-4ad79-e47cc",
+    "site": "da1gb",
     "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "cleanUrls": true,

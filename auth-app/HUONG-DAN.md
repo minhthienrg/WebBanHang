@@ -79,13 +79,13 @@ Rules đã chạy trên Firestore emulator với 43 ca kiểm thử, gồm cả 
 ### Bước 1 — Bật đăng nhập
 <https://console.firebase.google.com/project/mindmap-4ad79/authentication>
 1. **Sign-in method**: bật **Email/Password** và **Google** (chọn support email).
-2. **Settings → Authorized domains**: thêm `mindmap-4ad79-e47cc.web.app` nếu chưa có.
+2. **Settings → Authorized domains**: thêm `da1gb.web.app` nếu chưa có.
 3. *(Tùy chọn)* **Templates**: đổi ngôn ngữ email sang *Vietnamese*.
 
 ### Bước 2 — Khai báo domain với Google OAuth
 <https://console.cloud.google.com/apis/credentials?project=mindmap-4ad79> → **Web client (auto created by Google Service)**:
-- Authorized JavaScript origins: `https://mindmap-4ad79-e47cc.web.app`
-- Authorized redirect URIs: `https://mindmap-4ad79-e47cc.web.app/__/auth/handler`
+- Authorized JavaScript origins: `https://da1gb.web.app`
+- Authorized redirect URIs: `https://da1gb.web.app/__/auth/handler`
 
 ### Bước 3 — Tạo Firestore
 <https://console.firebase.google.com/project/mindmap-4ad79/firestore> → **Create database** → Standard → **asia-southeast1** → **production mode**.
@@ -95,15 +95,15 @@ Rules đã chạy trên Firestore emulator với 43 ca kiểm thử, gồm cả 
 cd ~/Project/WebBanHang/auth-app
 firebase deploy --only hosting,firestore:rules
 ```
-Lệnh `hosting` chỉ ghi vào site `mindmap-4ad79-e47cc`, không ảnh hưởng app "My mind map". Lệnh `firestore:rules` thay toàn bộ rules của project; nếu app mind map sau này dùng Firestore, phải gộp rules lại.
+Lệnh `hosting` chỉ ghi vào site `da1gb`, không ảnh hưởng app "My mind map". Lệnh `firestore:rules` thay toàn bộ rules của project; nếu app mind map sau này dùng Firestore, phải gộp rules lại.
 
 ### Bước 5 — Tự cấp quyền quản trị cho mình
-1. Mở <https://mindmap-4ad79-e47cc.web.app>, đăng ký hoặc đăng nhập bằng tài khoản của bạn.
+1. Mở <https://da1gb.web.app>, đăng ký hoặc đăng nhập bằng tài khoản của bạn.
 2. Console → **Authentication → Users** → copy **User UID** của bạn.
 3. Console → **Firestore → Data → Start collection** → Collection ID: `admins` → Document ID: *dán UID* → bấm **Save**. Có thể để trống trường; nếu Console bắt buộc thì thêm trường `role` = `admin`.
 
 ### Bước 6 — Nạp sản phẩm mẫu
-Mở **trực tiếp** (không qua Google Sites) <https://mindmap-4ad79-e47cc.web.app/admin/seed.html>. Trang sẽ báo "là quản trị viên"; bấm **Nạp / cập nhật sản phẩm mẫu** để ghi 23 sản phẩm. Bấm lại thì sản phẩm cùng ID sẽ bị ghi đè.
+Mở **trực tiếp** (không qua Google Sites) <https://da1gb.web.app/admin/seed.html>. Trang sẽ báo "là quản trị viên"; bấm **Nạp / cập nhật 254 linh kiện NEXORA** (hoặc nút 23 sản phẩm mẫu). Bấm lại thì sản phẩm cùng ID sẽ bị ghi đè.
 
 Sau này thêm hoặc sửa sản phẩm: Console → Firestore → `products`. Để ẩn sản phẩm, đặt `active = false`.
 
@@ -119,11 +119,11 @@ Google Sites chỉ nhúng được URL **https** và trang đích phải cho ph�
 → dán URL app. App chiếm cả trang nên không phải chỉnh chiều cao khung.
 
 **Cách B — khung trong một trang có nội dung khác:**
-1. Chế độ chỉnh sửa → **Chèn → Nhúng → Nhúng theo URL** → `https://mindmap-4ad79-e47cc.web.app` → **Toàn bộ trang** → **Chèn**.
+1. Chế độ chỉnh sửa → **Chèn → Nhúng → Nhúng theo URL** → `https://da1gb.web.app` → **Toàn bộ trang** → **Chèn**.
 2. Kéo khung rộng hết cột, cao khoảng **900–1200px**. Đây là cửa hàng nên cần khung cao hơn bản chỉ có đăng nhập. Google Sites không tự giãn chiều cao, phần thừa sẽ cuộn bên trong khung.
 3. **Xem trước** ở chế độ điện thoại và máy tính → **Xuất bản**.
 
-Có thể nhúng thẳng một trang con, ví dụ danh mục VGA: `https://mindmap-4ad79-e47cc.web.app/#/?cat=vga`.
+Có thể nhúng thẳng một trang con, ví dụ danh mục VGA: `https://da1gb.web.app/#/?cat=vga`.
 
 ## Kiểm thử tự động
 
