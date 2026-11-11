@@ -9,7 +9,17 @@ import { fold } from '../../js/catalog.js';
 export { auth, db, esc, money, fold };
 
 // ---------- Người đang đăng nhập (đặt bởi main.js) ----------
-export const me = { uid: '', email: '' };
+export const me = { uid: '', email: '', role: '' };   // role: 'admin' | 'cskh'
+export const isAdminRole = () => me.role === 'admin';
+
+// Trang mỗi vai trò được vào (Bảng 1.3). Nhân viên CSKH: không sản phẩm/giá, kho (giá vốn),
+// báo cáo doanh thu, mã giảm giá chung, nhật ký.
+export const ROLE_VIEWS = {
+  admin: null,   // tất cả
+  cskh: new Set(['cskh', 'ho-tro', 'don-hang', 'khach-hang', 'bao-hanh', 'danh-gia', 'tra-cuu', 'cai-dat'])
+};
+export const canView = (view) => !ROLE_VIEWS[me.role] || ROLE_VIEWS[me.role].has(view);
+export const ROLE_NAMES = { admin: 'Quản trị viên', cskh: 'Chăm sóc khách hàng' };
 
 // ---------- Trạng thái đơn hàng ----------
 export const STATUS = {
@@ -17,12 +27,24 @@ export const STATUS = {
   confirmed: 'Đã xác nhận',
   preparing: 'Đang chuẩn bị',
   shipping: 'Đang giao',
+  failed: 'Giao thất bại',
   done: 'Hoàn tất',
   cancelled: 'Đã hủy'
 };
-export const STATUS_ORDER = ['pending', 'confirmed', 'preparing', 'shipping', 'done', 'cancelled'];
-/** Trạng thái mà hàng đã rời kho (đã trừ tồn kho). */
-export const DEDUCTED = new Set(['confirmed', 'preparing', 'shipping', 'done']);
+export const STATUS_ORDER = ['pending', 'confirmed', 'preparing', 'shipping', 'failed', 'done', 'cancelled'];
+/** Trạng thái mà hàng đã rời kho (đã trừ tồn kho). "Giao thất bại": hàng đang ở đơn vị vận chuyển. */
+export const DEDUCTED = new Set(['confirmed', 'preparing', 'shipping', 'failed', 'done']);
+/** Bước tiếp theo bình thường. Nhân viên CSKH CHỈ được đi theo các bước này
+ *  (PHẢI khớp staffTransition() trong firestore.rules); quản trị viên chọn được mọi trạng thái. */
+export const NEXT = {
+  pending: ['confirmed', 'cancelled'],
+  confirmed: ['preparing', 'cancelled'],
+  preparing: ['shipping', 'cancelled'],
+  shipping: ['done', 'failed'],
+  failed: ['shipping', 'cancelled'],
+  done: [],
+  cancelled: []
+};
 export const statusBadge = (s) => `<span class="status s-${esc(s)}">${esc(STATUS[s] || s)}</span>`;
 export const shortId = (id) => id.slice(0, 8).toUpperCase();
 
@@ -38,10 +60,16 @@ const LOADERS = {
   users: () => getDocs(collection(db, 'users')),
   bans: () => getDocs(collection(db, 'bans')),
   admins: () => getDocs(collection(db, 'admins')),
-  vouchers: () => getDocs(collection(db, 'vouchers'))
+  vouchers: () => getDocs(collection(db, 'vouchers')),
+  staff: () => getDocs(collection(db, 'staff')),
+  reviews: () => getDocs(collection(db, 'reviews')),
+  warranties: () => getDocs(collection(db, 'warranties')),
+  members: () => getDocs(collection(db, 'members')),
+  replyTemplates: () => getDocs(collection(db, 'replyTemplates')),
+  refunds: () => getDocs(collection(db, 'refunds'))
 };
 // Đơn hàng và khách hàng theo dõi realtime: đơn / tài khoản mới hiện ngay, không cần tải lại trang.
-const LIVE = new Set(['orders', 'users']);
+const LIVE = new Set(['orders', 'users', 'tickets']);
 const live = {};
 function startLive(name) {
   if (!live[name]) {
@@ -114,7 +142,24 @@ export const ACTIONS = {
   'voucher.update': 'Sửa mã giảm giá',
   'voucher.delete': 'Xóa mã giảm giá',
   'admin.add': 'Cấp quyền quản trị',
-  'admin.remove': 'Gỡ quyền quản trị'
+  'admin.remove': 'Gỡ quyền quản trị',
+  'staff.add': 'Cấp vai trò CSKH',
+  'staff.remove': 'Gỡ vai trò CSKH',
+  'settings.support': 'Đổi hạn mức hoàn tiền',
+  'order.refund': 'Hoàn tiền',
+  'ticket.create': 'Tạo phiếu hỗ trợ',
+  'ticket.assign': 'Nhận / giao phiếu hỗ trợ',
+  'ticket.transfer': 'Chuyển bộ phận',
+  'ticket.close': 'Đóng phiếu hỗ trợ',
+  'ticket.reopen': 'Mở lại phiếu hỗ trợ',
+  'review.approve': 'Duyệt đánh giá',
+  'review.hide': 'Ẩn đánh giá',
+  'review.reply': 'Phản hồi đánh giá',
+  'warranty.create': 'Tạo phiếu bảo hành',
+  'warranty.update': 'Cập nhật bảo hành',
+  'member.update': 'Cập nhật thành viên',
+  'member.offer': 'Gửi ưu đãi riêng',
+  'customer.note': 'Ghi chú khách hàng'
 };
 
 // ---------- Định dạng ----------
@@ -194,6 +239,7 @@ export function openDialog(title, html, { wide = false } = {}) {
   const d = dlg();
   d.classList.toggle('wide', wide);
   $('#dlg-title').textContent = title;
+  $('#dlg-body').onclick = null;   // bỏ trình xử lý của hộp thoại trước
   $('#dlg-body').innerHTML = html;
   if (!d.open) d.showModal();
   const first = $('#dlg-body').querySelector('input:not([type=hidden]):not([disabled]), select, textarea');
@@ -334,15 +380,26 @@ export function downloadCsv(filename, rows) {
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
-/** Số đơn chờ xác nhận và số sản phẩm sắp hết hàng trên menu. */
+/** Số việc cần làm trên menu: đơn chờ xác nhận, sắp hết hàng, phiếu hỗ trợ chờ, đánh giá chờ duyệt. */
 export async function refreshBadges() {
+  const set = (id, n, title) => { const b = $(id); if (!b) return; b.textContent = n; b.hidden = !n; b.title = title; };
   try {
-    const [orders, products] = await Promise.all([load('orders'), load('products')]);
-    const pending = orders.filter((o) => o.status === 'pending').length;
-    const low = products.filter(isLow).length;
-    const pb = $('#pending-badge'), lb = $('#low-badge');
-    pb.textContent = pending; pb.hidden = !pending; pb.title = `${pending} đơn chờ xác nhận`;
-    lb.textContent = low; lb.hidden = !low; lb.title = `${low} sản phẩm sắp hết hàng`;
+    const [orders, tickets, reviews] = await Promise.all([load('orders'), load('tickets'), load('reviews')]);
+    const pending = orders.filter((o) => o.status === 'pending' || o.status === 'failed').length;
+    set('#pending-badge', pending, `${pending} đơn chờ xác nhận / giao thất bại`);
+    const open = tickets.filter((t) => t.status === 'open' && (t.dept === 'cskh' || (t.dept === 'admin' && isAdminRole()))).length;
+    set('#ticket-badge', open, `${open} yêu cầu chờ nhân viên`);
+    const rv = reviews.filter((r) => r.status === 'pending').length;
+    set('#review-badge', rv, `${rv} đánh giá chờ duyệt`);
+    if (isAdminRole()) {
+      const low = (await load('products')).filter(isLow).length;
+      set('#low-badge', low, `${low} sản phẩm sắp hết hàng`);
+    }
   } catch { /* bỏ qua */ }
+}
+
+/** Mẫu trả lời: thay {ten}, {ma_don}, {nhan_vien}. */
+export function fillTemplate(text, vars) {
+  return text.replace(/\{(ten|ma_don|nhan_vien)\}/g, (_, k) => vars[k] ?? '');
 }
 

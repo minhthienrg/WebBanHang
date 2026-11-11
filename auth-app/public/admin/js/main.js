@@ -1,13 +1,19 @@
-// Trang quản trị: chỉ tài khoản có admins/{uid} mới vào được (Security Rules cũng chặn ở máy chủ).
+// Trang quản lý dùng chung cho 2 vai trò (Bảng 1.3 WebIdea.pdf), Security Rules chặn ở máy chủ:
+//   admins/{uid} → quản trị viên: mọi trang
+//   staff/{uid}  → nhân viên chăm sóc khách hàng: các trang trong ROLE_VIEWS.cskh (core.js)
 //   #/              Dashboard          #/bao-cao      Báo cáo doanh thu
 //   #/san-pham      Sản phẩm           #/kho          Kho hàng
 //   #/don-hang      Đơn hàng           #/khach-hang   Khách hàng
 //   #/khuyen-mai    Mã giảm giá        #/nhat-ky      Nhật ký hoạt động
 //   #/cai-dat       Cài đặt & quản trị viên
+//   --- Chăm sóc khách hàng ---
+//   #/cskh          Tổng quan CSKH     #/ho-tro[/id]  Yêu cầu hỗ trợ (chat)
+//   #/bao-hanh      Phiếu bảo hành     #/danh-gia     Duyệt đánh giá
+//   #/tra-cuu       Tra cứu thông số & kiểm tra tương thích
 import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
 import { $, $$ } from '../../js/ui.js';
-import { auth, db, me, esc, toast, errMsg, closeDialog, refreshBadges } from './core.js';
+import { auth, db, me, esc, toast, errMsg, closeDialog, refreshBadges, canView, ROLE_NAMES } from './core.js';
 
 const VIEWS = {
   'tong-quan': () => import('./dashboard.js'),
@@ -18,13 +24,22 @@ const VIEWS = {
   'khach-hang': () => import('./customers.js'),
   'khuyen-mai': () => import('./vouchers.js'),
   'nhat-ky': () => import('./logs.js'),
-  'cai-dat': () => import('./settings.js')
+  'cai-dat': () => import('./settings.js'),
+  'cskh': () => import('./cskh.js'),
+  'ho-tro': () => import('./tickets.js'),
+  'bao-hanh': () => import('./warranties.js'),
+  'danh-gia': () => import('./reviews.js'),
+  'tra-cuu': () => import('./lookup.js')
 };
 const TITLES = {
   'tong-quan': 'Dashboard', 'bao-cao': 'Báo cáo doanh thu', 'san-pham': 'Sản phẩm', 'kho': 'Kho hàng',
   'don-hang': 'Đơn hàng', 'khach-hang': 'Khách hàng', 'khuyen-mai': 'Mã giảm giá',
-  'nhat-ky': 'Nhật ký hoạt động', 'cai-dat': 'Cài đặt'
+  'nhat-ky': 'Nhật ký hoạt động', 'cai-dat': 'Cài đặt',
+  'cskh': 'Tổng quan CSKH', 'ho-tro': 'Yêu cầu hỗ trợ', 'bao-hanh': 'Bảo hành', 'danh-gia': 'Đánh giá',
+  'tra-cuu': 'Tra cứu & tương thích'
 };
+
+let current = { view: '', arg: '', mod: null };   // trang đang mở (để gọi leave() khi rời trang)
 
 let ready = false;
 let renderSeq = 0;
@@ -33,20 +48,25 @@ function parseHash() {
   const raw = location.hash.replace(/^#\/?/, '');
   const [path, qs = ''] = raw.split('?');
   const [view, arg] = path.split('/').filter(Boolean);
-  return { view: view || 'tong-quan', arg, params: Object.fromEntries(new URLSearchParams(qs)) };
+  return { view: view || (me.role === 'cskh' ? 'cskh' : 'tong-quan'), arg, params: Object.fromEntries(new URLSearchParams(qs)) };
 }
 
 async function route() {
   if (!ready) return;
   const { view, arg, params } = parseHash();
-  if (!VIEWS[view]) { location.hash = '#/'; return; }
+  if (!VIEWS[view] || !canView(view)) {
+    if (VIEWS[view]) toast('Vai trò của bạn không có quyền vào trang này.', 'err');
+    location.hash = '#/';
+    return;
+  }
   const seq = ++renderSeq;
+  if (current.mod?.leave && (current.view !== view || current.arg !== (arg || ''))) current.mod.leave();
   $$('#side a').forEach((a) => {
     const on = a.dataset.view === view;
     a.classList.toggle('on', on);
     if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
-  document.title = `${TITLES[view]} · Quản trị NEXORA`;
+  document.title = `${TITLES[view]} · ${me.role === 'cskh' ? 'CSKH' : 'Quản trị'} NEXORA`;
   const box = $('#view');
   if (box.dataset.view !== view) box.innerHTML = '<p class="loading">Đang tải…</p>';
   box.dataset.view = view;
@@ -55,6 +75,7 @@ async function route() {
   try {
     const mod = await VIEWS[view]();
     if (seq !== renderSeq) return;           // người dùng đã sang trang khác
+    current = { view, arg: arg || '', mod };
     await mod.render(box, params, arg);
   } catch (e) {
     if (seq === renderSeq) box.innerHTML = `<p class="msg err">${esc(errMsg(e))}</p>`;
@@ -79,24 +100,35 @@ onAuthStateChanged(auth, async (u) => {
     return;
   }
   $('#who').textContent = u.email;
-  let isAdmin = false;
+  let role = '';
   try {
-    isAdmin = (await getDoc(doc(db, 'admins', u.uid))).exists();
+    const [a, st] = await Promise.all([getDoc(doc(db, 'admins', u.uid)), getDoc(doc(db, 'staff', u.uid))]);
+    role = a.exists() ? 'admin' : st.exists() ? (st.data().role || 'cskh') : '';
   } catch (e) {
     deny(`<p class="msg err">${esc(errMsg(e))}</p>`);
     return;
   }
-  if (!isAdmin) {
+  if (!role) {
     deny(`<div class="card narrow-card">
       <h1>Không có quyền truy cập</h1>
-      <p>Tài khoản <strong>${esc(u.email)}</strong> không phải quản trị viên.</p>
-      <p class="hint">Quản trị viên khác có thể cấp quyền ở mục Cài đặt. Admin đầu tiên tạo tài liệu
+      <p>Tài khoản <strong>${esc(u.email)}</strong> không phải quản trị viên hay nhân viên chăm sóc khách hàng.</p>
+      <p class="hint">Quản trị viên cấp quyền ở mục Cài đặt. Admin đầu tiên tạo tài liệu
         <code>admins/${esc(u.uid)}</code> trong Firebase Console (xem HUONG-DAN.md).</p>
       <a class="btn primary" href="../">Về cửa hàng</a></div>`);
     return;
   }
   me.uid = u.uid;
   me.email = u.email;
+  me.role = role;
+  $('#who').textContent = `${u.email} · ${ROLE_NAMES[role]}`;
+  $('#role-tag').textContent = role === 'admin' ? 'Quản trị' : 'CSKH';
+  // Ẩn mục menu không thuộc vai trò; ẩn tiêu đề nhóm không còn mục nào.
+  document.querySelectorAll('#side a').forEach((a) => { a.hidden = !canView(a.dataset.view); });
+  document.querySelectorAll('#side .side-h').forEach((h) => {
+    let el = h.nextElementSibling, any = false;
+    while (el && !el.classList.contains('side-h')) { if (!el.hidden) any = true; el = el.nextElementSibling; }
+    h.hidden = !any;
+  });
   ready = true;
   $('#gate').hidden = true;
   $('#side').hidden = false;
@@ -106,14 +138,16 @@ onAuthStateChanged(auth, async (u) => {
 
 window.addEventListener('hashchange', () => { closeDialog(); route(); window.scrollTo(0, 0); });
 
-// Dữ liệu realtime (đơn hàng) thay đổi → cập nhật số trên menu, vẽ lại trang đang xem nếu không làm phiền.
-const LIVE_VIEWS = new Set(['tong-quan', 'don-hang', 'khach-hang', 'bao-cao']);
+// Dữ liệu realtime (đơn hàng, khách, phiếu hỗ trợ) thay đổi → cập nhật số trên menu, vẽ lại trang
+// đang xem nếu không làm phiền (không mở hộp thoại, không đang gõ, không ở trang chi tiết).
+const LIVE_VIEWS = new Set(['tong-quan', 'don-hang', 'khach-hang', 'bao-cao', 'cskh', 'ho-tro']);
 window.addEventListener('admin:data', (ev) => {
   refreshBadges();
   if (ev.detail.name === 'orders' && ev.detail.added) toast(`Có ${ev.detail.added} đơn hàng mới.`);
+  if (ev.detail.name === 'tickets' && ev.detail.added) toast(`Có ${ev.detail.added} yêu cầu hỗ trợ mới.`);
   const typing = document.activeElement?.matches('input, select, textarea');
-  const { view, arg } = parseHash();
-  if (LIVE_VIEWS.has(view) && !arg && !$('#dlg').open && !typing) route();
+  const { view, arg, params } = parseHash();
+  if (LIVE_VIEWS.has(view) && !arg && !params.mo && !params.moi && !$('#dlg').open && !typing) route();
 });
 
 $('#btn-logout').addEventListener('click', async () => {

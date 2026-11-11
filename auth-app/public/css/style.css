@@ -384,6 +384,70 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { box-shadow: 
 .voucher-row input { flex: 1; min-width: 0; }
 .voucher-row .btn { flex: none; }
 
+/* ---------- Hỗ trợ khách hàng, đánh giá, thành viên ---------- */
+.account-side { display: grid; gap: 16px; align-content: start; }
+.sec-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.order-acts { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+.ok-text { color: var(--ok-text); }
+.warn-text { color: var(--warn-text); }
+.page-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.btn.auto { width: auto; }
+.tk-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.tk { display: block; padding: 14px 16px; color: inherit; }
+.tk:hover { text-decoration: none; border-color: var(--border-hi); }
+.tk-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tk-top h1 { font-size: 1.2rem; margin: 0; }
+.tk-top strong { color: var(--strong); }
+.status.tk-open { background: var(--warn-bg); color: var(--warn-text); border-color: rgba(245, 158, 11, .25); }
+.status.tk-waiting { background: rgba(96, 165, 250, .12); color: #93C5FD; border-color: rgba(96, 165, 250, .3); }
+.status.tk-closed { color: var(--muted); }
+.status.s-failed { background: var(--err-bg); color: var(--err-text); border-color: rgba(239, 68, 68, .25); }
+.status.wr-done, .status.wr-returned { background: var(--ok-bg); color: var(--ok-text); }
+.status.wr-rejected { background: var(--err-bg); color: var(--err-text); }
+.chat-card { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.chat { list-style: none; margin: 0; padding: 12px; display: flex; flex-direction: column; gap: 10px;
+  max-height: 55vh; min-height: 160px; overflow-y: auto; background: var(--card-2); border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.chat li { display: flex; flex-direction: column; gap: 2px; max-width: 85%; }
+.chat li.me { align-self: flex-end; align-items: flex-end; }
+.chat li.them { align-self: flex-start; }
+.chat li.sys { align-self: center; max-width: 100%; font-size: .78rem; color: var(--muted); text-align: center; }
+.bubble { padding: 9px 12px; border-radius: 14px; background: var(--hover); color: var(--strong); word-break: break-word; }
+.me .bubble { background: var(--primary-solid); color: #fff; border-bottom-right-radius: 4px; }
+.them .bubble { border-bottom-left-radius: 4px; }
+.reply-row { display: flex; gap: 8px; align-items: flex-end; }
+.reply-row textarea { flex: 1; }
+.survey { padding: 14px; border-radius: var(--radius-sm); background: var(--card-2); border: 1px solid var(--border); }
+.rate-row { display: flex; gap: 8px; border: 0; padding: 0; margin: 0; flex-wrap: wrap; }
+.rate-row label { flex-direction: row; align-items: center; gap: 4px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
+.rate-row input { width: auto; accent-color: #F59E0B; }
+.member { display: grid; gap: 4px; }
+.member p { margin: 0; }
+.member-tier { font-size: 1.5rem; font-weight: 800; color: var(--strong); background: var(--grad-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.member-bar { height: 8px; border-radius: 4px; background: var(--card-2); overflow: hidden; margin: 6px 0 2px; }
+.member-bar span { display: block; height: 100%; background: var(--grad); border-radius: 4px; }
+.offers { list-style: none; padding: 0; margin: 0 0 6px; display: grid; gap: 8px; }
+.offers li { display: grid; gap: 2px; padding: 10px 12px; border: 1px dashed rgba(129, 140, 248, .5); border-radius: var(--radius-sm); }
+.code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 700; letter-spacing: .04em; color: var(--strong); }
+.stars { color: #FBBF24; letter-spacing: 1px; white-space: nowrap; }
+.stars .off { color: #4B5563; }
+.rv-summary { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.rv-avg { display: grid; justify-items: center; gap: 2px; }
+.rv-avg strong { font-size: 2rem; color: var(--strong); line-height: 1; }
+.rv-dist { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; min-width: 220px; flex: 1; max-width: 360px; }
+.rv-dist li { display: grid; grid-template-columns: 30px 1fr 24px; gap: 8px; align-items: center; font-size: .8rem; }
+.rv-bar { height: 6px; border-radius: 3px; background: var(--card-2); overflow: hidden; }
+.rv-bar span { display: block; height: 100%; background: #FBBF24; }
+.rv-form-wrap { margin: 12px 0; }
+.rv-details summary { cursor: pointer; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+.rv-stars { border: 0; padding: 0; margin: 0; display: flex; gap: 6px 14px; flex-wrap: wrap; }
+.rv-stars legend { font-size: .8rem; font-weight: 600; color: #D1D5DB; margin-bottom: 6px; }
+.rv-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; }
+.rv { padding: 12px 0; border-top: 1px solid var(--border); }
+.rv p { margin: 6px 0 0; }
+.rv-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.rv-head strong { color: var(--strong); }
+.rv-reply { margin-top: 8px; padding: 8px 12px; border-left: 3px solid var(--primary-solid); background: var(--card-2); border-radius: 0 10px 10px 0; font-size: .85rem; }
+
 /* ---------- Màn hình hẹp (điện thoại / iframe nhỏ) ---------- */
 @media (max-width: 1100px) {
   .topbar, .foot-in { padding-left: 16px; padding-right: 16px; }

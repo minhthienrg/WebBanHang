@@ -24,6 +24,7 @@
   <link rel="modulepreload" href="js/catalog.js">
   <link rel="modulepreload" href="js/account.js">
   <link rel="modulepreload" href="js/cart.js">
+  <link rel="modulepreload" href="js/support.js">
 </head>
 <body>
   <a href="#main" class="skip" id="skip">Bỏ qua tới nội dung chính</a>
@@ -180,6 +181,9 @@
       </div>
     </section>
 
+    <!-- HỖ TRỢ KHÁCH HÀNG -->
+    <section id="view-support" class="view" hidden></section>
+
     <!-- TÀI KHOẢN: HỒ SƠ + ĐƠN HÀNG -->
     <section id="view-account" class="view" hidden>
       <div class="account-layout">
@@ -211,9 +215,14 @@
           </form>
           <button type="button" id="btn-logout" class="btn mt">Đăng xuất</button>
         </div>
-        <div class="card">
-          <h2>Đơn hàng của tôi</h2>
-          <div id="orders"></div>
+        <div class="account-side">
+          <div class="card" id="member-box"></div>
+          <div class="card" id="offers-box" hidden></div>
+          <div class="card">
+            <div class="sec-row"><h2>Đơn hàng của tôi</h2><a class="link" href="#/ho-tro">Hỗ trợ &amp; khiếu nại</a></div>
+            <div id="orders"></div>
+          </div>
+          <div class="card" id="warranty-box" hidden></div>
         </div>
       </div>
     </section>
@@ -221,7 +230,7 @@
 
   <footer class="site-foot">
     <div class="foot-in">
-      <div><strong>NEXORA</strong> &copy; 2026.</div>
+      <div><strong>NEXORA</strong> &copy; 2026. · <a href="#/ho-tro">Hỗ trợ khách hàng</a> · Hotline <a href="tel:19006868">1900 6868</a></div>
       <div class="foot-badges">
         <span><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" class="ic-green"><path fill="currentColor" d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Zm-1.5 15.5-4-4 1.41-1.41L10.5 13.67l5.59-5.58L17.5 9.5l-7 7Z"/></svg> Chính hãng 100%</span>
         <span><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" class="ic-blue"><path fill="currentColor" d="M3 4h12v4h3.5L22 12.5V17h-2a3 3 0 0 1-6 0H9a3 3 0 0 1-6 0H1V6a2 2 0 0 1 2-2Zm3 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-2-6v3h5l-2.3-3H15Z"/></svg> Giao hàng toàn quốc</span>

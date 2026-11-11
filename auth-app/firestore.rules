@@ -6,7 +6,18 @@ rules_version = '2';
 //   vouchers/{CODE}    mã giảm giá: type ('percent'|'fixed'), value, minOrder, maxDiscount, startAt, endAt, active
 //   stockMoves/{id}    phiếu kho: nhập / xuất / hủy hàng lỗi / trừ kho theo đơn (chỉ admin; có giá vốn)
 //   priceHistory/{id}  lịch sử đổi giá (chỉ admin)
-//   auditLogs/{id}     nhật ký hoạt động của quản trị viên (chỉ thêm, không sửa/xóa)
+//   auditLogs/{id}     nhật ký hoạt động của quản trị viên và nhân viên (chỉ thêm, không sửa/xóa)
+//
+//   --- Chăm sóc khách hàng (CSKH, Bảng 1.2 & 1.3 WebIdea.pdf) ---
+//   staff/{uid}              nhân viên: role ('cskh'), email, addedBy, addedAt — admin cấp
+//   settings/support         cấu hình CSKH: refundLimit (hạn mức hoàn tiền / lần của nhân viên)
+//   tickets/{id}             yêu cầu hỗ trợ (+ messages/{id}: hội thoại chat); khảo sát hài lòng khi đóng
+//   customerNotes/{id}       ghi chú nội bộ / cuộc gọi / email trên hồ sơ khách — chỉ nhân viên thấy
+//   reviews/{productId_uid}  đánh giá sản phẩm: chờ duyệt → nhân viên duyệt / ẩn / phản hồi
+//   warranties/{id}          phiếu bảo hành: trạng thái gửi trung tâm bảo hành, lịch sử
+//   refunds/{id}             hoàn tiền: nhân viên trong hạn mức, admin không giới hạn
+//   replyTemplates/{id}      mẫu trả lời nhanh
+//   members/{uid}            điểm cộng thêm, hạng thành viên đặt tay (điểm chính tính từ đơn hoàn tất)
 //   users/{uid}        hồ sơ: name, phone, address, email, createdAt, updatedAt
 //   products/{id}      sản phẩm: name, category, brand, price, oldPrice, stock, active, ...
 //   carts/{uid}        giỏ hàng: items { productId: qty }, updatedAt
@@ -22,6 +33,11 @@ service cloud.firestore {
     function isAdmin() {
       return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
+    function isStaff() {
+      return signedIn() && exists(/databases/$(database)/documents/staff/$(request.auth.uid));
+    }
+    // Quản trị viên hoặc nhân viên CSKH.
+    function isTeam() { return isAdmin() || isStaff(); }
     function notBanned() {
       return !exists(/databases/$(database)/documents/bans/$(request.auth.uid));
     }
@@ -32,7 +48,7 @@ service cloud.firestore {
 
     // ---------- Quản trị viên ----------
     match /admins/{uid} {
-      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow read: if signedIn() && (request.auth.uid == uid || isTeam());
       allow create: if isAdmin()
         && request.resource.data.keys().hasOnly(['email', 'addedBy', 'addedAt'])
         && request.resource.data.email is string
@@ -41,9 +57,26 @@ service cloud.firestore {
       allow delete: if isAdmin() && uid != request.auth.uid;   // không tự gỡ quyền của mình
     }
 
-    // ---------- Khóa tài khoản khách ----------
+    // ---------- Nhân viên (chỉ quản trị viên cấp / gỡ) ----------
+    match /staff/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isTeam());
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['role', 'email', 'addedBy', 'addedAt'])
+        && request.resource.data.role in ['cskh']
+        && request.resource.data.email is string
+        && stampedByMe(request.resource.data, 'addedBy', 'addedAt');
+      allow delete: if isAdmin();
+    }
+
+    // ---------- Cấu hình (hạn mức hoàn tiền…) ----------
+    match /settings/{key} {
+      allow read: if isTeam();
+      allow write: if isAdmin();
+    }
+
+    // ---------- Khóa tài khoản khách (chỉ admin; nhân viên xem được) ----------
     match /bans/{uid} {
-      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow read: if signedIn() && (request.auth.uid == uid || isTeam());
       allow create, update: if isAdmin()
         && request.resource.data.keys().hasOnly(['reason', 'by', 'at'])
         && request.resource.data.reason is string && request.resource.data.reason.size() <= 300
@@ -52,27 +85,40 @@ service cloud.firestore {
     }
 
     // ---------- Mã giảm giá ----------
-    // Khách đọc được 1 mã khi gõ đúng (get), không liệt kê được danh sách mã (list).
+    // Khách đọc được 1 mã khi gõ đúng (get), không liệt kê được danh sách mã (list), trừ ưu đãi riêng
+    // của chính mình (userId == uid). Nhân viên CSKH chỉ tạo được ưu đãi riêng cho 1 khách, có mức trần.
     match /vouchers/{code} {
+      function validVoucher(d) {
+        return d.code == code
+          && code.matches('^[A-Z0-9_-]{3,30}$')
+          && d.type in ['percent', 'fixed']
+          && d.value is int && d.value > 0
+          && (d.type == 'fixed' || d.value <= 100)
+          && d.minOrder is int && d.minOrder >= 0
+          && d.maxDiscount is int && d.maxDiscount >= 0
+          && d.startAt is timestamp && d.endAt is timestamp
+          && d.active is bool
+          && d.get('userId', '') is string;
+      }
+      // Ưu đãi riêng do nhân viên tạo: tối đa 15% (trần ≤ 500.000₫) hoặc ≤ 300.000₫, hiệu lực ≤ 31 ngày.
+      function staffOffer(d) {
+        return d.get('userId', '') != '' && d.get('createdBy', '') == request.auth.uid
+          && (d.type == 'percent' ? d.value <= 15 && d.maxDiscount > 0 && d.maxDiscount <= 500000 : d.value <= 300000)
+          && d.endAt <= d.startAt + duration.value(31, 'd');
+      }
       allow get: if true;
-      allow list: if isAdmin();
-      allow create, update: if isAdmin()
-        && request.resource.data.code == code
-        && code.matches('^[A-Z0-9_-]{3,30}$')
-        && request.resource.data.type in ['percent', 'fixed']
-        && request.resource.data.value is int && request.resource.data.value > 0
-        && (request.resource.data.type == 'fixed' || request.resource.data.value <= 100)
-        && request.resource.data.minOrder is int && request.resource.data.minOrder >= 0
-        && request.resource.data.maxDiscount is int && request.resource.data.maxDiscount >= 0
-        && request.resource.data.startAt is timestamp && request.resource.data.endAt is timestamp
-        && request.resource.data.active is bool;
-      allow delete: if isAdmin();
+      allow list: if isTeam() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create, update: if validVoucher(request.resource.data)
+        && (isAdmin() || (isStaff() && staffOffer(request.resource.data)
+                          && (resource == null || staffOffer(resource.data))));
+      allow delete: if isAdmin() || (isStaff() && staffOffer(resource.data));
     }
 
     // ---------- Kho, lịch sử giá, nhật ký: chỉ quản trị viên ----------
+    // Nhân viên chỉ ghi phiếu trừ / hoàn kho theo đơn; không đọc được (phiếu nhập có giá vốn).
     match /stockMoves/{id} {
       allow read: if isAdmin();
-      allow create: if isAdmin()
+      allow create: if (isAdmin() || (isStaff() && request.resource.data.type in ['order', 'order-return']))
         && request.resource.data.type in ['in', 'out', 'damaged', 'order', 'order-return']
         && request.resource.data.qty is int
         && stampedByMe(request.resource.data, 'by', 'at');
@@ -85,11 +131,153 @@ service cloud.firestore {
     }
     match /auditLogs/{id} {
       allow read: if isAdmin();
-      allow create: if isAdmin()
+      allow create: if isTeam()
         && request.resource.data.keys().hasOnly(['action', 'target', 'detail', 'by', 'byEmail', 'at'])
         && request.resource.data.action is string && request.resource.data.detail is string
         && stampedByMe(request.resource.data, 'by', 'at');
       allow update, delete: if false;   // nhật ký không sửa/xóa được, kể cả admin
+    }
+
+    // =====================================================================
+    // Chăm sóc khách hàng
+    // =====================================================================
+
+    // ---------- Yêu cầu hỗ trợ ----------
+    // Khách tạo (kênh web), nhân viên tạo hộ khi khách gọi hotline / gửi email.
+    // status: open (chờ nhân viên) · waiting (chờ khách) · closed. dept: bộ phận đang xử lý.
+    match /tickets/{id} {
+      function isOwner() { return signedIn() && resource.data.userId == request.auth.uid; }
+      function validNew(d) {
+        return d.keys().hasOnly(['userId', 'userEmail', 'userName', 'subject', 'category', 'orderId', 'productId',
+                                 'channel', 'status', 'dept', 'assignee', 'assigneeEmail',
+                                 'createdAt', 'updatedAt', 'lastMessageAt', 'lastFrom'])
+          && d.subject is string && d.subject.size() > 0 && d.subject.size() <= 150
+          && d.category in ['hoi-dap', 'tu-van', 'khieu-nai', 'huy-don', 'doi-tra', 'bao-hanh', 'giao-hang', 'thanh-toan', 'khac']
+          && d.orderId is string && d.productId is string
+          && d.userName is string && d.userName.size() <= 100
+          && d.status == 'open' && d.dept == 'cskh'
+          && d.createdAt == request.time && d.updatedAt == request.time && d.lastMessageAt == request.time;
+      }
+      allow read: if isTeam() || isOwner();
+      allow create: if signedIn() && validNew(request.resource.data) && (
+        (request.resource.data.userId == request.auth.uid && request.resource.data.channel == 'web'
+          && request.resource.data.userEmail == request.auth.token.get('email', '')
+          && request.resource.data.assignee == '' && request.resource.data.lastFrom == 'customer')
+        || (isTeam() && request.resource.data.channel in ['phone', 'email', 'chat'] && request.resource.data.lastFrom == 'staff'));
+      allow update: if isTeam()
+        // Khách nhắn thêm vào phiếu chưa đóng → phiếu quay về "chờ nhân viên".
+        || (isOwner() && resource.data.status != 'closed'
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'lastMessageAt', 'lastFrom', 'updatedAt'])
+            && request.resource.data.status == 'open' && request.resource.data.lastFrom == 'customer'
+            && request.resource.data.lastMessageAt == request.time && request.resource.data.updatedAt == request.time)
+        // Khảo sát hài lòng: khách chấm 1 lần sau khi phiếu đóng.
+        || (isOwner() && resource.data.status == 'closed' && !('rating' in resource.data)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rating', 'ratingComment', 'ratedAt'])
+            && request.resource.data.rating is int && request.resource.data.rating >= 1 && request.resource.data.rating <= 5
+            && request.resource.data.ratingComment is string && request.resource.data.ratingComment.size() <= 500
+            && request.resource.data.ratedAt == request.time);
+      allow delete: if false;
+
+      match /messages/{mid} {
+        // getAfter: tin nhắn đầu tiên được ghi cùng batch với phiếu (phiếu chưa tồn tại trước batch).
+        function ticket() { return getAfter(/databases/$(database)/documents/tickets/$(id)).data; }
+        allow read: if isTeam() || (signedIn() && ticket().userId == request.auth.uid);
+        allow create: if signedIn()
+          && request.resource.data.keys().hasOnly(['from', 'text', 'by', 'byName', 'at'])
+          && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 2000
+          && request.resource.data.byName is string && request.resource.data.byName.size() <= 100
+          && request.resource.data.by == request.auth.uid && request.resource.data.at == request.time
+          && ((request.resource.data.from == 'customer' && ticket().userId == request.auth.uid && ticket().status != 'closed')
+              || (request.resource.data.from in ['staff', 'system'] && isTeam()));
+        allow update, delete: if false;
+      }
+    }
+
+    // ---------- Ghi chú nội bộ trên hồ sơ khách (chỉ nhân viên) ----------
+    match /customerNotes/{id} {
+      allow read: if isTeam();
+      allow create: if isTeam()
+        && request.resource.data.keys().hasOnly(['userId', 'type', 'text', 'by', 'byEmail', 'at'])
+        && request.resource.data.type in ['note', 'call', 'email', 'offer']
+        && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 2000
+        && stampedByMe(request.resource.data, 'by', 'at');
+      allow update, delete: if false;
+    }
+
+    // ---------- Thành viên: điểm cộng thêm / hạng đặt tay ----------
+    match /members/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isTeam());
+      allow write: if isTeam()
+        && request.resource.data.keys().hasOnly(['bonusPoints', 'tier', 'note', 'by', 'at'])
+        && request.resource.data.bonusPoints is int
+        && request.resource.data.tier in ['', 'member', 's-member', 'vip']
+        && request.resource.data.note is string && request.resource.data.note.size() <= 300
+        && stampedByMe(request.resource.data, 'by', 'at');
+    }
+
+    // ---------- Đánh giá sản phẩm ----------
+    // ID = {productId}_{uid}: mỗi khách 1 đánh giá / sản phẩm. Sửa lại thì phải duyệt lại.
+    match /reviews/{id} {
+      function validReview(d) {
+        return d.keys().hasOnly(['productId', 'productName', 'userId', 'userName', 'rating', 'text', 'status', 'createdAt', 'updatedAt'])
+          && id == d.productId + '_' + request.auth.uid && d.userId == request.auth.uid
+          && d.rating is int && d.rating >= 1 && d.rating <= 5
+          && d.text is string && d.text.size() <= 1000
+          && d.userName is string && d.userName.size() > 0 && d.userName.size() <= 100
+          && d.productName is string && d.productName.size() <= 200
+          && d.status == 'pending' && d.updatedAt == request.time;
+      }
+      allow read: if resource.data.status == 'approved' || isTeam()
+        || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create: if signedIn() && notBanned() && validReview(request.resource.data)
+        && request.resource.data.createdAt == request.time
+        && exists(/databases/$(database)/documents/products/$(request.resource.data.productId));
+      allow update: if (signedIn() && resource.data.userId == request.auth.uid && notBanned()
+                        && validReview(request.resource.data)
+                        && request.resource.data.createdAt == resource.data.createdAt)
+        || (isTeam()
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'reply', 'replyBy', 'replyByName', 'replyAt', 'moderatedBy', 'moderatedAt'])
+            && request.resource.data.status in ['pending', 'approved', 'hidden']
+            && request.resource.data.get('reply', '') is string && request.resource.data.get('reply', '').size() <= 1000);
+      allow delete: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+    }
+
+    // ---------- Phiếu bảo hành ----------
+    match /warranties/{id} {
+      allow read: if isTeam() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create, update: if isTeam()
+        && request.resource.data.status in ['received', 'checking', 'sent', 'repairing', 'returned', 'done', 'rejected']
+        && request.resource.data.serial is string && request.resource.data.serial.size() <= 60
+        && request.resource.data.userId is string
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
+    // ---------- Hoàn tiền ----------
+    // Không vượt tổng tiền đơn; nhân viên không vượt hạn mức settings/support.refundLimit mỗi lần.
+    match /refunds/{id} {
+      function order() { return get(/databases/$(database)/documents/orders/$(request.resource.data.orderId)).data; }
+      allow read: if isTeam() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isTeam()
+        && request.resource.data.keys().hasOnly(['orderId', 'userId', 'amount', 'reason', 'method', 'by', 'byEmail', 'at'])
+        && request.resource.data.amount is int && request.resource.data.amount > 0
+        && request.resource.data.amount <= order().total
+        && request.resource.data.userId == order().userId
+        && request.resource.data.method in ['bank', 'cash', 'voucher']
+        && request.resource.data.reason is string && request.resource.data.reason.size() > 0 && request.resource.data.reason.size() <= 300
+        && stampedByMe(request.resource.data, 'by', 'at')
+        && (isAdmin() || request.resource.data.amount <= get(/databases/$(database)/documents/settings/support).data.refundLimit);
+      allow update, delete: if false;
+    }
+
+    // ---------- Mẫu trả lời nhanh ----------
+    match /replyTemplates/{id} {
+      allow read, delete: if isTeam();
+      allow create, update: if isTeam()
+        && request.resource.data.keys().hasOnly(['title', 'text', 'by', 'at'])
+        && request.resource.data.title is string && request.resource.data.title.size() > 0 && request.resource.data.title.size() <= 80
+        && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 2000
+        && stampedByMe(request.resource.data, 'by', 'at');
     }
 
     // ---------- Hồ sơ người dùng ----------
@@ -106,7 +294,7 @@ service cloud.firestore {
           && d.updatedAt == request.time;
       }
 
-      allow read: if isOwner() || isAdmin();
+      allow read: if isOwner() || isTeam();
       allow create: if isOwner()
         && validProfile(request.resource.data)
         && request.resource.data.createdAt == request.time;
@@ -120,8 +308,12 @@ service cloud.firestore {
     // Ai cũng xem được sản phẩm đang bán (kể cả chưa đăng nhập).
     // Truy vấn danh sách phải có where('active', '==', true).
     match /products/{id} {
-      allow read: if resource.data.active == true || isAdmin();
+      allow read: if resource.data.active == true || isTeam();
       allow write: if isAdmin();
+      // Nhân viên CSKH xác nhận / hủy đơn → chỉ được trừ / hoàn tồn kho, không sửa giá.
+      allow update: if isStaff()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stock', 'sold', 'updatedAt'])
+        && request.resource.data.stock is int && request.resource.data.stock >= 0;
     }
 
     // ---------- Giỏ hàng ----------
@@ -187,6 +379,7 @@ service cloud.firestore {
       }
       function voucherMatch(subtotal, v, disc) {
         return v.active == true && request.time >= v.startAt && request.time <= v.endAt
+          && (v.get('userId', '') == '' || v.userId == request.auth.uid)
           && subtotal >= v.minOrder
           && disc == capDiscount(v.type == 'percent' ? math.floor(subtotal * v.value / 100) : v.value,
                                  v.maxDiscount, subtotal);
@@ -225,13 +418,30 @@ service cloud.firestore {
           && d.updatedAt == request.time;
       }
 
-      allow read: if signedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow read: if signedIn() && (resource.data.userId == request.auth.uid || isTeam());
 
       allow create: if signedIn() && notBanned() && validNewOrder(request.resource.data);
 
+      // Nhân viên CSKH chỉ đổi trạng thái theo đúng luồng (Bảng 1.3: "một số trạng thái"),
+      // không sửa tiền / sản phẩm / người nhận. PHẢI khớp với STAFF_NEXT trong public/admin/js/core.js.
+      function staffTransition(from, to) {
+        return to in {
+          'pending': ['confirmed', 'cancelled'],
+          'confirmed': ['preparing', 'cancelled'],
+          'preparing': ['shipping', 'cancelled'],
+          'shipping': ['done', 'failed'],
+          'failed': ['shipping', 'cancelled']
+        }.get(from, []);
+      }
+
       // Khách chỉ được hủy đơn của mình khi còn "Chờ xác nhận". Quản trị viên sửa được mọi đơn
       // (trang quản trị trừ/hoàn tồn kho theo trường stockDeducted khi đổi trạng thái).
-      allow update: if isAdmin() || (
+      allow update: if isAdmin()
+        || (isStaff()
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt', 'stockDeducted', 'statusHistory', 'doneAt'])
+            && (request.resource.data.status == resource.data.status
+                || staffTransition(resource.data.status, request.resource.data.status)))
+        || (
         signedIn()
         && resource.data.userId == request.auth.uid
         && resource.data.status == 'pending'

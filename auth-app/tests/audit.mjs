@@ -66,12 +66,28 @@ for (const [tag, viewport, mobile] of [['desktop', { width: 1280, height: 900 },
     await audit(page, `${scheme} danh mục + bộ lọc`);
     await page.goto(`${BASE}/#/sp/cpu-intel-i5-14400f`);
     await page.waitForSelector('.detail h1');
-    await audit(page, `${scheme} chi tiết`);
+    await page.waitForFunction(() => !document.querySelector('#reviews')?.textContent.includes('Đang tải'));
+    await audit(page, `${scheme} chi tiết + đánh giá`);
     await page.goto(`${BASE}/#/dang-nhap`);
     await page.waitForSelector('#form-login:visible');
     await audit(page, `${scheme} đăng nhập`);
     await page.click('.tab[data-tab=register]');
     await audit(page, `${scheme} đăng ký`);
+    // Đăng ký rồi kiểm tra các trang cần đăng nhập: hỗ trợ khách hàng, tài khoản (thành viên).
+    await page.fill('#form-register [name=name]', 'Người Kiểm Tra');
+    await page.fill('#form-register [name=email]', `a11y-${tag}-${scheme}-${Date.now()}@test.com`);
+    await page.fill('#form-register [name=password]', 'matkhau123');
+    await page.fill('#form-register [name=password2]', 'matkhau123');
+    await page.click('#form-register [type=submit]');
+    await page.waitForFunction(() => location.hash === '#/tai-khoan', null, { timeout: 15000 });
+    await page.waitForSelector('#member-box .member-tier');
+    await audit(page, `${scheme} tài khoản + thành viên`);
+    await page.goto(`${BASE}/#/ho-tro`);
+    await page.waitForSelector('#view-support h1');
+    await audit(page, `${scheme} hỗ trợ`);
+    await page.goto(`${BASE}/#/ho-tro/moi`);
+    await page.waitForSelector('#tk-form');
+    await audit(page, `${scheme} gửi yêu cầu hỗ trợ`);
     await ctx.close();
   }
 }

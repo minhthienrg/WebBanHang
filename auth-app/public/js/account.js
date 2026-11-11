@@ -47,23 +47,27 @@ export async function ensureProfile(user, name) {
   return data;
 }
 
-export function clearProfile() { currentProfile = null; ban = null; admin = false; }
+export function clearProfile() { currentProfile = null; ban = null; admin = false; staff = false; }
 
 // ---------- Quyền quản trị & khóa tài khoản ----------
 let ban = null;      // dữ liệu bans/{uid} nếu tài khoản bị khóa
 let admin = false;
+let staff = false;   // nhân viên chăm sóc khách hàng (staff/{uid})
 export const banInfo = () => ban;
 export const isAdmin = () => admin;
+export const isStaff = () => staff;
 
 /** Đọc trạng thái admin + khóa của tài khoản (gọi khi đăng nhập). */
 export async function loadRoles(user) {
-  const [a, b] = await Promise.all([
+  const [a, st, b] = await Promise.all([
     getDoc(doc(db, 'admins', user.uid)).catch(() => null),
+    getDoc(doc(db, 'staff', user.uid)).catch(() => null),
     getDoc(doc(db, 'bans', user.uid)).catch(() => null)
   ]);
   admin = !!a?.exists();
+  staff = !!st?.exists();
   ban = b?.exists() ? b.data() : null;
-  return { admin, ban };
+  return { admin, staff, ban };
 }
 
 /** Lưu SĐT/địa chỉ vào hồ sơ (dùng ở trang thanh toán khi hồ sơ còn trống). */
@@ -98,6 +102,7 @@ const STATUS = {
   confirmed: 'Đã xác nhận',
   preparing: 'Đang chuẩn bị',
   shipping: 'Đang giao',
+  failed: 'Giao thất bại',
   done: 'Hoàn tất',
   cancelled: 'Đã hủy'
 };
@@ -117,12 +122,17 @@ export async function renderAccount(user) {
   banNote.textContent = ban
     ? `Tài khoản đã bị khóa${ban.reason ? ` (lý do: ${ban.reason})` : ''}. Bạn vẫn xem được đơn cũ nhưng không đặt hàng mới được. Liên hệ bộ phận chăm sóc khách hàng để được hỗ trợ.`
     : '';
-  $('#admin-link').hidden = !admin;
+  $('#admin-link').hidden = !(admin || staff);
+  $('#admin-link').textContent = admin ? 'Vào trang quản trị' : 'Vào trang chăm sóc khách hàng';
   const f = $('#form-profile');
   f.name.value = data.name || '';
   f.phone.value = data.phone || '';
   f.address.value = data.address || '';
-  await renderOrders(user);
+  const orders = await renderOrders(user);
+  if (orders) {
+    const { renderAccountExtras } = await import('./support.js');
+    await renderAccountExtras(user, orders).catch(console.error);
+  }
 }
 
 async function renderOrders(user) {
@@ -135,8 +145,15 @@ async function renderOrders(user) {
       .sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
     if (!orders.length) {
       box.innerHTML = '<p class="hint">Bạn chưa có đơn hàng nào. <a href="#/">Mua sắm ngay</a></p>';
-      return;
+      return orders;
     }
+    // Khoản đã hoàn tiền (nhân viên CSKH xử lý sự cố đơn).
+    const refunded = new Map();
+    try {
+      const rs = await getDocs(query(collection(db, 'refunds'), where('userId', '==', user.uid)));
+      for (const d of rs.docs) refunded.set(d.data().orderId, (refunded.get(d.data().orderId) || 0) + d.data().amount);
+    } catch { /* bỏ qua */ }
+    const ask = (o, loai, text) => `<a class="link" href="#/ho-tro/moi?loai=${loai}&don=${encodeURIComponent(o.id)}">${text}</a>`;
     box.innerHTML = orders.map((o) => `
       <article class="order">
         <div class="order-head">
@@ -145,15 +162,23 @@ async function renderOrders(user) {
         </div>
         <p class="hint">${o.createdAt ? esc(o.createdAt.toDate().toLocaleString('vi-VN')) : ''}
           · ${o.items.reduce((n, i) => n + i.qty, 0)} sản phẩm · <strong>${money(o.total)}</strong>
-          ${o.discount ? ` · đã giảm ${money(o.discount)}` : ''}</p>
+          ${o.discount ? ` · đã giảm ${money(o.discount)}` : ''}
+          ${refunded.get(o.id) ? ` · <strong class="ok-text">đã hoàn ${money(refunded.get(o.id))}</strong>` : ''}</p>
         <ul class="order-items">
           ${o.items.map((i) => `<li>${esc(i.name)} × ${i.qty}</li>`).join('')}
         </ul>
+        <div class="order-acts">
         ${o.status === 'pending'
           ? `<button type="button" class="link danger" data-cancel="${esc(o.id)}">Hủy đơn</button>` : ''}
+        ${['confirmed', 'preparing'].includes(o.status) ? ask(o, 'huy-don', 'Yêu cầu hủy đơn') : ''}
+        ${['shipping', 'failed'].includes(o.status) ? ask(o, 'giao-hang', 'Hỏi về giao hàng') : ''}
+        ${o.status === 'done' ? `${ask(o, 'doi-tra', 'Yêu cầu đổi trả')} ${ask(o, 'bao-hanh', 'Yêu cầu bảo hành')}` : ''}
+        </div>
       </article>`).join('');
+    return orders;
   } catch (e) {
     box.innerHTML = `<p class="msg err">${esc(errText(e))}</p>`;
+    return null;
   }
 }
 

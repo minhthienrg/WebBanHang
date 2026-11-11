@@ -53,6 +53,15 @@
 - [x] Test: 87 rules + 57 E2E quản trị (`./run.sh admin`) — tất cả đạt
 - [ ] Chưa làm: 2FA, vai trò nhân viên (CSKH/kho/kỹ thuật), quy tắc tương thích Build PC, PC mẫu, bảo hành theo serial
 
+### Bước 7: Vai trò Chăm sóc khách hàng (Bảng 1.2, 1.3 WebIdea.pdf)
+- [x] Vai trò `staff/{uid}` (cskh) do admin gán; đăng nhập → chuyển tới `/admin/` với menu theo vai trò; Rules giới hạn quyền
+- [x] Yêu cầu hỗ trợ: khách gửi / chat realtime; nhân viên nhận, mẫu trả lời, chuyển bộ phận, đóng; khảo sát hài lòng
+- [x] Đơn hàng theo luồng + "Giao thất bại"; hoàn tiền trong hạn mức; cảnh báo đơn chờ lâu / giao thất bại
+- [x] Bảo hành (tra cứu serial / SĐT, hạn bảo hành, tiến độ cho khách); duyệt + phản hồi đánh giá sản phẩm
+- [x] Thành viên (hạng, điểm), ghi chú nội bộ / cuộc gọi / email, ưu đãi riêng; tra cứu thông số + kiểm tra tương thích (Bảng 4.2)
+- [x] Test: 163 rules + 58 E2E CSKH (`./run.sh cskh`) + axe trên trang hỗ trợ / tài khoản / đánh giá — tất cả đạt
+- [ ] Chưa làm: chatbot, Build PC cho khách, vai trò kho / kỹ thuật viên
+
 ## Cách test
 ```bash
 cd auth-app/tests

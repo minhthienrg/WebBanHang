@@ -1,35 +1,29 @@
 // Quản lý đơn hàng: xem toàn bộ đơn, lọc theo trạng thái, tìm theo mã đơn / SĐT / email / tên,
 // cập nhật trạng thái. Chuyển sang "Đã xác nhận" (hoặc sau đó) thì trừ tồn kho; hủy / trả về "Chờ xác nhận"
 // thì hoàn kho. Trường stockDeducted trên đơn bảo đảm không trừ / hoàn 2 lần.
+// Nhân viên CSKH chỉ đổi trạng thái theo luồng NEXT (core.js) và hoàn tiền trong hạn mức được cấp.
 import {
-  doc, collection, runTransaction, serverTimestamp, Timestamp, arrayUnion
+  doc, collection, runTransaction, serverTimestamp, Timestamp, arrayUnion,
+  getDoc, getDocs, query, where, writeBatch
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
 import {
   db, me, load, loadAll, patchCache, audit, esc, money, num, fold, toast, errMsg, userError, busy,
   openDialog, closeDialog, ask, pager, hrefWith, fmtDateTime, toMs, STATUS, STATUS_ORDER, DEDUCTED,
-  statusBadge, shortId, refreshBadges, downloadCsv, orderDiscount
+  statusBadge, shortId, refreshBadges, downloadCsv, orderDiscount, NEXT, isAdminRole
 } from './core.js';
 
 const PAGE = 30;
 const TABS = [
   ['', 'Tất cả'], ['pending', STATUS.pending], ['dang-xu-ly', 'Đang xử lý'],
   ['confirmed', STATUS.confirmed], ['preparing', STATUS.preparing], ['shipping', STATUS.shipping],
-  ['done', STATUS.done], ['cancelled', STATUS.cancelled]
+  ['failed', STATUS.failed], ['done', STATUS.done], ['cancelled', STATUS.cancelled]
 ];
-// Bước tiếp theo gợi ý cho từng trạng thái (quản trị viên vẫn chọn được mọi trạng thái).
-const NEXT = {
-  pending: ['confirmed', 'cancelled'],
-  confirmed: ['preparing', 'cancelled'],
-  preparing: ['shipping', 'cancelled'],
-  shipping: ['done', 'cancelled'],
-  done: [],
-  cancelled: []
-};
+const REFUND_METHODS = { bank: 'Chuyển khoản', cash: 'Tiền mặt', voucher: 'Mã giảm giá / điểm' };
 const PAY = { cod: 'COD (tiền mặt khi nhận)', bank: 'Chuyển khoản' };
 
 function matchTab(o, tt) {
   if (!tt) return true;
-  if (tt === 'dang-xu-ly') return ['confirmed', 'preparing', 'shipping'].includes(o.status);
+  if (tt === 'dang-xu-ly') return ['confirmed', 'preparing', 'shipping', 'failed'].includes(o.status);
   return o.status === tt;
 }
 
@@ -123,7 +117,8 @@ async function openOrder(id, params) {
         <div>
           <h3>Người nhận</h3>
           <p>${esc(o.shipping?.name)}<br>${esc(o.shipping?.phone)}<br>${esc(o.shipping?.address)}</p>
-          <p class="sub">Tài khoản: ${u ? `<a href="#/khach-hang?q=${encodeURIComponent(u.email)}">${esc(u.email)}</a>` : esc(o.userId)}</p>
+          <p class="sub">Tài khoản: ${u ? `<a href="#/khach-hang?q=${encodeURIComponent(u.email)}&mo=${encodeURIComponent(u.id)}">${esc(u.email)}</a>` : esc(o.userId)}
+            · <a href="tel:${esc(o.shipping?.phone)}">Gọi khách</a></p>
         </div>
         <div>
           <h3>Thông tin đơn</h3>
@@ -145,11 +140,14 @@ async function openOrder(id, params) {
         </tfoot>
       </table>
 
+      <section id="rf-box" class="rf-box"><p class="hint">Đang tải hoàn tiền…</p></section>
+
+      ${!isAdminRole() && !NEXT[o.status]?.length ? '<p class="hint">Đơn đã kết thúc — nhân viên CSKH không đổi được trạng thái. Cần thay đổi thì chuyển yêu cầu cho quản trị viên.</p>' : `
       <form class="form" id="sf">
         <h3>Cập nhật trạng thái</h3>
         <div class="grid2">
           <label>Trạng thái mới
-            <select name="status">${STATUS_ORDER.filter((s) => s !== o.status).map((s) => `<option value="${s}" ${NEXT[o.status]?.[0] === s ? 'selected' : ''}>${esc(STATUS[s])}${NEXT[o.status]?.includes(s) ? '' : ' (bất thường)'}</option>`).join('')}</select></label>
+            <select name="status">${(isAdminRole() ? STATUS_ORDER.filter((s) => s !== o.status) : NEXT[o.status]).map((s) => `<option value="${s}" ${NEXT[o.status]?.[0] === s ? 'selected' : ''}>${esc(STATUS[s])}${NEXT[o.status]?.includes(s) ? '' : ' (bất thường)'}</option>`).join('')}</select></label>
           <label>Ghi chú nội bộ <input name="note" maxlength="300" placeholder="vd: đã gọi xác nhận, mã vận đơn…"></label>
         </div>
         <p class="hint" id="sf-hint"></p>
@@ -157,14 +155,16 @@ async function openOrder(id, params) {
           <button type="button" class="btn small" data-close>Đóng</button>
           <button type="submit" class="btn small primary">Cập nhật</button>
         </div>
-      </form>
+      </form>`}
 
       ${hist.length ? `<h3>Lịch sử xử lý</h3><ul class="timeline">${hist.map((h) => `<li>
         <span class="sub">${esc(fmtDateTime(h.at))}</span> ${statusBadge(h.status)} <span class="sub">${esc(h.byEmail || '')}</span>
         ${h.note ? `<div>${esc(h.note)}</div>` : ''}</li>`).join('')}</ul>` : ''}
     </div>`, { wide: true });
 
+  loadRefunds(o, body.querySelector('#rf-box'), params);
   const f = body.querySelector('#sf');
+  if (!f) return;
   const hint = () => {
     const s = f.status.value;
     const deduct = DEDUCTED.has(s) && !o.stockDeducted;
@@ -244,3 +244,58 @@ async function changeStatus(id, next, note, params) {
   } catch (e) { toast(errMsg(e), 'err'); }
 }
 
+
+// ---------- Hoàn tiền (Bảng 1.2 "Xử lý sự cố đơn hàng", Bảng 1.3: CSKH trong hạn mức) ----------
+async function loadRefunds(o, box, params) {
+  try {
+    const [snap, set] = await Promise.all([
+      getDocs(query(collection(db, 'refunds'), where('orderId', '==', o.id))),
+      getDoc(doc(db, 'settings', 'support')).catch(() => null)
+    ]);
+    const list = snap.docs.map((d) => d.data()).sort((a, b) => toMs(a.at) - toMs(b.at));
+    const done = list.reduce((s, r) => s + r.amount, 0);
+    const limit = set?.exists() ? set.data().refundLimit : null;
+    const left = o.total - done;
+    const admin = isAdminRole();
+    box.innerHTML = `
+      <h3>Hoàn tiền ${done ? `· đã hoàn ${money(done)}` : ''}</h3>
+      ${list.length ? `<ul class="timeline">${list.map((r) => `<li><span class="sub">${esc(fmtDateTime(r.at))} · ${esc(r.byEmail)}</span><br>
+        <strong>${money(r.amount)}</strong> · ${esc(REFUND_METHODS[r.method] || r.method)} · ${esc(r.reason)}</li>`).join('')}</ul>` : ''}
+      ${left <= 0 ? '<p class="hint">Đã hoàn đủ tổng tiền đơn.</p>'
+        : !admin && !limit ? '<p class="hint">Quản trị viên chưa cấp hạn mức hoàn tiền cho nhân viên (Cài đặt).</p>'
+        : `<details class="ph"><summary>Hoàn tiền cho khách (thiếu hàng, giao sai, lỗi thanh toán…)</summary>
+        <form class="form" id="rff" novalidate>
+          <div class="grid2">
+            <label>Số tiền (₫) <small>${admin ? `tối đa ${money(left)}` : `hạn mức của bạn ${money(limit)}/lần`}</small>
+              <input name="amount" type="number" min="1000" step="1000" required inputmode="numeric" max="${admin ? left : Math.min(left, limit)}"></label>
+            <label>Hình thức <select name="method">${Object.entries(REFUND_METHODS).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join('')}</select></label>
+          </div>
+          <label>Lý do <input name="reason" required maxlength="300" placeholder="vd: Giao thiếu 1 RAM, khách đồng ý hoàn tiền"></label>
+          <div class="dlg-actions"><button type="submit" class="btn small primary">Ghi nhận hoàn tiền</button></div>
+        </form></details>`}`;
+    const f = box.querySelector('#rff');
+    f?.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const amount = Number(f.amount.value);
+      if (!Number.isInteger(amount) || amount <= 0) return toast('Số tiền phải là số nguyên dương.', 'err');
+      if (amount > left) return toast(`Không hoàn quá số còn lại của đơn (${money(left)}).`, 'err');
+      if (!admin && amount > limit) return toast(`Vượt hạn mức ${money(limit)}. Hãy chuyển yêu cầu cho quản trị viên.`, 'err');
+      if (!f.reason.value.trim()) return toast('Ghi lý do hoàn tiền.', 'err');
+      busy(f.querySelector('[type=submit]'), async () => {
+        try {
+          const batch = writeBatch(db);
+          batch.set(doc(collection(db, 'refunds')), {
+            orderId: o.id, userId: o.userId, amount, reason: f.reason.value.trim(), method: f.method.value,
+            by: me.uid, byEmail: me.email, at: serverTimestamp()
+          });
+          audit(batch, 'order.refund', o.id, `#${shortId(o.id)}: ${amount} (${REFUND_METHODS[f.method.value]}) · ${f.reason.value.trim()}`);
+          await batch.commit();
+          toast(`Đã ghi nhận hoàn ${money(amount)} cho đơn #${shortId(o.id)}.`);
+          loadRefunds(o, box, params);
+        } catch (e) { toast(errMsg(e), 'err'); }
+      });
+    });
+  } catch (e) {
+    box.innerHTML = `<p class="hint">${esc(errMsg(e))}</p>`;
+  }
+}

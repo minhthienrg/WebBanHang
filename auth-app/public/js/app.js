@@ -3,19 +3,21 @@
 //   #/sp/{id}                                chi tiết
 //   #/gio-hang · #/thanh-toan · #/dat-hang-thanh-cong/{id}
 //   #/dang-nhap · #/quen-mat-khau · #/tai-khoan
+//   #/ho-tro · #/ho-tro/moi?loai=&don= · #/ho-tro/{id}     hỗ trợ khách hàng (chat với nhân viên)
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
 import { auth } from './firebase.js';
 import { $, $$, say, clearMsg, errText } from './ui.js';
 import { renderList, renderDetail, listHref, loadProducts } from './catalog.js';
 import { initAccount, ensureProfile, clearProfile, renderAccount, showTab, setAuthReason, loadRoles } from './account.js';
 import { initCart, startCart, stopCart, addToCart, renderCart, renderCheckout, renderDone } from './cart.js';
+import { renderSupport, stopSupport } from './support.js';
 
 let user = null;
 let authKnown = false;
 let returnTo = null;        // trang cần quay lại sau khi đăng nhập
 let pendingAdd = null;      // sản phẩm khách bấm "thêm vào giỏ" khi chưa đăng nhập
 
-const VIEWS = ['list', 'detail', 'cart', 'checkout', 'done', 'auth', 'forgot', 'account'];
+const VIEWS = ['list', 'detail', 'cart', 'checkout', 'done', 'auth', 'forgot', 'account', 'support'];
 // Trang xem được khi chưa biết trạng thái đăng nhập: hiện ngay, không chờ Firebase Auth.
 const PUBLIC = new Set([undefined, 'sp']);
 let renderedHash = null;   // hash đã hiển thị xong
@@ -48,6 +50,7 @@ async function route() {
   if (!authKnown && !PUBLIC.has(page)) return;
   const hash = location.hash;
   clearMsgOnNav();
+  if (page !== 'ho-tro') stopSupport();   // ngừng nghe tin nhắn realtime khi rời trang hỗ trợ
   try {
     switch (page) {
       case undefined:
@@ -82,6 +85,11 @@ async function route() {
       case 'quen-mat-khau':
         show('forgot', 'account');
         $('#form-forgot').email.value = $('#form-login').email.value;
+        break;
+      case 'ho-tro':
+        if (!user) return requireLogin('Đăng nhập để gửi yêu cầu hỗ trợ và chat với nhân viên.');
+        show('support', 'account');
+        await renderSupport(user, params, arg && decodeURIComponent(arg));
         break;
       case 'tai-khoan':
         if (!user) { setAuthReason(''); location.hash = '#/dang-nhap'; return; }
@@ -129,9 +137,10 @@ onAuthStateChanged(auth, async (u) => {
   if (u) {
     nav.textContent = 'Tài khoản';
     const roles = await loadRoles(u);
-    $('#nav-admin').hidden = !roles.admin;
-    // Quản trị viên vừa đăng nhập → chuyển thẳng tới trang quản trị.
-    if (roles.admin && fromLogin) {
+    $('#nav-admin').hidden = !(roles.admin || roles.staff);
+    $('#nav-admin').textContent = roles.admin ? 'Quản trị' : 'CSKH';
+    // Quản trị viên / nhân viên CSKH vừa đăng nhập → chuyển thẳng tới trang quản lý.
+    if ((roles.admin || roles.staff) && fromLogin) {
       location.replace(ADMIN_URL);
       return;
     }
@@ -146,6 +155,7 @@ onAuthStateChanged(auth, async (u) => {
   } else {
     nav.textContent = 'Đăng nhập';
     $('#nav-admin').hidden = true;
+    stopSupport();
     stopCart();
     clearProfile();
   }

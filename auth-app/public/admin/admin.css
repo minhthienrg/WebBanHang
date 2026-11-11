@@ -161,6 +161,44 @@ label.inline select, label.inline input { width: auto; }
 details.ph summary { cursor: pointer; font-weight: 600; color: var(--primary); }
 details.ph[open] summary { margin-bottom: 8px; }
 
+/* ---------- Chăm sóc khách hàng ---------- */
+.todo { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.todo li { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; padding: 8px 10px; border-radius: 10px; background: var(--card-2); }
+.row-new td:first-child { box-shadow: inset 3px 0 0 var(--warn-text); }
+.thread-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+.thread-layout > * { min-width: 0; }
+.thread-main { display: flex; flex-direction: column; gap: 12px; }
+.th-title { font-size: 1.2rem; margin: 0; }
+.thread-side { position: sticky; top: 80px; }
+.thread-side p { margin: 4px 0 8px; }
+.reply-tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.tier { font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--card-2); border: 1px solid var(--border); white-space: nowrap; }
+.tier-s-member { color: #93C5FD; border-color: rgba(96, 165, 250, .35); }
+.tier-vip { color: #FCD34D; border-color: rgba(245, 158, 11, .45); background: rgba(245, 158, 11, .1); }
+.note-row { display: grid; grid-template-columns: 160px minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+.tpl-list { list-style: none; padding: 0; margin: 0 0 12px; display: grid; gap: 8px; }
+.tpl-list li { padding: 10px 12px; border-radius: 10px; background: var(--card-2); }
+.tpl-list p { white-space: pre-wrap; }
+.rv-admin { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.rv-admin .card { padding: 16px; }
+.rv-admin p { margin: 6px 0; }
+.rv-text { white-space: pre-wrap; }
+.reply-form { display: grid; gap: 8px; }
+.lk-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.lk-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.lk-list .btn { margin-top: 4px; }
+.compat { list-style: none; padding: 0; margin: 8px 0 12px; display: grid; gap: 6px; }
+.compat li { display: flex; gap: 8px; align-items: baseline; padding: 8px 10px; border-radius: 10px; background: var(--card-2); font-size: .82rem; }
+.compat strong { color: var(--strong); white-space: nowrap; }
+.c-ic { flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-grid; place-items: center; font-size: .7rem; font-weight: 800; }
+.c-ok .c-ic { background: var(--ok-bg); color: var(--ok-text); }
+.c-warn .c-ic { background: var(--warn-bg); color: var(--warn-text); }
+.c-error .c-ic { background: var(--err-bg); color: var(--err-text); }
+.c-error { border: 1px solid rgba(239, 68, 68, .35); }
+.c-info .c-ic { background: rgba(96, 165, 250, .15); color: #93C5FD; }
+.rf-box { margin: 12px 0; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.rf-box h3 { margin-top: 0 !important; }
+
 /* ---------- Màn hình hẹp ---------- */
 @media (max-width: 1100px) {
   .admin-main { padding: 20px 16px 80px; }
@@ -176,6 +214,8 @@ details.ph[open] summary { margin-bottom: 8px; }
   .side a { white-space: nowrap; flex: none; padding: 7px 12px; }
   .two-col { grid-template-columns: 1fr; }
   .bulk { top: 56px; }
+  .thread-layout { grid-template-columns: 1fr; }
+  .thread-side { position: static; }
 }
 @media (max-width: 720px) {
   .admin .topbar { flex-wrap: nowrap; }
@@ -194,6 +234,7 @@ details.ph[open] summary { margin-bottom: 8px; }
   .status-count { grid-template-columns: 1fr; }
   #dlg-body { padding: 14px; }
   .img-row { flex-direction: column-reverse; align-items: stretch; }
+  .note-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 420px) {
   .admin .topbar .nav-pill { display: none; }   /* "Về cửa hàng" vẫn có ở Cài đặt → Công cụ */

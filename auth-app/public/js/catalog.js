@@ -304,7 +304,7 @@ export async function renderDetail(id) {
           <button type="button" class="btn primary" data-buy="${esc(p.id)}" data-qty-from="#qty" ${out ? 'disabled' : ''}>Mua ngay</button>
         </div>
         <ul class="policy">
-          <li>Bảo hành chính hãng${p.specs?.['Bảo hành'] ? ` ${esc(p.specs['Bảo hành'])}` : ''}</li>
+          <li>Bảo hành chính hãng${p.specs?.['Bảo hành'] ? ` ${esc(p.specs['Bảo hành'])}` : ''}${p.warrantyProvider ? ` tại ${esc(p.warrantyProvider)}` : ''}</li>
           <li>Đổi trả trong 7 ngày nếu lỗi do nhà sản xuất</li>
           <li>Miễn phí giao hàng cho đơn từ 5.000.000₫</li>
           <li>Thanh toán khi nhận hàng (COD) hoặc chuyển khoản</li>
@@ -322,6 +322,8 @@ export async function renderDetail(id) {
 
     ${p.description ? `<section class="block"><h2>Mô tả</h2><p class="desc">${esc(p.description)}</p></section>` : ''}
 
+    <section class="block" id="reviews" aria-labelledby="reviews-h"><h2 id="reviews-h">Đánh giá sản phẩm</h2><p class="hint">Đang tải đánh giá…</p></section>
+
     ${similar.length ? `
     <section class="block">
       <h2>Sản phẩm tương tự</h2>
@@ -333,4 +335,6 @@ export async function renderDetail(id) {
       <button type="button" class="btn" data-add="${esc(p.id)}" data-qty-from="#qty" ${out ? 'disabled' : ''}>Thêm vào giỏ</button>
       <button type="button" class="btn primary" data-buy="${esc(p.id)}" data-qty-from="#qty" ${out ? 'disabled' : ''}>Mua ngay</button>
     </div>`;
+  // Đánh giá tải sau (không chặn hiển thị sản phẩm).
+  import('./reviews.js').then((m) => m.renderReviews(p)).catch(console.error);
 }

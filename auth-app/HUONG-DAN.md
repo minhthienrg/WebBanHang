@@ -11,7 +11,9 @@
 | Đặt hàng xong | `#/dat-hang-thanh-cong/{id}` | Mã đơn, tóm tắt |
 | Tài khoản | `#/tai-khoan` | Hồ sơ + danh sách đơn; hủy đơn khi còn "Chờ xác nhận" |
 | Đăng nhập | `#/dang-nhap`, `#/quen-mat-khau` | Email/mật khẩu, Google, quên mật khẩu |
-| **Trang quản trị** | `/admin/` | Chỉ quản trị viên. Admin đăng nhập ở cửa hàng sẽ được **chuyển thẳng** tới đây |
+| Hỗ trợ khách hàng | `#/ho-tro`, `#/ho-tro/moi?loai=&don=`, `#/ho-tro/{id}` | Gửi yêu cầu (hỏi đáp, khiếu nại, hủy đơn, đổi trả, bảo hành…), **chat realtime** với nhân viên, khảo sát hài lòng khi phiếu đóng. Đơn trong tài khoản có nút "Yêu cầu hủy / đổi trả / bảo hành" |
+| Đánh giá sản phẩm | trong `#/sp/{id}` | Khách đã đăng nhập viết đánh giá 1–5 sao; hiện công khai sau khi nhân viên duyệt, kèm phản hồi của cửa hàng |
+| **Trang quản trị / CSKH** | `/admin/` | Quản trị viên và nhân viên CSKH. Đăng nhập ở cửa hàng sẽ được **chuyển thẳng** tới đây; menu theo vai trò |
 | Nạp dữ liệu mẫu | `/admin/seed.html` | Chỉ quản trị viên |
 
 ### Trang quản trị (`/admin/`) — theo Bảng 1.1 của WebIdea.pdf
@@ -28,11 +30,29 @@
 | Nhật ký hoạt động | `#/nhat-ky` | Ai làm gì, lúc nào — không sửa/xóa được |
 | Cài đặt | `#/cai-dat` | Cấp / gỡ quyền quản trị viên, đổi mật khẩu |
 
-Đơn hàng và danh sách khách cập nhật realtime (đơn mới hiện ngay, không cần tải lại trang).
+Đơn hàng, danh sách khách và yêu cầu hỗ trợ cập nhật realtime (không cần tải lại trang).
+
+### Vai trò Chăm sóc khách hàng (CSKH) — theo Bảng 1.2 và 1.3 của WebIdea.pdf
+
+Admin gán vai trò ở **Cài đặt & nhân sự** (nhân viên tự đăng ký ở cửa hàng trước). Nhân viên dùng chung `/admin/`
+nhưng chỉ thấy các mục dưới đây; Security Rules chặn ở máy chủ những việc ngoài quyền.
+
+| Mục | Đường dẫn | Chức năng |
+|---|---|---|
+| Tổng quan CSKH | `#/cskh` | Yêu cầu chờ / chưa ai nhận, **cảnh báo** đơn chờ xác nhận > 24 giờ, đơn giao thất bại, yêu cầu chờ lâu; đánh giá chờ duyệt; bảo hành đang xử lý; mức hài lòng 30 ngày |
+| Yêu cầu hỗ trợ | `#/ho-tro`, `#/ho-tro/{id}` | Hàng đợi (của tôi, chưa nhận, chờ khách, đã chuyển…), chat realtime, **mẫu trả lời nhanh** ({ten}, {ma_don}), nhận phiếu, **chuyển bộ phận / quản trị viên**, đóng phiếu (khách tự nhận khảo sát hài lòng), tạo phiếu hộ khi khách gọi **hotline** / gửi email |
+| Đơn hàng | `#/don-hang` | Tra cứu theo mã / SĐT / email; đổi trạng thái **chỉ theo luồng** Chờ xác nhận → Đã xác nhận → Đang chuẩn bị → Đang giao → Hoàn tất / **Giao thất bại**; hủy (tự hoàn kho); **hoàn tiền trong hạn mức** admin cấp |
+| Khách hàng & thành viên | `#/khach-hang` | Hồ sơ, lịch sử mua, **hạng thành viên** (Thành viên / S-Member ≥ 10tr / VIP ≥ 30tr), điểm (1 điểm / 10.000₫ + điểm cộng tay), **ghi chú nội bộ / cuộc gọi / email** (chỉ nhân viên thấy), **ưu đãi riêng** (mã chỉ khách đó dùng được) |
+| Bảo hành | `#/bao-hanh` | Tra cứu theo serial / SĐT / email kèm **hạn bảo hành**, tạo phiếu từ đơn đã mua, cập nhật tiến độ gửi trung tâm bảo hành (khách xem ở trang tài khoản) |
+| Đánh giá sản phẩm | `#/danh-gia` | Duyệt, ẩn, phản hồi công khai |
+| Tra cứu & tương thích | `#/tra-cuu` | Xem nhanh thông số (không có giá vốn); **kiểm tra tương thích** theo Bảng 4.2 (socket, DDR, kích thước, công suất nguồn, chiều cao tản, chiều dài VGA), sao chép kết quả gửi khách |
+
+**Giới hạn quyền của CSKH (Bảng 1.3):** không xem giá vốn / phiếu kho / lịch sử giá / báo cáo doanh thu / nhật ký,
+không sửa giá sản phẩm, không khóa tài khoản, không quản lý nhân viên, không tạo mã giảm giá chung. Ưu đãi riêng
+tối đa 15% (trần 500.000₫) hoặc 300.000₫, hiệu lực ≤ 31 ngày. Hoàn tiền ≤ hạn mức mỗi lần (admin đặt ở Cài đặt; mặc định chưa cấp).
 
 **Chưa làm** (cần thêm dịch vụ hoặc thuộc phần sau của đồ án): xác thực hai lớp (cần Identity Platform),
-tài khoản nhân viên theo vai trò (CSKH, kho, kỹ thuật viên) và phân quyền theo trường dữ liệu, quy tắc tương thích Build PC,
-cấu hình PC mẫu, tra cứu bảo hành theo serial.
+vai trò kho / kỹ thuật viên / lập trình viên, chatbot tự động, công cụ Build PC cho khách và cấu hình PC mẫu.
 
 Khách chưa đăng nhập vẫn xem được sản phẩm. Khi bấm "Thêm vào giỏ", app chuyển sang đăng nhập; đăng nhập xong sẽ tự thêm sản phẩm đó và quay lại trang cũ.
 
@@ -50,13 +70,17 @@ auth-app/
 │   │   ├── catalog.js          danh sách, lọc, sắp xếp, phân trang, chi tiết
 │   │   ├── cart.js             giỏ hàng, thanh toán, đặt hàng
 │   │   ├── account.js          đăng nhập/đăng ký, hồ sơ, đơn hàng của tôi
-│   │   ├── categories.js       danh mục, khoảng giá, phí giao, giới hạn đơn
+│   │   ├── categories.js       danh mục, khoảng giá, phí giao, giới hạn đơn, hạng thành viên, nhãn CSKH
+│   │   ├── compat.js           kiểm tra tương thích linh kiện (Bảng 4.2)
+│   │   ├── support.js          hỗ trợ khách hàng (chat), thành viên / ưu đãi / bảo hành trong tài khoản
+│   │   ├── reviews.js          đánh giá sản phẩm (trang chi tiết)
 │   │   └── ui.js               tiện ích chung
 │   └── admin/
 │       ├── index.html          trang quản trị
 │       ├── admin.css
 │       ├── js/                 main.js (kiểm tra quyền, điều hướng), core.js (dữ liệu, nhật ký, biểu đồ),
-│       │                       dashboard, reports, products, inventory, orders, customers, vouchers, logs, settings
+│       │                       dashboard, reports, products, inventory, orders, customers, vouchers, logs, settings,
+│       │                       cskh, tickets, warranties, reviews, lookup (vai trò CSKH)
 │       ├── seed.html           trang nạp sản phẩm mẫu
 │       └── seed-data.js        23 sản phẩm mẫu (8 danh mục)
 ├── firestore.rules
@@ -77,7 +101,16 @@ auth-app/
 | `vouchers` | mã, ví dụ `SALE11` | `code, type ('percent'/'fixed'), value, minOrder, maxDiscount, startAt, endAt, active, description` | Khách đọc 1 mã khi gõ đúng (không liệt kê được); admin ghi |
 | `stockMoves` | tự sinh | `productId, name, type (in/out/damaged/order/order-return), qty, unitCost, supplier, note, stockAfter, orderId, by, byEmail, at` | Chỉ admin (có giá vốn) |
 | `priceHistory` | tự sinh | `productId, name, fromPrice, toPrice, fromOldPrice, toOldPrice, note, by, byEmail, at` | Chỉ admin |
-| `auditLogs` | tự sinh | `action, target, detail, by, byEmail, at` | Chỉ admin; chỉ thêm, không sửa/xóa |
+| `auditLogs` | tự sinh | `action, target, detail, by, byEmail, at` | Admin đọc; admin + CSKH ghi; chỉ thêm, không sửa/xóa |
+| `staff` | `uid` | `role ('cskh'), email, addedBy, addedAt` | Admin cấp / gỡ |
+| `settings` | `support` | `refundLimit` | Admin ghi; nhân viên đọc |
+| `tickets` (+ `messages`) | tự sinh | `userId, userEmail, userName, subject, category, orderId, channel, status (open/waiting/closed), dept, assignee, …, rating, ratingComment` | Khách tạo & chat trong phiếu của mình, chấm điểm 1 lần khi đóng; nhân viên xử lý mọi phiếu |
+| `customerNotes` | tự sinh | `userId, type (note/call/email/offer), text, by, byEmail, at` | Chỉ nhân viên; không sửa/xóa |
+| `members` | `uid` | `bonusPoints, tier, note, by, at` | Khách đọc của mình; nhân viên ghi |
+| `reviews` | `{productId}_{uid}` | `productId, productName, userId, userName, rating, text, status (pending/approved/hidden), reply…` | Ai cũng đọc bài đã duyệt; khách viết/sửa của mình (phải duyệt lại); nhân viên duyệt / phản hồi |
+| `warranties` | tự sinh | `userId, customerName, phone, email, orderId, productId, productName, serial, issue, center, status, history[]` | Nhân viên tạo / cập nhật; khách xem của mình |
+| `refunds` | tự sinh | `orderId, userId, amount, reason, method, by, byEmail, at` | Nhân viên ≤ hạn mức / lần, admin ≤ tổng đơn; khách xem của mình |
+| `replyTemplates` | tự sinh | `title, text, by, at` | Nhân viên |
 
 `category` nhận một trong các giá trị: `cpu, mainboard, ram, vga, o-cung, nguon, case, tan-nhiet` (khai báo trong `js/categories.js`).
 Giá là **số nguyên, đơn vị đồng**. `oldPrice = 0` nghĩa là không giảm giá.
@@ -90,7 +123,7 @@ Khách chỉnh code trên trình duyệt cũng **không** làm được các vi�
 - Đặt vượt tồn kho, đặt sản phẩm đã ẩn, số lượng ngoài khoảng 1–10 hoặc không phải số nguyên.
 - Đặt hộ người khác, tự đặt trạng thái khác `pending`, sửa đơn sau khi đặt (chỉ được hủy).
 
-Rules đã chạy trên Firestore emulator với 87 ca kiểm thử, gồm cả đơn 8 dòng có mã giảm giá. Tất cả đều đạt.
+Rules đã chạy trên Firestore emulator với 163 ca kiểm thử (gồm quyền CSKH, hoàn tiền, phiếu hỗ trợ, đánh giá, ưu đãi riêng). Tất cả đều đạt.
 
 ### Giới hạn hiện tại (cần biết)
 

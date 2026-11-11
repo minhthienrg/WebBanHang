@@ -4,6 +4,7 @@
 #   ./run.sh rules      chỉ test Security Rules
 #   ./run.sh e2e        chỉ test E2E Playwright (cửa hàng)
 #   ./run.sh admin      chỉ test E2E trang quản trị
+#   ./run.sh cskh       chỉ test E2E vai trò chăm sóc khách hàng
 #   ./run.sh audit      kiểm tra accessibility (axe-core) + đo tốc độ
 #   ./run.sh dev        chạy thử trên máy: emulator + 254 linh kiện NEXORA, mở http://localhost:5000
 #   ./run.sh dev-mau    như trên nhưng dùng 23 sản phẩm mẫu
@@ -26,10 +27,11 @@ case "${1:-all}" in
   rules) CMD="node rules.test.mjs" ;;
   e2e)   CMD="node e2e.mjs" ;;
   admin) CMD="node admin-e2e.mjs" ;;
+  cskh)  CMD="node cskh-e2e.mjs" ;;
   audit) CMD="node audit.mjs" ;;
   dev)   CMD="node seed.mjs && sleep infinity" ;;
   dev-mau) CMD="node seed.mjs mau && sleep infinity" ;;
-  *)     CMD="node rules.test.mjs && node e2e.mjs && node admin-e2e.mjs && node audit.mjs" ;;
+  *)     CMD="node rules.test.mjs && node e2e.mjs && node admin-e2e.mjs && node cskh-e2e.mjs && node audit.mjs" ;;
 esac
 
 cd ..

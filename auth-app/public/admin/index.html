@@ -21,7 +21,7 @@
   <header class="topbar">
     <a href="#/" class="brand">
       <span class="logo" aria-hidden="true">N</span>
-      <span>NEXORA</span><span class="admin-tag">Quản trị</span>
+      <span>NEXORA</span><span class="admin-tag" id="role-tag">Quản trị</span>
     </a>
     <nav class="nav" aria-label="Tài khoản">
       <span id="who" class="who hint"></span>
@@ -33,19 +33,25 @@
   <div class="admin-layout">
     <nav class="side" id="side" aria-label="Quản trị" hidden>
       <p class="side-h">Tổng quan</p>
-      <a href="#/" data-view="tong-quan">Dashboard</a>
+      <a href="#/tong-quan" data-view="tong-quan">Dashboard</a>
+      <a href="#/cskh" data-view="cskh">Tổng quan CSKH</a>
       <a href="#/bao-cao" data-view="bao-cao">Báo cáo doanh thu</a>
       <p class="side-h">Catalog</p>
       <a href="#/san-pham" data-view="san-pham">Sản phẩm</a>
       <a href="#/kho" data-view="kho">Kho hàng <span class="badge" id="low-badge" hidden></span></a>
       <p class="side-h">Sales</p>
       <a href="#/don-hang" data-view="don-hang">Đơn hàng <span class="badge" id="pending-badge" hidden></span></a>
-      <a href="#/khach-hang" data-view="khach-hang">Khách hàng</a>
+      <a href="#/khach-hang" data-view="khach-hang">Khách hàng &amp; thành viên</a>
+      <p class="side-h">Chăm sóc khách hàng</p>
+      <a href="#/ho-tro" data-view="ho-tro">Yêu cầu hỗ trợ <span class="badge" id="ticket-badge" hidden></span></a>
+      <a href="#/bao-hanh" data-view="bao-hanh">Bảo hành</a>
+      <a href="#/danh-gia" data-view="danh-gia">Đánh giá sản phẩm <span class="badge" id="review-badge" hidden></span></a>
+      <a href="#/tra-cuu" data-view="tra-cuu">Tra cứu &amp; tương thích</a>
       <p class="side-h">Marketing</p>
       <a href="#/khuyen-mai" data-view="khuyen-mai">Mã giảm giá</a>
       <p class="side-h">System</p>
       <a href="#/nhat-ky" data-view="nhat-ky">Nhật ký hoạt động</a>
-      <a href="#/cai-dat" data-view="cai-dat">Cài đặt &amp; quản trị viên</a>
+      <a href="#/cai-dat" data-view="cai-dat">Cài đặt &amp; nhân sự</a>
     </nav>
 
     <main id="main" class="admin-main" tabindex="-1">

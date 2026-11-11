@@ -33,6 +33,14 @@ await env.withSecurityRulesDisabled(async (ctx) => {
   await setDoc(doc(db, 'vouchers/OLD'), { ...V, code: 'OLD', endAt: Timestamp.fromMillis(Date.now() - 1000) });
   await setDoc(doc(db, 'vouchers/OFF'), { ...V, code: 'OFF', active: false });
   await setDoc(doc(db, 'bans/mallory'), { reason: 'spam', by: 'admin', at: Timestamp.now() });
+  await setDoc(doc(db, 'staff/sam'), { role: 'cskh', email: 'sam@x.com', addedBy: 'admin', addedAt: Timestamp.now() });
+  await setDoc(doc(db, 'settings/support'), { refundLimit: 1000000 });
+  await setDoc(doc(db, 'vouchers/ALICEONLY'), { ...V, code: 'ALICEONLY', type: 'fixed', value: 100000, maxDiscount: 0, minOrder: 0, userId: 'alice' });
+  await setDoc(doc(db, 'orders/so1'), { userId: 'alice', status: 'pending', total: 3030000, items: [] });
+  await setDoc(doc(db, 'orders/so2'), { userId: 'alice', status: 'shipping', total: 3030000, items: [] });
+  await setDoc(doc(db, 'tickets/t1'), { userId: 'alice', status: 'open', subject: 'x' });
+  await setDoc(doc(db, 'tickets/t2'), { userId: 'alice', status: 'closed', subject: 'y' });
+  await setDoc(doc(db, 'stockMoves/secret'), { type: 'in', unitCost: 1 });
 });
 
 const anon = env.unauthenticatedContext().firestore();
@@ -40,6 +48,7 @@ const alice = env.authenticatedContext('alice', { email: 'alice@x.com' }).firest
 const bob = env.authenticatedContext('bob', { email: 'bob@x.com' }).firestore();
 const admin = env.authenticatedContext('admin', { email: 'ad@x.com' }).firestore();
 const mallory = env.authenticatedContext('mallory', { email: 'm@x.com' }).firestore();
+const sam = env.authenticatedContext('sam', { email: 'sam@x.com' }).firestore();   // nhân viên CSKH
 
 let pass = 0, fail = 0;
 const deny = (p) => assertFails(p).then((e) => {
@@ -200,6 +209,112 @@ await t('phiếu kho loại lạ bị từ chối', deny(setDoc(doc(admin, 'stoc
 await t('khách không xem giá vốn (phiếu kho)', deny(getDoc(doc(alice, 'stockMoves/m1'))));
 await t('admin ghi lịch sử giá', assertSucceeds(setDoc(doc(admin, 'priceHistory/h1'), { productId: 'p1', from: 1, to: 2, by: 'admin', at: serverTimestamp() })));
 await t('khách không đọc lịch sử giá', deny(getDocs(collection(alice, 'priceHistory'))));
+
+console.log('CSKH - quyền hạn (Bảng 1.3)');
+await t('CSKH xem mọi đơn', assertSucceeds(getDocs(collection(sam, 'orders'))));
+await t('CSKH xem hồ sơ khách', assertSucceeds(getDocs(collection(sam, 'users'))));
+await t('CSKH xác nhận đơn chờ', assertSucceeds(updateDoc(doc(sam, 'orders/so1'), { status: 'confirmed', updatedAt: serverTimestamp() })));
+await t('CSKH không nhảy cóc trạng thái (confirmed → done)', deny(updateDoc(doc(sam, 'orders/so1'), { status: 'done' })));
+await t('CSKH không đưa đơn về "Chờ xác nhận"', deny(updateDoc(doc(sam, 'orders/so1'), { status: 'pending' })));
+await t('CSKH báo giao thất bại', assertSucceeds(updateDoc(doc(sam, 'orders/so2'), { status: 'failed' })));
+await t('CSKH không sửa tổng tiền đơn', deny(updateDoc(doc(sam, 'orders/so2'), { total: 1 })));
+await t('CSKH không sửa giá sản phẩm', deny(updateDoc(doc(sam, 'products/p1'), { price: 1 })));
+await t('CSKH trừ tồn kho khi xác nhận đơn', assertSucceeds(updateDoc(doc(sam, 'products/p1'), { stock: 4, sold: 2, updatedAt: serverTimestamp() })));
+await t('CSKH không đặt tồn kho âm', deny(updateDoc(doc(sam, 'products/p1'), { stock: -1 })));
+await t('CSKH không xem giá vốn (phiếu kho)', deny(getDoc(doc(sam, 'stockMoves/secret'))));
+await t('CSKH ghi phiếu trừ kho theo đơn', assertSucceeds(setDoc(doc(sam, 'stockMoves/s1'), { ...mv, type: 'order', qty: -1, by: 'sam' })));
+await t('CSKH không lập phiếu nhập kho', deny(setDoc(doc(sam, 'stockMoves/s2'), { ...mv, by: 'sam' })));
+await t('CSKH không xem lịch sử giá', deny(getDocs(collection(sam, 'priceHistory'))));
+await t('CSKH không xem nhật ký', deny(getDocs(collection(sam, 'auditLogs'))));
+await t('CSKH ghi nhật ký thao tác của mình', assertSucceeds(setDoc(doc(sam, 'auditLogs/s1'), { ...log, by: 'sam', byEmail: 'sam@x.com' })));
+await t('CSKH không khóa tài khoản', deny(setDoc(doc(sam, 'bans/bob'), { reason: 'x', by: 'sam', at: serverTimestamp() })));
+await t('CSKH không tự cấp quyền admin', deny(setDoc(doc(sam, 'admins/sam'), { email: 'sam@x.com', addedBy: 'sam', addedAt: serverTimestamp() })));
+await t('CSKH không tạo nhân viên khác', deny(setDoc(doc(sam, 'staff/bob'), { role: 'cskh', email: 'b', addedBy: 'sam', addedAt: serverTimestamp() })));
+await t('admin cấp vai trò CSKH', assertSucceeds(setDoc(doc(admin, 'staff/bob'), { role: 'cskh', email: 'bob@x.com', addedBy: 'admin', addedAt: serverTimestamp() })));
+await t('admin gỡ vai trò CSKH', assertSucceeds(deleteDoc(doc(admin, 'staff/bob'))));
+await t('khách không đọc danh sách nhân viên', deny(getDocs(collection(alice, 'staff'))));
+await t('CSKH không sửa hạn mức hoàn tiền', deny(setDoc(doc(sam, 'settings/support'), { refundLimit: 9e9 })));
+
+console.log('CSKH - hoàn tiền');
+const rf = (amount, extra = {}) => ({ orderId: 'so2', userId: 'alice', amount, reason: 'Giao thiếu hàng', method: 'bank', by: 'sam', byEmail: 'sam@x.com', at: serverTimestamp(), ...extra });
+await t('CSKH hoàn tiền trong hạn mức', assertSucceeds(setDoc(doc(sam, 'refunds/r1'), rf(500000))));
+await t('CSKH hoàn tiền vượt hạn mức bị từ chối', deny(setDoc(doc(sam, 'refunds/r2'), rf(1500000))));
+await t('admin hoàn tiền vượt hạn mức nhân viên', assertSucceeds(setDoc(doc(admin, 'refunds/r3'), rf(1500000, { by: 'admin' }))));
+await t('hoàn quá tổng tiền đơn bị từ chối', deny(setDoc(doc(admin, 'refunds/r4'), rf(5000000, { by: 'admin' }))));
+await t('hoàn sai khách của đơn bị từ chối', deny(setDoc(doc(sam, 'refunds/r5'), rf(1000, { userId: 'bob' }))));
+await t('khách xem khoản hoàn của mình', assertSucceeds(getDocs(query(collection(alice, 'refunds'), where('userId', '==', 'alice')))));
+
+console.log('CSKH - yêu cầu hỗ trợ');
+const tk = (extra = {}) => ({ userId: 'alice', userEmail: 'alice@x.com', userName: 'Alice', subject: 'Hỏi bảo hành', category: 'bao-hanh',
+  orderId: '', productId: '', channel: 'web', status: 'open', dept: 'cskh', assignee: '', assigneeEmail: '',
+  createdAt: serverTimestamp(), updatedAt: serverTimestamp(), lastMessageAt: serverTimestamp(), lastFrom: 'customer', ...extra });
+await t('khách tạo yêu cầu hỗ trợ', assertSucceeds(setDoc(doc(alice, 'tickets/n1'), tk())));
+await t('khách tạo phiếu + tin nhắn đầu trong 1 batch', (async () => {
+  const b = writeBatch(alice);
+  b.set(doc(alice, 'tickets/nb'), tk());
+  b.set(doc(alice, 'tickets/nb/messages/m0'), { from: 'customer', text: 'Nội dung', by: 'alice', byName: 'Alice', at: serverTimestamp() });
+  await assertSucceeds(b.commit());
+})());
+await t('khách không tạo yêu cầu đứng tên người khác', deny(setDoc(doc(alice, 'tickets/n2'), tk({ userId: 'bob' }))));
+await t('khách không tự gán nhân viên', deny(setDoc(doc(alice, 'tickets/n3'), tk({ assignee: 'sam' }))));
+await t('khách bị khóa vẫn gửi được yêu cầu hỗ trợ', assertSucceeds(setDoc(doc(mallory, 'tickets/n4'), tk({ userId: 'mallory', userEmail: 'm@x.com' }))));
+await t('CSKH tạo phiếu hộ khi khách gọi hotline', assertSucceeds(setDoc(doc(sam, 'tickets/n5'), tk({ channel: 'phone', lastFrom: 'staff', assignee: 'sam' }))));
+await t('khách không đọc phiếu người khác', deny(getDoc(doc(bob, 'tickets/t1'))));
+await t('khách liệt kê phiếu của mình', assertSucceeds(getDocs(query(collection(alice, 'tickets'), where('userId', '==', 'alice')))));
+const msg = (from, by, extra = {}) => ({ from, text: 'Xin chào', by, byName: 'X', at: serverTimestamp(), ...extra });
+await t('khách nhắn vào phiếu của mình', assertSucceeds(setDoc(doc(alice, 'tickets/t1/messages/m1'), msg('customer', 'alice'))));
+await t('khách không nhắn giả danh nhân viên', deny(setDoc(doc(alice, 'tickets/t1/messages/m2'), msg('staff', 'alice'))));
+await t('khách không nhắn vào phiếu người khác', deny(setDoc(doc(bob, 'tickets/t1/messages/m3'), msg('customer', 'bob'))));
+await t('khách không nhắn vào phiếu đã đóng', deny(setDoc(doc(alice, 'tickets/t2/messages/m4'), msg('customer', 'alice'))));
+await t('CSKH trả lời', assertSucceeds(setDoc(doc(sam, 'tickets/t1/messages/m5'), msg('staff', 'sam'))));
+await t('khách đọc hội thoại của mình', assertSucceeds(getDocs(collection(alice, 'tickets/t1/messages'))));
+await t('khách không đọc hội thoại người khác', deny(getDocs(collection(bob, 'tickets/t1/messages'))));
+await t('khách cập nhật thời điểm nhắn', assertSucceeds(updateDoc(doc(alice, 'tickets/t1'), { status: 'open', lastFrom: 'customer', lastMessageAt: serverTimestamp(), updatedAt: serverTimestamp() })));
+await t('khách không tự đóng/chuyển phiếu', deny(updateDoc(doc(alice, 'tickets/t1'), { dept: 'admin' })));
+await t('CSKH đóng phiếu', assertSucceeds(updateDoc(doc(sam, 'tickets/t1'), { status: 'closed', assignee: 'sam' })));
+await t('khách chấm điểm hài lòng phiếu đã đóng', assertSucceeds(updateDoc(doc(alice, 'tickets/t2'), { rating: 5, ratingComment: 'Tốt', ratedAt: serverTimestamp() })));
+await t('khách không chấm lại lần 2', deny(updateDoc(doc(alice, 'tickets/t2'), { rating: 1, ratingComment: '', ratedAt: serverTimestamp() })));
+await t('điểm ngoài 1–5 bị từ chối', deny(updateDoc(doc(alice, 'tickets/t1'), { rating: 9, ratingComment: '', ratedAt: serverTimestamp() })));
+
+console.log('CSKH - ghi chú, thành viên, mẫu trả lời');
+const note = { userId: 'alice', type: 'call', text: 'Khách gọi hỏi giao hàng', by: 'sam', byEmail: 'sam@x.com', at: serverTimestamp() };
+await t('CSKH ghi chú cuộc gọi', assertSucceeds(setDoc(doc(sam, 'customerNotes/c1'), note)));
+await t('khách không đọc ghi chú nội bộ', deny(getDocs(query(collection(alice, 'customerNotes'), where('userId', '==', 'alice')))));
+await t('ghi chú không sửa được', deny(updateDoc(doc(sam, 'customerNotes/c1'), { text: 'x' })));
+const mem = { bonusPoints: 50, tier: 'vip', note: 'Khách thân thiết', by: 'sam', at: serverTimestamp() };
+await t('CSKH nâng hạng thành viên', assertSucceeds(setDoc(doc(sam, 'members/alice'), mem)));
+await t('khách xem hạng của mình', assertSucceeds(getDoc(doc(alice, 'members/alice'))));
+await t('khách không tự nâng hạng', deny(setDoc(doc(alice, 'members/alice'), { ...mem, by: 'alice' })));
+await t('CSKH tạo mẫu trả lời', assertSucceeds(setDoc(doc(sam, 'replyTemplates/r1'), { title: 'Bảo hành', text: 'Sản phẩm bảo hành 36 tháng', by: 'sam', at: serverTimestamp() })));
+await t('khách không đọc mẫu trả lời', deny(getDocs(collection(alice, 'replyTemplates'))));
+
+console.log('CSKH - ưu đãi riêng');
+const offer = (extra = {}) => ({ code: 'VIPALICE', type: 'percent', value: 10, minOrder: 0, maxDiscount: 300000, active: true,
+  startAt: Timestamp.now(), endAt: Timestamp.fromMillis(Date.now() + 7 * 86400000), userId: 'alice', createdBy: 'sam', ...extra });
+await t('CSKH tạo ưu đãi riêng cho khách', assertSucceeds(setDoc(doc(sam, 'vouchers/VIPALICE'), offer())));
+await t('CSKH không tạo mã chung cho mọi khách', deny(setDoc(doc(sam, 'vouchers/ALL1'), offer({ code: 'ALL1', userId: '' }))));
+await t('CSKH không tạo ưu đãi quá 15%', deny(setDoc(doc(sam, 'vouchers/BIG1'), offer({ code: 'BIG1', value: 50 }))));
+await t('CSKH không tạo ưu đãi hiệu lực > 31 ngày', deny(setDoc(doc(sam, 'vouchers/LONG1'), offer({ code: 'LONG1', endAt: Timestamp.fromMillis(Date.now() + 90 * 86400000) }))));
+await t('CSKH không sửa mã chung của admin', deny(updateDoc(doc(sam, 'vouchers/GIAM10'), { value: 99 })));
+await t('khách xem ưu đãi riêng của mình', assertSucceeds(getDocs(query(collection(alice, 'vouchers'), where('userId', '==', 'alice')))));
+await t('khách khác không dùng được ưu đãi riêng', deny(setDoc(doc(bob, 'orders/vb'), { ...order([L1], { userId: 'bob' }), voucher: 'ALICEONLY', discount: 100000, total: 2930000 })));
+await t('chủ ưu đãi dùng được', assertSucceeds(setDoc(doc(alice, 'orders/va'), { ...order([L1]), voucher: 'ALICEONLY', discount: 100000, total: 2930000 })));
+
+console.log('CSKH - đánh giá, bảo hành');
+const rv = (extra = {}) => ({ productId: 'p1', productName: 'CPU A', userId: 'alice', userName: 'Alice', rating: 5, text: 'Tốt',
+  status: 'pending', createdAt: serverTimestamp(), updatedAt: serverTimestamp(), ...extra });
+await t('khách viết đánh giá (chờ duyệt)', assertSucceeds(setDoc(doc(alice, 'reviews/p1_alice'), rv())));
+await t('khách không tự duyệt đánh giá', deny(setDoc(doc(bob, 'reviews/p1_bob'), rv({ userId: 'bob', status: 'approved' }))));
+await t('khách không viết hộ người khác', deny(setDoc(doc(bob, 'reviews/p1_alice'), rv())));
+await t('người khác chưa xem được đánh giá chờ duyệt', deny(getDoc(doc(anon, 'reviews/p1_alice'))));
+await t('CSKH duyệt và phản hồi đánh giá', assertSucceeds(updateDoc(doc(sam, 'reviews/p1_alice'), { status: 'approved', reply: 'Cảm ơn bạn', replyBy: 'sam', replyByName: 'NEXORA', replyAt: serverTimestamp() })));
+await t('CSKH không sửa nội dung đánh giá', deny(updateDoc(doc(sam, 'reviews/p1_alice'), { text: 'sửa' })));
+await t('ai cũng xem đánh giá đã duyệt', assertSucceeds(getDocs(query(collection(anon, 'reviews'), where('productId', '==', 'p1'), where('status', '==', 'approved')))));
+const wr = { userId: 'alice', customerName: 'Alice', phone: '0912345678', orderId: 'so2', productId: 'p1', productName: 'CPU A',
+  serial: 'SN123', issue: 'Không lên hình', status: 'received', center: '', history: [], createdAt: serverTimestamp(), updatedAt: serverTimestamp(), by: 'sam' };
+await t('CSKH tạo phiếu bảo hành', assertSucceeds(setDoc(doc(sam, 'warranties/w1'), wr)));
+await t('khách xem phiếu bảo hành của mình', assertSucceeds(getDocs(query(collection(alice, 'warranties'), where('userId', '==', 'alice')))));
+await t('khách không tự tạo phiếu bảo hành', deny(setDoc(doc(alice, 'warranties/w2'), wr)));
 
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed`);

@@ -115,3 +115,52 @@ export function voucherProblem(v, subtotal, now = Date.now()) {
   if (subtotal < v.minOrder) return `Mã chỉ áp dụng cho đơn từ ${new Intl.NumberFormat('vi-VN').format(v.minOrder)}₫.`;
   return null;
 }
+
+// ---------- Thành viên: điểm tích lũy & hạng (Bảng 3.1 mục 12, Bảng 1.2 "Quản lý thành viên") ----------
+// 1 điểm cho mỗi 10.000₫ của đơn "Hoàn tất". Hạng xét theo tổng chi tiêu các đơn hoàn tất.
+// Nhân viên CSKH có thể cộng/trừ điểm và đặt hạng bằng tay (members/{uid}).
+export const POINT_UNIT = 10_000;
+export const TIERS = [
+  { key: 'member',   name: 'Thành viên', min: 0,          perk: 'Tích điểm mọi đơn hàng' },
+  { key: 's-member', name: 'S-Member',   min: 10_000_000, perk: 'Ưu đãi riêng hằng tháng, hỗ trợ ưu tiên' },
+  { key: 'vip',      name: 'VIP',        min: 30_000_000, perk: 'Ưu đãi riêng cao nhất, nhân viên chăm sóc riêng' }
+];
+export const tierName = (key) => TIERS.find((t) => t.key === key)?.name || TIERS[0].name;
+
+/** Tính hạng & điểm từ danh sách đơn của 1 khách và members/{uid} (có thể null). */
+export function membership(orders, member = null) {
+  const spent = orders.filter((o) => o.status === 'done').reduce((s, o) => s + (o.total || 0), 0);
+  let auto = TIERS[0];
+  for (const t of TIERS) if (spent >= t.min) auto = t;
+  const tier = member?.tier ? TIERS.find((t) => t.key === member.tier) || auto : auto;
+  const next = TIERS[TIERS.indexOf(auto) + 1] || null;
+  return {
+    spent,
+    points: Math.floor(spent / POINT_UNIT) + (member?.bonusPoints || 0),
+    tier, autoTier: auto, manual: !!member?.tier,
+    next, toNext: next ? next.min - spent : 0
+  };
+}
+
+// ---------- Chăm sóc khách hàng: nhãn dùng chung cho cửa hàng và trang quản trị ----------
+export const TICKET_CATEGORIES = {
+  'hoi-dap': 'Hỏi đáp chung',
+  'tu-van': 'Tư vấn sản phẩm / Build PC',
+  'khieu-nai': 'Khiếu nại',
+  'huy-don': 'Yêu cầu hủy đơn',
+  'doi-tra': 'Yêu cầu đổi trả',
+  'bao-hanh': 'Bảo hành',
+  'giao-hang': 'Giao hàng (thiếu, sai, chậm)',
+  'thanh-toan': 'Thanh toán / hoàn tiền',
+  'khac': 'Khác'
+};
+export const TICKET_STATUS = { open: 'Chờ nhân viên', waiting: 'Chờ bạn phản hồi', closed: 'Đã đóng' };
+export const WARRANTY_STATUS = {
+  received: 'Đã tiếp nhận',
+  checking: 'Đang kiểm tra',
+  sent: 'Đã gửi trung tâm bảo hành',
+  repairing: 'Đang sửa chữa / đổi mới',
+  returned: 'Đã nhận lại, chờ khách lấy',
+  done: 'Hoàn tất',
+  rejected: 'Từ chối bảo hành'
+};
