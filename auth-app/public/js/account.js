@@ -47,7 +47,24 @@ export async function ensureProfile(user, name) {
   return data;
 }
 
-export function clearProfile() { currentProfile = null; }
+export function clearProfile() { currentProfile = null; ban = null; admin = false; }
+
+// ---------- Quyền quản trị & khóa tài khoản ----------
+let ban = null;      // dữ liệu bans/{uid} nếu tài khoản bị khóa
+let admin = false;
+export const banInfo = () => ban;
+export const isAdmin = () => admin;
+
+/** Đọc trạng thái admin + khóa của tài khoản (gọi khi đăng nhập). */
+export async function loadRoles(user) {
+  const [a, b] = await Promise.all([
+    getDoc(doc(db, 'admins', user.uid)).catch(() => null),
+    getDoc(doc(db, 'bans', user.uid)).catch(() => null)
+  ]);
+  admin = !!a?.exists();
+  ban = b?.exists() ? b.data() : null;
+  return { admin, ban };
+}
 
 /** Lưu SĐT/địa chỉ vào hồ sơ (dùng ở trang thanh toán khi hồ sơ còn trống). */
 export async function saveProfile(user, { name, phone, address }) {
@@ -95,6 +112,12 @@ export async function renderAccount(user) {
   avatar.hidden = !user.photoURL;
   if (user.photoURL) avatar.src = user.photoURL;
   $('#verify-note').hidden = user.emailVerified;
+  const banNote = $('#ban-note');
+  banNote.hidden = !ban;
+  banNote.textContent = ban
+    ? `Tài khoản đã bị khóa${ban.reason ? ` (lý do: ${ban.reason})` : ''}. Bạn vẫn xem được đơn cũ nhưng không đặt hàng mới được. Liên hệ bộ phận chăm sóc khách hàng để được hỗ trợ.`
+    : '';
+  $('#admin-link').hidden = !admin;
   const f = $('#form-profile');
   f.name.value = data.name || '';
   f.phone.value = data.phone || '';
@@ -121,7 +144,8 @@ async function renderOrders(user) {
           <span class="status s-${esc(o.status)}">${esc(statusText(o.status))}</span>
         </div>
         <p class="hint">${o.createdAt ? esc(o.createdAt.toDate().toLocaleString('vi-VN')) : ''}
-          · ${o.items.reduce((n, i) => n + i.qty, 0)} sản phẩm · <strong>${money(o.total)}</strong></p>
+          · ${o.items.reduce((n, i) => n + i.qty, 0)} sản phẩm · <strong>${money(o.total)}</strong>
+          ${o.discount ? ` · đã giảm ${money(o.discount)}` : ''}</p>
         <ul class="order-items">
           ${o.items.map((i) => `<li>${esc(i.name)} × ${i.qty}</li>`).join('')}
         </ul>

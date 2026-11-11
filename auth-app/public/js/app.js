@@ -7,7 +7,7 @@ import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.19.0/f
 import { auth } from './firebase.js';
 import { $, $$, say, clearMsg, errText } from './ui.js';
 import { renderList, renderDetail, listHref, loadProducts } from './catalog.js';
-import { initAccount, ensureProfile, clearProfile, renderAccount, showTab, setAuthReason } from './account.js';
+import { initAccount, ensureProfile, clearProfile, renderAccount, showTab, setAuthReason, loadRoles } from './account.js';
 import { initCart, startCart, stopCart, addToCart, renderCart, renderCheckout, renderDone } from './cart.js';
 
 let user = null;
@@ -119,11 +119,23 @@ function rerenderIfCartView() {
 }
 
 // ---------- Trạng thái đăng nhập ----------
+// Trang quản trị (admin/) — nằm cùng thư mục với trang này.
+const ADMIN_URL = new URL('admin/', location.href.split('#')[0]).href;
+
 onAuthStateChanged(auth, async (u) => {
   user = u;
   const nav = $('#nav-account');
+  const fromLogin = parseHash().parts[0] === 'dang-nhap';
   if (u) {
     nav.textContent = 'Tài khoản';
+    const roles = await loadRoles(u);
+    $('#nav-admin').hidden = !roles.admin;
+    // Quản trị viên vừa đăng nhập → chuyển thẳng tới trang quản trị.
+    if (roles.admin && fromLogin) {
+      location.replace(ADMIN_URL);
+      return;
+    }
+    if (roles.ban) say(`Tài khoản đã bị khóa${roles.ban.reason ? ` (lý do: ${roles.ban.reason})` : ''}. Bạn không đặt hàng được.`, 'err');
     startCart(u, rerenderIfCartView);
     try { await ensureProfile(u); } catch (e) { say(errText(e), 'err'); }
     if (pendingAdd) {
@@ -133,6 +145,7 @@ onAuthStateChanged(auth, async (u) => {
     }
   } else {
     nav.textContent = 'Đăng nhập';
+    $('#nav-admin').hidden = true;
     stopCart();
     clearProfile();
   }

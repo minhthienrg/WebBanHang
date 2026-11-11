@@ -41,6 +41,18 @@
       Firestore offline cache (KHÔNG bật — xem "Cần tôi xác nhận"), Google Sites nhúng trang (chỉ https,
       trang đích phải cho phép nhúng, có kiểu "Full page embed" — đã ghi vào HUONG-DAN.md).
 
+### Bước 6: Trang quản trị (`/admin/`, theo Bảng 1.1 WebIdea.pdf)
+- [x] Admin đăng nhập ở cửa hàng → chuyển thẳng tới `/admin/`; khách mở `/admin/` thấy "Không có quyền"
+- [x] Dashboard, báo cáo doanh thu ngày/tháng (biểu đồ + bảng + CSV)
+- [x] Sản phẩm: thêm/sửa/ẩn/xóa mềm, thông số, ảnh, bảo hành, đổi giá hàng loạt, lịch sử giá
+- [x] Kho: nhập (giá vốn, NCC) / xuất / hủy hàng lỗi, cảnh báo tồn thấp
+- [x] Đơn hàng: tìm theo mã/SĐT/email, đổi trạng thái, tự trừ/hoàn kho; realtime
+- [x] Khách hàng: lịch sử mua, khóa/mở khóa, gửi email đặt lại mật khẩu
+- [x] Mã giảm giá (rules kiểm tra số tiền giảm); nhật ký hoạt động; cấp/gỡ quyền admin; đổi mật khẩu
+- [x] Giảm giới hạn đơn 10 → 8 dòng (giới hạn 10 lần đọc tài liệu/lệnh ghi của Firestore)
+- [x] Test: 87 rules + 57 E2E quản trị (`./run.sh admin`) — tất cả đạt
+- [ ] Chưa làm: 2FA, vai trò nhân viên (CSKH/kho/kỹ thuật), quy tắc tương thích Build PC, PC mẫu, bảo hành theo serial
+
 ## Cách test
 ```bash
 cd auth-app/tests

@@ -46,7 +46,7 @@ export const SHIP_FEE = 30_000;
 export const shippingFee = (subtotal) => (subtotal >= FREE_SHIP_FROM ? 0 : SHIP_FEE);
 
 // Giới hạn đơn hàng — PHẢI khớp với firestore.rules.
-export const MAX_LINES = 10;   // số dòng sản phẩm khác nhau trong 1 đơn
+export const MAX_LINES = 8;    // số dòng sản phẩm khác nhau trong 1 đơn (giới hạn 10 lần đọc/lệnh ghi của Firestore)
 export const MAX_QTY = 10;     // số lượng tối đa mỗi dòng
 
 // Bộ lọc thông số riêng từng danh mục (yêu cầu mục 3.2, phương án mục 3.4: 5–8 nhóm mỗi danh mục).
@@ -96,3 +96,22 @@ export const SPEC_FILTERS = {
     { key: 'socket', spec: 'Socket hỗ trợ', label: 'Socket hỗ trợ', split: true }
   ]
 };
+
+// Số tiền giảm của mã giảm giá — PHẢI khớp với voucherMatch()/capDiscount() trong firestore.rules.
+//   type 'percent': value% của tạm tính (làm tròn xuống), tối đa maxDiscount (0 = không giới hạn)
+//   type 'fixed':   value đồng
+// Không bao giờ giảm quá tạm tính.
+export function voucherDiscount(v, subtotal) {
+  const raw = v.type === 'percent' ? Math.floor(subtotal * v.value / 100) : v.value;
+  const capped = v.maxDiscount > 0 && raw > v.maxDiscount ? v.maxDiscount : raw;
+  return Math.min(capped, subtotal);
+}
+
+/** Lý do mã không dùng được (null nếu dùng được). */
+export function voucherProblem(v, subtotal, now = Date.now()) {
+  if (!v || v.active !== true) return 'Mã giảm giá không tồn tại hoặc đã ngừng áp dụng.';
+  if (v.startAt?.toMillis?.() > now) return 'Mã giảm giá chưa tới thời gian áp dụng.';
+  if (v.endAt?.toMillis?.() < now) return 'Mã giảm giá đã hết hạn.';
+  if (subtotal < v.minOrder) return `Mã chỉ áp dụng cho đơn từ ${new Intl.NumberFormat('vi-VN').format(v.minOrder)}₫.`;
+  return null;
+}

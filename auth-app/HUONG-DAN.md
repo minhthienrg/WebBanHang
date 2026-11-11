@@ -7,11 +7,32 @@
 | Danh sách sản phẩm | `#/` | Ô tìm kiếm trên header (không dấu, theo mã model). Chip danh mục, lọc theo danh mục, giá (khoảng có sẵn hoặc tự nhập), **hãng và thông số riêng từng danh mục** (sửa trong `js/categories.js` → `SPEC_FILTERS`), còn hàng, 5 kiểu sắp xếp, 12 sản phẩm/trang. Bộ lọc nằm trên URL nên chia sẻ link được |
 | Chi tiết | `#/sp/{id}` | Giá, thông số chính, tồn kho, ô chính sách, bảng thông số, sản phẩm tương tự; thanh mua dính đáy trên điện thoại |
 | Giỏ hàng | `#/gio-hang` | Lưu ở Firestore theo tài khoản, đồng bộ giữa các thiết bị; tăng/giảm/xóa; báo khi vượt tồn kho |
-| Thanh toán | `#/thanh-toan` | 1 trang; tự điền từ hồ sơ; COD hoặc chuyển khoản; miễn phí giao từ 5.000.000₫ (dưới mức đó 30.000₫) |
+| Thanh toán | `#/thanh-toan` | 1 trang; tự điền từ hồ sơ; COD hoặc chuyển khoản; **mã giảm giá**; miễn phí giao từ 5.000.000₫ (dưới mức đó 30.000₫) |
 | Đặt hàng xong | `#/dat-hang-thanh-cong/{id}` | Mã đơn, tóm tắt |
 | Tài khoản | `#/tai-khoan` | Hồ sơ + danh sách đơn; hủy đơn khi còn "Chờ xác nhận" |
 | Đăng nhập | `#/dang-nhap`, `#/quen-mat-khau` | Email/mật khẩu, Google, quên mật khẩu |
+| **Trang quản trị** | `/admin/` | Chỉ quản trị viên. Admin đăng nhập ở cửa hàng sẽ được **chuyển thẳng** tới đây |
 | Nạp dữ liệu mẫu | `/admin/seed.html` | Chỉ quản trị viên |
+
+### Trang quản trị (`/admin/`) — theo Bảng 1.1 của WebIdea.pdf
+
+| Mục | Đường dẫn | Chức năng |
+|---|---|---|
+| Dashboard | `#/` | Doanh thu hôm nay / tháng, đơn chờ xác nhận (cảnh báo đơn chờ > 24 giờ), đơn đang xử lý, sản phẩm sắp hết, số khách; biểu đồ 30 ngày; đơn mới nhất |
+| Báo cáo doanh thu | `#/bao-cao` | Theo ngày trong tháng / theo tháng trong năm, sản phẩm bán chạy, theo danh mục, tải CSV |
+| Sản phẩm | `#/san-pham` | Thêm, sửa (ảnh, mô tả, thông số kỹ thuật, bảo hành, tồn tối thiểu), ẩn/hiện, xóa mềm/khôi phục, **đổi giá hàng loạt**, **lịch sử giá** |
+| Kho hàng | `#/kho` | Phiếu nhập (giá vốn, nhà cung cấp), xuất, hủy hàng lỗi; cảnh báo tồn thấp; lịch sử phiếu kho |
+| Đơn hàng | `#/don-hang` | Xem mọi đơn, lọc trạng thái / ngày, tìm theo mã, SĐT, email; đổi trạng thái. **Xác nhận đơn thì tự trừ kho, hủy thì tự hoàn kho** |
+| Khách hàng | `#/khach-hang` | Danh sách, lịch sử mua, **khóa / mở khóa** (xử lý vi phạm), gửi email đặt lại mật khẩu |
+| Mã giảm giá | `#/khuyen-mai` | Giảm % (có mức trần) hoặc số tiền, đơn tối thiểu, thời gian áp dụng, bật/tắt, thống kê lượt dùng |
+| Nhật ký hoạt động | `#/nhat-ky` | Ai làm gì, lúc nào — không sửa/xóa được |
+| Cài đặt | `#/cai-dat` | Cấp / gỡ quyền quản trị viên, đổi mật khẩu |
+
+Đơn hàng và danh sách khách cập nhật realtime (đơn mới hiện ngay, không cần tải lại trang).
+
+**Chưa làm** (cần thêm dịch vụ hoặc thuộc phần sau của đồ án): xác thực hai lớp (cần Identity Platform),
+tài khoản nhân viên theo vai trò (CSKH, kho, kỹ thuật viên) và phân quyền theo trường dữ liệu, quy tắc tương thích Build PC,
+cấu hình PC mẫu, tra cứu bảo hành theo serial.
 
 Khách chưa đăng nhập vẫn xem được sản phẩm. Khi bấm "Thêm vào giỏ", app chuyển sang đăng nhập; đăng nhập xong sẽ tự thêm sản phẩm đó và quay lại trang cũ.
 
@@ -32,6 +53,10 @@ auth-app/
 │   │   ├── categories.js       danh mục, khoảng giá, phí giao, giới hạn đơn
 │   │   └── ui.js               tiện ích chung
 │   └── admin/
+│       ├── index.html          trang quản trị
+│       ├── admin.css
+│       ├── js/                 main.js (kiểm tra quyền, điều hướng), core.js (dữ liệu, nhật ký, biểu đồ),
+│       │                       dashboard, reports, products, inventory, orders, customers, vouchers, logs, settings
 │       ├── seed.html           trang nạp sản phẩm mẫu
 │       └── seed-data.js        23 sản phẩm mẫu (8 danh mục)
 ├── firestore.rules
@@ -43,11 +68,16 @@ auth-app/
 
 | Collection | ID | Trường | Ai đọc / ghi |
 |---|---|---|---|
-| `products` | slug, ví dụ `cpu-intel-i5-14400f` | `name, category, brand, price, oldPrice, stock, active, sold, summary, specs{}, description, imageUrl, createdAt` | Ai cũng đọc được sản phẩm `active == true`; chỉ quản trị viên ghi |
+| `products` | slug, ví dụ `cpu-intel-i5-14400f` | `name, category, brand, price, oldPrice, stock, active, sold, summary, specs{}, description, imageUrl, createdAt`; trang quản trị thêm `minStock, warrantyMonths, warrantyProvider, deleted, updatedAt` | Ai cũng đọc được sản phẩm `active == true`; chỉ quản trị viên ghi |
 | `carts` | `uid` | `items { productId: qty }, updatedAt` | Chủ giỏ |
-| `orders` | tự sinh | `userId, items[{productId,name,price,qty}], subtotal, shippingFee, total, shipping{name,phone,address}, paymentMethod, note, status, createdAt, updatedAt` | Khách tạo và xem đơn của mình, hủy khi `pending`; quản trị viên xem và sửa tất cả |
+| `orders` | tự sinh | `userId, items[{productId,name,price,qty}], subtotal, shippingFee, voucher, discount, total, shipping{name,phone,address}, paymentMethod, note, status, createdAt, updatedAt`; admin thêm `stockDeducted, statusHistory[], doneAt` | Khách tạo và xem đơn của mình, hủy khi `pending`; quản trị viên xem và sửa tất cả |
 | `users` | `uid` | `name, phone, address, email, createdAt, updatedAt` | Chủ hồ sơ; quản trị viên được đọc |
-| `admins` | `uid` | (rỗng) | Chỉ tạo bằng tay trong Console |
+| `admins` | `uid` | `email, addedBy, addedAt` (admin đầu tiên: rỗng) | Admin đầu tiên tạo tay trong Console; sau đó admin cấp/gỡ ở trang Cài đặt (không tự gỡ mình) |
+| `bans` | `uid` | `reason, by, at` | Admin; khách đọc được của mình. Bị khóa thì không sửa giỏ, không đặt hàng |
+| `vouchers` | mã, ví dụ `SALE11` | `code, type ('percent'/'fixed'), value, minOrder, maxDiscount, startAt, endAt, active, description` | Khách đọc 1 mã khi gõ đúng (không liệt kê được); admin ghi |
+| `stockMoves` | tự sinh | `productId, name, type (in/out/damaged/order/order-return), qty, unitCost, supplier, note, stockAfter, orderId, by, byEmail, at` | Chỉ admin (có giá vốn) |
+| `priceHistory` | tự sinh | `productId, name, fromPrice, toPrice, fromOldPrice, toOldPrice, note, by, byEmail, at` | Chỉ admin |
+| `auditLogs` | tự sinh | `action, target, detail, by, byEmail, at` | Chỉ admin; chỉ thêm, không sửa/xóa |
 
 `category` nhận một trong các giá trị: `cpu, mainboard, ram, vga, o-cung, nguon, case, tan-nhiet` (khai báo trong `js/categories.js`).
 Giá là **số nguyên, đơn vị đồng**. `oldPrice = 0` nghĩa là không giảm giá.
@@ -56,17 +86,17 @@ Giá là **số nguyên, đơn vị đồng**. `oldPrice = 0` nghĩa là không 
 
 Khách chỉnh code trên trình duyệt cũng **không** làm được các việc sau:
 - Sửa giá (giá từng dòng phải bằng giá sản phẩm trong CSDL).
-- Sai tổng tiền hoặc phí giao (rules tự tính lại).
+- Sai tổng tiền, phí giao hoặc số tiền giảm của mã giảm giá (rules tự tính lại từ mã trong CSDL).
 - Đặt vượt tồn kho, đặt sản phẩm đã ẩn, số lượng ngoài khoảng 1–10 hoặc không phải số nguyên.
 - Đặt hộ người khác, tự đặt trạng thái khác `pending`, sửa đơn sau khi đặt (chỉ được hủy).
 
-Rules đã chạy trên Firestore emulator với 43 ca kiểm thử, gồm cả đơn 10 dòng. Tất cả đều đạt.
+Rules đã chạy trên Firestore emulator với 87 ca kiểm thử, gồm cả đơn 8 dòng có mã giảm giá. Tất cả đều đạt.
 
 ### Giới hạn hiện tại (cần biết)
 
-- **Tồn kho không tự trừ khi đặt hàng.** Rules chỉ kiểm tra `qty ≤ stock`. Muốn tự trừ cần Cloud Functions (gói Blaze) hoặc nhân viên trừ tay khi xác nhận đơn.
-- **Tối đa 10 loại sản phẩm mỗi đơn, mỗi loại tối đa 10 chiếc.** Lý do: Firestore giới hạn 1000 biểu thức mỗi lần kiểm tra rules. Cũng vì giới hạn này, `name` trong đơn **không được rules kiểm tra** (chỉ để hiển thị); khi xử lý đơn, hãy đối chiếu theo `productId`.
-- **Chưa có trang quản trị.** Đổi trạng thái đơn (`confirmed`, `preparing`, `shipping`, `done`) và sửa sản phẩm thì làm trong Firebase Console.
+- **Tồn kho trừ khi quản trị viên xác nhận đơn**, không trừ lúc khách đặt (lúc đặt rules chỉ kiểm tra `qty ≤ stock`). Hủy đơn đã xác nhận thì tự hoàn kho.
+- **Tối đa 8 loại sản phẩm mỗi đơn, mỗi loại tối đa 10 chiếc.** Lý do: mỗi lệnh ghi chỉ được đọc tối đa 10 tài liệu khác (8 sản phẩm + mã giảm giá + kiểm tra khóa tài khoản) và tối đa 1000 biểu thức. Cũng vì giới hạn này, `name` trong đơn **không được rules kiểm tra** (chỉ để hiển thị); khi xử lý đơn, hãy đối chiếu theo `productId`.
+- **Khóa tài khoản chỉ chặn đặt hàng / giỏ hàng**, khách vẫn đăng nhập được. Muốn chặn đăng nhập: Console → Authentication → Disable account.
 - **Danh sách tải toàn bộ sản phẩm đang bán một lần** rồi lọc ở trình duyệt. Cách này phù hợp với vài trăm sản phẩm. Nếu lên hàng nghìn, cần chuyển sang truy vấn có phân trang ở phía Firestore.
 - Sản phẩm chưa có ảnh nên hiện khung chữ theo danh mục. Điền `imageUrl` (ảnh bạn có quyền dùng) để thay.
 

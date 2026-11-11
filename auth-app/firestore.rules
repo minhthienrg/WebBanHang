@@ -1,14 +1,19 @@
 rules_version = '2';
 
 // Cấu trúc dữ liệu
-//   admins/{uid}       tài liệu rỗng; có mặt = là quản trị viên (tạo tay trong Console)
+//   admins/{uid}       có mặt = là quản trị viên: email, addedBy, addedAt (admin đầu tiên tạo tay trong Console)
+//   bans/{uid}         tài khoản khách bị khóa: reason, by, at (không đặt hàng, không sửa giỏ)
+//   vouchers/{CODE}    mã giảm giá: type ('percent'|'fixed'), value, minOrder, maxDiscount, startAt, endAt, active
+//   stockMoves/{id}    phiếu kho: nhập / xuất / hủy hàng lỗi / trừ kho theo đơn (chỉ admin; có giá vốn)
+//   priceHistory/{id}  lịch sử đổi giá (chỉ admin)
+//   auditLogs/{id}     nhật ký hoạt động của quản trị viên (chỉ thêm, không sửa/xóa)
 //   users/{uid}        hồ sơ: name, phone, address, email, createdAt, updatedAt
 //   products/{id}      sản phẩm: name, category, brand, price, oldPrice, stock, active, ...
 //   carts/{uid}        giỏ hàng: items { productId: qty }, updatedAt
 //   orders/{id}        đơn hàng: userId, items[], subtotal, shippingFee, total, shipping, ...
 //
 // Các hằng số dưới đây PHẢI khớp với public/js/categories.js:
-//   tối đa 10 dòng/đơn, tối đa 10 chiếc/dòng, miễn phí giao từ 5.000.000, phí giao 30.000.
+//   tối đa 8 dòng/đơn, tối đa 10 chiếc/dòng, miễn phí giao từ 5.000.000, phí giao 30.000.
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -17,11 +22,74 @@ service cloud.firestore {
     function isAdmin() {
       return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
+    function notBanned() {
+      return !exists(/databases/$(database)/documents/bans/$(request.auth.uid));
+    }
+    // Bản ghi do admin tạo: phải ghi đúng người thực hiện và giờ máy chủ.
+    function stampedByMe(d, byKey, atKey) {
+      return d[byKey] == request.auth.uid && d[atKey] == request.time;
+    }
 
     // ---------- Quản trị viên ----------
     match /admins/{uid} {
-      allow read: if signedIn() && request.auth.uid == uid;   // để app tự kiểm tra mình có phải admin
-      allow write: if false;                                    // chỉ thêm/xóa trong Console
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['email', 'addedBy', 'addedAt'])
+        && request.resource.data.email is string
+        && stampedByMe(request.resource.data, 'addedBy', 'addedAt');
+      allow update: if false;
+      allow delete: if isAdmin() && uid != request.auth.uid;   // không tự gỡ quyền của mình
+    }
+
+    // ---------- Khóa tài khoản khách ----------
+    match /bans/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['reason', 'by', 'at'])
+        && request.resource.data.reason is string && request.resource.data.reason.size() <= 300
+        && stampedByMe(request.resource.data, 'by', 'at');
+      allow delete: if isAdmin();
+    }
+
+    // ---------- Mã giảm giá ----------
+    // Khách đọc được 1 mã khi gõ đúng (get), không liệt kê được danh sách mã (list).
+    match /vouchers/{code} {
+      allow get: if true;
+      allow list: if isAdmin();
+      allow create, update: if isAdmin()
+        && request.resource.data.code == code
+        && code.matches('^[A-Z0-9_-]{3,30}$')
+        && request.resource.data.type in ['percent', 'fixed']
+        && request.resource.data.value is int && request.resource.data.value > 0
+        && (request.resource.data.type == 'fixed' || request.resource.data.value <= 100)
+        && request.resource.data.minOrder is int && request.resource.data.minOrder >= 0
+        && request.resource.data.maxDiscount is int && request.resource.data.maxDiscount >= 0
+        && request.resource.data.startAt is timestamp && request.resource.data.endAt is timestamp
+        && request.resource.data.active is bool;
+      allow delete: if isAdmin();
+    }
+
+    // ---------- Kho, lịch sử giá, nhật ký: chỉ quản trị viên ----------
+    match /stockMoves/{id} {
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.type in ['in', 'out', 'damaged', 'order', 'order-return']
+        && request.resource.data.qty is int
+        && stampedByMe(request.resource.data, 'by', 'at');
+      allow update, delete: if false;
+    }
+    match /priceHistory/{id} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() && stampedByMe(request.resource.data, 'by', 'at');
+      allow update, delete: if false;
+    }
+    match /auditLogs/{id} {
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['action', 'target', 'detail', 'by', 'byEmail', 'at'])
+        && request.resource.data.action is string && request.resource.data.detail is string
+        && stampedByMe(request.resource.data, 'by', 'at');
+      allow update, delete: if false;   // nhật ký không sửa/xóa được, kể cả admin
     }
 
     // ---------- Hồ sơ người dùng ----------
@@ -60,10 +128,12 @@ service cloud.firestore {
     match /carts/{uid} {
       function isOwner() { return signedIn() && request.auth.uid == uid; }
       allow read, delete: if isOwner();
-      allow create, update: if isOwner()
+      allow create, update: if isOwner() && notBanned()
         && request.resource.data.keys().hasOnly(['items', 'updatedAt'])
         && request.resource.data.items is map
-        && request.resource.data.items.size() <= 10
+        // Tối đa 8 dòng; giỏ cũ (trước khi giảm từ 10 xuống 8) vẫn được bớt sản phẩm.
+        && (request.resource.data.items.size() <= 8
+            || (resource != null && request.resource.data.items.size() < resource.data.items.size()))
         && request.resource.data.updatedAt == request.time;
     }
 
@@ -83,10 +153,11 @@ service cloud.firestore {
         return it.qty is int && it.qty >= 1 && it.qty <= 10
           && p.price == it.price && p.active == true && it.qty <= p.stock;
       }
-      // Rules không có vòng lặp nên kiểm tra tường minh 10 vị trí (MAX_LINES = 10).
+      // Rules không có vòng lặp nên kiểm tra tường minh 8 vị trí (MAX_LINES = 8).
+      // Vì sao 8: Firestore cho mỗi lệnh ghi đọc tối đa 10 tài liệu khác → 8 sản phẩm + bans + mã giảm giá.
       function itemsOk(items) {
         let n = items.size();
-        return n >= 1 && n <= 10
+        return n >= 1 && n <= 8
           && lineOk(items[0])
           && (n < 2 || lineOk(items[1]))
           && (n < 3 || lineOk(items[2]))
@@ -94,23 +165,41 @@ service cloud.firestore {
           && (n < 5 || lineOk(items[4]))
           && (n < 6 || lineOk(items[5]))
           && (n < 7 || lineOk(items[6]))
-          && (n < 8 || lineOk(items[7]))
-          && (n < 9 || lineOk(items[8]))
-          && (n < 10 || lineOk(items[9]));
+          && (n < 8 || lineOk(items[7]));
       }
       function line(items, i) {
         return items.size() > i ? items[i].price * items[i].qty : 0;
       }
       function sumOf(items) {
         return line(items, 0) + line(items, 1) + line(items, 2) + line(items, 3) + line(items, 4)
-          + line(items, 5) + line(items, 6) + line(items, 7) + line(items, 8) + line(items, 9);
+          + line(items, 5) + line(items, 6) + line(items, 7);
       }
       function shipFee(subtotal) { return subtotal >= 5000000 ? 0 : 30000; }
 
+      // Mã giảm giá: voucher = '' và discount = 0 nếu không dùng mã. Số tiền giảm phải đúng bằng
+      // số tính từ mã trong CSDL — PHẢI khớp với voucherDiscount() trong public/js/categories.js.
+      // Viết bằng ?: để chỉ đánh giá 1 nhánh (let/|| làm vượt giới hạn 1000 biểu thức).
+      function voucherOk(d) {
+        return d.voucher == ''
+          ? d.discount == 0
+          : d.voucher is string && d.voucher.size() <= 30
+            && voucherMatch(d.subtotal, get(/databases/$(database)/documents/vouchers/$(d.voucher)).data, d.discount);
+      }
+      function voucherMatch(subtotal, v, disc) {
+        return v.active == true && request.time >= v.startAt && request.time <= v.endAt
+          && subtotal >= v.minOrder
+          && disc == capDiscount(v.type == 'percent' ? math.floor(subtotal * v.value / 100) : v.value,
+                                 v.maxDiscount, subtotal);
+      }
+      function capDiscount(raw, maxDiscount, subtotal) {
+        return capAt(maxDiscount > 0 && raw > maxDiscount ? maxDiscount : raw, subtotal);
+      }
+      function capAt(x, limit) { return x > limit ? limit : x; }
+
+      // Kiểm tra "đủ và chỉ đúng các khóa" bằng hasOnly + size (rẻ hơn hasOnly + hasAll).
       function validShipping(s) {
         return s is map
-          && s.keys().hasOnly(['name', 'phone', 'address'])
-          && s.keys().hasAll(['name', 'phone', 'address'])
+          && s.keys().hasOnly(['name', 'phone', 'address']) && s.size() == 3
           && s.name is string && s.name.size() > 0 && s.name.size() <= 100
           && s.phone is string && s.phone.matches('^(0|[+]84)[0-9]{9,10}$')
           && s.address is string && s.address.size() > 0 && s.address.size() <= 300;
@@ -118,29 +207,30 @@ service cloud.firestore {
 
       function validNewOrder(d) {
         return d.keys().hasOnly(['userId', 'items', 'subtotal', 'shippingFee', 'total', 'shipping',
-                                 'paymentMethod', 'note', 'status', 'createdAt', 'updatedAt'])
-          && d.keys().hasAll(['userId', 'items', 'subtotal', 'shippingFee', 'total', 'shipping',
-                              'paymentMethod', 'note', 'status', 'createdAt', 'updatedAt'])
+                                 'paymentMethod', 'note', 'status', 'createdAt', 'updatedAt',
+                                 'voucher', 'discount'])
+          && d.size() == 13
           && d.userId == request.auth.uid
           && d.status == 'pending'
           && d.items is list
           && d.subtotal == sumOf(d.items)
           && itemsOk(d.items)
           && d.shippingFee == shipFee(d.subtotal)
-          && d.total == d.subtotal + d.shippingFee
+          && voucherOk(d)
+          && d.total == d.subtotal + d.shippingFee - d.discount
           && validShipping(d.shipping)
           && d.paymentMethod in ['cod', 'bank']
           && d.note is string && d.note.size() <= 300
-          && d.status == 'pending'
           && d.createdAt == request.time
           && d.updatedAt == request.time;
       }
 
       allow read: if signedIn() && (resource.data.userId == request.auth.uid || isAdmin());
 
-      allow create: if signedIn() && validNewOrder(request.resource.data);
+      allow create: if signedIn() && notBanned() && validNewOrder(request.resource.data);
 
-      // Khách chỉ được hủy đơn của mình khi còn "Chờ xác nhận". Quản trị viên sửa được mọi đơn.
+      // Khách chỉ được hủy đơn của mình khi còn "Chờ xác nhận". Quản trị viên sửa được mọi đơn
+      // (trang quản trị trừ/hoàn tồn kho theo trường stockDeducted khi đổi trạng thái).
       allow update: if isAdmin() || (
         signedIn()
         && resource.data.userId == request.auth.uid

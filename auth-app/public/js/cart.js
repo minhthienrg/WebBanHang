@@ -4,8 +4,8 @@ import {
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
 import { db } from './firebase.js';
 import { getProduct, thumb } from './catalog.js';
-import { shippingFee, FREE_SHIP_FROM, MAX_LINES, MAX_QTY } from './categories.js';
-import { getProfile, saveProfile, shortId, statusText } from './account.js';
+import { shippingFee, FREE_SHIP_FROM, MAX_LINES, MAX_QTY, voucherDiscount, voucherProblem } from './categories.js';
+import { getProfile, saveProfile, shortId, statusText, banInfo } from './account.js';
 import { $, esc, money, say, clearMsg, busy, errText, normalizePhone, validPhone } from './ui.js';
 
 const cartRef = (uid) => doc(db, 'carts', uid);
@@ -15,6 +15,7 @@ let items = {};            // { productId: qty }
 let ready = false;         // đã nhận snapshot đầu tiên chưa
 let unsub = null;
 let onChange = () => {};
+let voucher = null;        // mã giảm giá đang áp dụng ở trang thanh toán: { code, ...dữ liệu vouchers/{code} }
 
 export const cartCount = () => Object.values(items).reduce((n, q) => n + q, 0);
 export const cartReady = () => ready;
@@ -55,6 +56,7 @@ async function saveItems(next) {
 /** Thêm sản phẩm. Trả về true nếu thành công. */
 export async function addToCart(productId, qty = 1) {
   if (!currentUser) throw new Error('not-signed-in');
+  if (banInfo()) { say('Tài khoản đã bị khóa nên không thêm được vào giỏ hàng.', 'err'); return false; }
   const p = await getProduct(productId, true);
   if (!p || !(p.stock > 0)) { say('Sản phẩm đã hết hàng.', 'err'); return false; }
   const next = { ...items };
@@ -88,17 +90,19 @@ async function lines(fresh = false) {
   return out;
 }
 
-function totals(ls) {
+function totals(ls, v = null) {
   const subtotal = ls.reduce((s, l) => s + (l.p && l.p.stock > 0 ? l.p.price * l.qty : 0), 0);
   const ship = subtotal > 0 ? shippingFee(subtotal) : 0;
-  return { subtotal, ship, total: subtotal + ship };
+  const discount = v && !voucherProblem(v, subtotal) ? voucherDiscount(v, subtotal) : 0;
+  return { subtotal, ship, discount, total: subtotal + ship - discount };
 }
 
-function summaryHtml({ subtotal, ship, total }, button) {
+function summaryHtml({ subtotal, ship, discount = 0, total }, button) {
   return `
     <aside class="summary card">
       <div class="row"><span>Tạm tính</span><span>${money(subtotal)}</span></div>
       <div class="row"><span>Phí giao hàng</span><span>${ship ? money(ship) : 'Miễn phí'}</span></div>
+      ${discount ? `<div class="row"><span>Giảm giá (${esc(voucher?.code || '')})</span><span>−${money(discount)}</span></div>` : ''}
       ${subtotal && subtotal < FREE_SHIP_FROM
         ? `<p class="hint">Mua thêm ${money(FREE_SHIP_FROM - subtotal)} để được miễn phí giao hàng.</p>` : ''}
       <div class="row total"><span>Tổng cộng</span><strong>${money(total)}</strong></div>
@@ -158,15 +162,27 @@ export async function renderCart() {
 export async function renderCheckout() {
   const view = $('#view-checkout');
   if (!ready) { view.innerHTML = '<p class="loading">Đang tải…</p>'; return; }
+  const ban = banInfo();
+  if (ban) {
+    view.innerHTML = `<h1>Thanh toán</h1><p class="msg err">Tài khoản của bạn đã bị khóa nên không đặt hàng được${
+      ban.reason ? ` (lý do: ${esc(ban.reason)})` : ''}. Vui lòng liên hệ bộ phận chăm sóc khách hàng.</p>`;
+    return;
+  }
   const ls = await lines(true);
   if (!ls.length) { location.hash = '#/gio-hang'; return; }
+  if (ls.length > MAX_LINES) {
+    say(`Mỗi đơn tối đa ${MAX_LINES} loại sản phẩm. Hãy bớt sản phẩm trong giỏ.`, 'err');
+    location.hash = '#/gio-hang';
+    return;
+  }
   if (ls.some((l) => !l.p || !(l.p.stock > 0) || l.qty > l.p.stock)) {
     say('Có sản phẩm hết hàng hoặc vượt tồn kho. Hãy chỉnh lại giỏ.', 'err');
     location.hash = '#/gio-hang';
     return;
   }
   const pr = getProfile() || {};
-  const t = totals(ls);
+  if (voucher && voucherProblem(voucher, totals(ls).subtotal)) voucher = null;
+  const t = totals(ls, voucher);
   view.innerHTML = `
     <h1>Thanh toán</h1>
     <form id="form-checkout" class="cart-layout" novalidate>
@@ -193,6 +209,13 @@ export async function renderCheckout() {
           <ul class="order-items">
             ${ls.map(({ qty, p }) => `<li><span>${esc(p.name)} × ${qty}</span><span>${money(p.price * qty)}</span></li>`).join('')}
           </ul>
+          <div class="voucher-row">
+            <label for="voucher-code" class="sr-only">Mã giảm giá</label>
+            <input id="voucher-code" name="voucher" maxlength="30" placeholder="Mã giảm giá" autocomplete="off"
+              value="${esc(voucher?.code || '')}" style="text-transform: uppercase">
+            <button type="button" id="btn-voucher" class="btn small">${voucher ? 'Bỏ mã' : 'Áp dụng'}</button>
+          </div>
+          <p id="voucher-msg" class="hint" role="status">${voucher ? `Đã áp dụng mã ${esc(voucher.code)}.` : ''}</p>
         </div>
         ${summaryHtml(t, '<button type="submit" class="btn primary">Đặt hàng</button>')}
       </div>
@@ -202,6 +225,29 @@ export async function renderCheckout() {
     ev.preventDefault();
     placeOrder(ev.currentTarget);
   });
+  $('#voucher-code').addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter') { ev.preventDefault(); $('#btn-voucher').click(); }
+  });
+  $('#btn-voucher').addEventListener('click', (ev) => busy(ev.currentTarget, () => applyVoucher(ls)));
+}
+
+async function applyVoucher(ls) {
+  const msg = $('#voucher-msg');
+  if (voucher) { voucher = null; return renderCheckout(); }
+  const code = $('#voucher-code').value.trim().toUpperCase();
+  if (!code) { msg.textContent = 'Nhập mã giảm giá.'; return; }
+  if (!/^[A-Z0-9_-]{3,30}$/.test(code)) { msg.textContent = 'Mã giảm giá không tồn tại hoặc đã ngừng áp dụng.'; return; }
+  try {
+    const snap = await getDoc(doc(db, 'vouchers', code));
+    const v = snap.exists() ? { ...snap.data(), code } : null;
+    const problem = voucherProblem(v, totals(ls).subtotal);
+    if (problem) { msg.textContent = problem; return; }
+    voucher = v;
+    await renderCheckout();
+    say(`Đã áp dụng mã ${code}: giảm ${money(voucherDiscount(v, totals(ls).subtotal))}.`);
+  } catch (e) {
+    msg.textContent = errText(e);
+  }
 }
 
 async function placeOrder(f) {
@@ -225,7 +271,13 @@ async function placeOrder(f) {
         return;
       }
       const orderItems = ls.map(({ id, qty, p }) => ({ productId: id, name: p.name, price: p.price, qty }));
-      const { subtotal, ship, total } = totals(ls);
+      if (voucher && voucherProblem(voucher, totals(ls).subtotal)) {
+        voucher = null;
+        say('Mã giảm giá không còn áp dụng được cho đơn này. Hãy kiểm tra lại tổng tiền.', 'err');
+        await renderCheckout();
+        return;
+      }
+      const { subtotal, ship, discount, total } = totals(ls, voucher);
 
       const orderRef = doc(collection(db, 'orders'));
       const batch = writeBatch(db);
@@ -238,12 +290,15 @@ async function placeOrder(f) {
         shipping: { name, phone, address },
         paymentMethod: f.pay.value,
         note,
+        voucher: discount ? voucher.code : '',
+        discount,
         status: 'pending',
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
       batch.set(cartRef(currentUser.uid), { items: {}, updatedAt: serverTimestamp() });
       await batch.commit();
+      voucher = null;
 
       if (f.save.checked) {
         saveProfile(currentUser, { name, phone, address }).catch(console.error);
@@ -270,6 +325,7 @@ export async function renderDone(orderId) {
         <ul class="order-items">
           ${o.items.map((i) => `<li><span>${esc(i.name)} × ${i.qty}</span><span>${money(i.price * i.qty)}</span></li>`).join('')}
         </ul>
+        ${o.discount ? `<div class="row"><span>Giảm giá (${esc(o.voucher)})</span><span>−${money(o.discount)}</span></div>` : ''}
         <div class="row total"><span>Tổng cộng (${o.paymentMethod === 'cod' ? 'COD' : 'chuyển khoản'})</span><strong>${money(o.total)}</strong></div>
         <div class="actions">
           <a class="btn" href="#/tai-khoan">Xem đơn hàng</a>

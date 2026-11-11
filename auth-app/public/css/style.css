@@ -379,6 +379,11 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { box-shadow: 
 .order .order-items { color: var(--muted); }
 .order .order-items li { display: list-item; list-style: "· "; margin-left: 10px; }
 
+/* ---------- Mã giảm giá ---------- */
+.voucher-row { display: flex; gap: 8px; margin-top: 12px; }
+.voucher-row input { flex: 1; min-width: 0; }
+.voucher-row .btn { flex: none; }
+
 /* ---------- Màn hình hẹp (điện thoại / iframe nhỏ) ---------- */
 @media (max-width: 1100px) {
   .topbar, .foot-in { padding-left: 16px; padding-right: 16px; }

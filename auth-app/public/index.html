@@ -46,6 +46,7 @@
       <a href="#/gio-hang" data-nav="cart" class="nav-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 18a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM1 2h3.3l.94 2H21a1 1 0 0 1 .9 1.45l-3.6 7A2 2 0 0 1 16.53 13H8.1l-.9 1.64-.03.12a.25.25 0 0 0 .25.24H19v2H7a2 2 0 0 1-1.75-2.96l1.36-2.45L3 4H1V2Z"/></svg>
         <span class="nav-text">Giỏ hàng</span> <span id="cart-count" class="badge" hidden>0</span></a>
+      <a href="admin/" id="nav-admin" class="nav-pill" hidden>Quản trị</a>
       <a href="#/tai-khoan" data-nav="account" id="nav-account" class="nav-cta">Đăng nhập</a>
     </nav>
   </header>
@@ -190,6 +191,8 @@
               <p id="user-email" class="hint"></p>
             </div>
           </header>
+          <p id="ban-note" class="msg err" role="alert" hidden></p>
+          <a id="admin-link" class="btn primary" href="admin/" hidden>Vào trang quản trị</a>
           <p id="verify-note" class="note" hidden>
             Email chưa được xác minh.
             <button type="button" id="btn-resend" class="link">Gửi lại email xác minh</button>

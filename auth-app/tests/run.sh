@@ -2,7 +2,8 @@
 # Chạy toàn bộ test trên Firebase Emulator (project demo-webbanhang, không đụng dữ liệu thật).
 #   ./run.sh            test rules + E2E
 #   ./run.sh rules      chỉ test Security Rules
-#   ./run.sh e2e        chỉ test E2E Playwright
+#   ./run.sh e2e        chỉ test E2E Playwright (cửa hàng)
+#   ./run.sh admin      chỉ test E2E trang quản trị
 #   ./run.sh audit      kiểm tra accessibility (axe-core) + đo tốc độ
 #   ./run.sh dev        chạy thử trên máy: emulator + 254 linh kiện NEXORA, mở http://localhost:5000
 #   ./run.sh dev-mau    như trên nhưng dùng 23 sản phẩm mẫu
@@ -24,10 +25,11 @@ fi
 case "${1:-all}" in
   rules) CMD="node rules.test.mjs" ;;
   e2e)   CMD="node e2e.mjs" ;;
+  admin) CMD="node admin-e2e.mjs" ;;
   audit) CMD="node audit.mjs" ;;
   dev)   CMD="node seed.mjs && sleep infinity" ;;
   dev-mau) CMD="node seed.mjs mau && sleep infinity" ;;
-  *)     CMD="node rules.test.mjs && node e2e.mjs && node audit.mjs" ;;
+  *)     CMD="node rules.test.mjs && node e2e.mjs && node admin-e2e.mjs && node audit.mjs" ;;
 esac
 
 cd ..

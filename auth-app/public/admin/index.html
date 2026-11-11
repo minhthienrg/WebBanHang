@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Quản trị NEXORA</title>
+  <meta name="theme-color" content="#121212">
+  <meta name="color-scheme" content="dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js">
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js">
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js">
+</head>
+<body class="admin">
+  <a href="#main" class="skip" id="skip">Bỏ qua tới nội dung chính</a>
+  <header class="topbar">
+    <a href="#/" class="brand">
+      <span class="logo" aria-hidden="true">N</span>
+      <span>NEXORA</span><span class="admin-tag">Quản trị</span>
+    </a>
+    <nav class="nav" aria-label="Tài khoản">
+      <span id="who" class="who hint"></span>
+      <a href="../" class="nav-pill">Về cửa hàng</a>
+      <button type="button" id="btn-logout" class="btn small" hidden>Đăng xuất</button>
+    </nav>
+  </header>
+
+  <div class="admin-layout">
+    <nav class="side" id="side" aria-label="Quản trị" hidden>
+      <p class="side-h">Tổng quan</p>
+      <a href="#/" data-view="tong-quan">Dashboard</a>
+      <a href="#/bao-cao" data-view="bao-cao">Báo cáo doanh thu</a>
+      <p class="side-h">Catalog</p>
+      <a href="#/san-pham" data-view="san-pham">Sản phẩm</a>
+      <a href="#/kho" data-view="kho">Kho hàng <span class="badge" id="low-badge" hidden></span></a>
+      <p class="side-h">Sales</p>
+      <a href="#/don-hang" data-view="don-hang">Đơn hàng <span class="badge" id="pending-badge" hidden></span></a>
+      <a href="#/khach-hang" data-view="khach-hang">Khách hàng</a>
+      <p class="side-h">Marketing</p>
+      <a href="#/khuyen-mai" data-view="khuyen-mai">Mã giảm giá</a>
+      <p class="side-h">System</p>
+      <a href="#/nhat-ky" data-view="nhat-ky">Nhật ký hoạt động</a>
+      <a href="#/cai-dat" data-view="cai-dat">Cài đặt &amp; quản trị viên</a>
+    </nav>
+
+    <main id="main" class="admin-main" tabindex="-1">
+      <div id="msg" class="msg" role="status" aria-live="polite" hidden></div>
+      <div id="gate" class="loading">Đang kiểm tra quyền truy cập…</div>
+      <section id="view" hidden></section>
+    </main>
+  </div>
+
+  <dialog id="dlg" aria-labelledby="dlg-title">
+    <div class="dlg-head">
+      <h2 id="dlg-title"></h2>
+      <button type="button" class="dlg-x" data-close aria-label="Đóng">✕</button>
+    </div>
+    <div id="dlg-body"></div>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
